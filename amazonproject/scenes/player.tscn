@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://d2dsqxkjcgtil"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_dlm78"]
+[ext_resource type="Texture2D" uid="uid://dx0cgmyk4i5fj" path="res://assets/Caipora01.png" id="2_alrdc"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fi2kg"]
+height = 20.0
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_dlm78")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_alrdc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 22)
+shape = SubResource("CapsuleShape2D_fi2kg")
