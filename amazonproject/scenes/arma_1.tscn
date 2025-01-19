@@ -8,7 +8,7 @@ radius = 533.54
 
 [node name="arma1" type="Area2D"]
 collision_layer = 0
-collision_mask = 3
+collision_mask = 2
 script = ExtResource("1_l6bqn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -19,8 +19,8 @@ shape = SubResource("CircleShape2D_3b6uy")
 rotation = 0.144572
 
 [node name="Lança" type="Sprite2D" parent="WeaponPivot"]
-position = Vector2(54.9836, -11.0366)
-rotation = 0.0436888
+position = Vector2(30.7333, 16.747)
+rotation = 0.636162
 texture = ExtResource("1_jsmxc")
 
 [node name="ShootingPoint" type="Marker2D" parent="WeaponPivot/Lança"]
