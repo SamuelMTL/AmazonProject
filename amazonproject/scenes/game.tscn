@@ -11,8 +11,10 @@ y_sort_enabled = true
 layer = -1
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
-offset_right = 1173.0
-offset_bottom = 663.0
+offset_left = -488.0
+offset_top = -426.0
+offset_right = 2141.0
+offset_bottom = 1587.0
 
 [node name="Player" parent="." instance=ExtResource("1_mn1vj")]
 position = Vector2(689, 293)
