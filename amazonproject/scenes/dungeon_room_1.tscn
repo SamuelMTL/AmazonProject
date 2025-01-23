@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://ba1chmuwsymie"]
+[gd_scene load_steps=6 format=3 uid="uid://ba1chmuwsymie"]
 
 [ext_resource type="Texture2D" uid="uid://c1ia6x2xmshet" path="res://assets/fireAnimationSpriteSheet3.png" id="1_2vop7"]
+[ext_resource type="Script" path="res://scripts/dungeon_room_1.gd" id="1_3crfk"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g8le3"]
 atlas = ExtResource("1_2vop7")
@@ -20,11 +21,12 @@ animations = [{
 "texture": SubResource("AtlasTexture_fy4fs")
 }],
 "loop": true,
-"name": &"default",
+"name": &"fire_barrier",
 "speed": 5.0
 }]
 
 [node name="Node2D" type="Node2D"]
+script = ExtResource("1_3crfk")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_right = 643.0
@@ -34,3 +36,4 @@ color = Color(0.454902, 0.247059, 0.223529, 1)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(320, 180)
 sprite_frames = SubResource("SpriteFrames_shh1g")
+animation = &"fire_barrier"

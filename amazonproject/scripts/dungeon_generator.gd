@@ -7,6 +7,7 @@ var room_scene = preload("res://scenes/dungeon_room_1.tscn")
 
 func _ready():
 	generate_dungeon()
+	build_dungeon()
 	
 func generate_dungeon():
 	for row in range(dungeon_size.y):
