@@ -21,6 +21,7 @@ func generate_dungeon():
 	# garantindo a entrada da dungeon no lugar q eu quero
 	dungeon_layout[4][2] = 1 
 	
+	
 func build_dungeon():
 	for row in range(dungeon_size.y):
 		for col in range(dungeon_size.x):
@@ -31,4 +32,4 @@ func build_dungeon():
 				
 func focus_on_room(col, row):
 	$Camera2D.position = Vector2(col * 640 + 320, row * 360 + 180)
-			
+	
