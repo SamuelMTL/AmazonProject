@@ -1,56 +1,47 @@
-[gd_scene load_steps=4 format=3 uid="uid://d4ijymny2mxj"]
+[gd_scene load_steps=7 format=3 uid="uid://d4ijymny2mxj"]
 
 [ext_resource type="PackedScene" uid="uid://d2dsqxkjcgtil" path="res://scenes/player.tscn" id="1_mn1vj"]
-[ext_resource type="PackedScene" uid="uid://b5dyfwyr444cr" path="res://scenes/arvore.tscn" id="2_0gs1g"]
-[ext_resource type="PackedScene" uid="uid://m4o61hbrini1" path="res://scenes/mob.tscn" id="3_iccst"]
+[ext_resource type="Script" path="res://scripts/game.gd" id="1_thwkq"]
+[ext_resource type="Texture2D" uid="uid://c1ia6x2xmshet" path="res://assets/fireAnimationSpriteSheet3.png" id="3_s4ey6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vre6d"]
+atlas = ExtResource("3_s4ey6")
+region = Rect2(0, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ira7"]
+atlas = ExtResource("3_s4ey6")
+region = Rect2(640, 0, 640, 360)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lsicv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vre6d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ira7")
+}],
+"loop": true,
+"name": &"fire_barrier",
+"speed": 5.0
+}]
 
 [node name="Game" type="Node2D"]
 y_sort_enabled = true
+script = ExtResource("1_thwkq")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_left = -488.0
 offset_top = -426.0
 offset_right = 2141.0
 offset_bottom = 1587.0
+color = Color(0.454902, 0.247059, 0.223529, 1)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visibility_layer = 2
+position = Vector2(320, 180)
+sprite_frames = SubResource("SpriteFrames_lsicv")
+animation = &"fire_barrier"
 
 [node name="Player" parent="." instance=ExtResource("1_mn1vj")]
 position = Vector2(318, 179)
-
-[node name="Mob2" parent="." instance=ExtResource("3_iccst")]
-position = Vector2(201, 203)
-
-[node name="Mob4" parent="." instance=ExtResource("3_iccst")]
-position = Vector2(507, 240)
-
-[node name="Mob" parent="." instance=ExtResource("3_iccst")]
-position = Vector2(430, 214)
-
-[node name="Mob3" parent="." instance=ExtResource("3_iccst")]
-position = Vector2(449, 339)
-
-[node name="Arvore" parent="." instance=ExtResource("2_0gs1g")]
-position = Vector2(212, 473)
-
-[node name="Arvore2" parent="." instance=ExtResource("2_0gs1g")]
-position = Vector2(151, 247)
-
-[node name="Arvore3" parent="." instance=ExtResource("2_0gs1g")]
-position = Vector2(998, 165)
-
-[node name="Arvore4" parent="." instance=ExtResource("2_0gs1g")]
-position = Vector2(829, 556)
-
-[node name="Arvore5" parent="." instance=ExtResource("2_0gs1g")]
-position = Vector2(760, 179)
-
-[node name="Arvore6" parent="." instance=ExtResource("2_0gs1g")]
-position = Vector2(786, 198)
-
-[node name="Arvore7" parent="." instance=ExtResource("2_0gs1g")]
-position = Vector2(243, 154)
-
-[node name="Arvore8" parent="." instance=ExtResource("2_0gs1g")]
-position = Vector2(269, 174)
-
-[node name="Arvore9" parent="." instance=ExtResource("2_0gs1g")]
-position = Vector2(381, 132)
