@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://d4ijymny2mxj"]
+
+[ext_resource type="Script" path="res://scripts/game.gd" id="1_u1gvo"]
+[ext_resource type="Script" path="res://scripts/dungeon_generator.gd" id="2_k8ebg"]
+[ext_resource type="PackedScene" uid="uid://d2dsqxkjcgtil" path="res://scenes/player.tscn" id="3_hy87r"]
+
+[node name="Game" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_u1gvo")
+
+[node name="DungeonGenerator" type="Node2D" parent="."]
+script = ExtResource("2_k8ebg")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -488.0
+offset_top = -426.0
+offset_right = 2141.0
+offset_bottom = 1587.0
+color = Color(0.454902, 0.247059, 0.223529, 1)
+
+[node name="Player" parent="." instance=ExtResource("3_hy87r")]
+position = Vector2(318, 179)
+
+[node name="Camera2D" type="Camera2D" parent="."]

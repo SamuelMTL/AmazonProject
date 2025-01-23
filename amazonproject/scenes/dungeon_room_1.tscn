@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://ba1chmuwsymie"]
+
+[ext_resource type="Texture2D" uid="uid://c1ia6x2xmshet" path="res://assets/fireAnimationSpriteSheet3.png" id="1_2vop7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g8le3"]
+atlas = ExtResource("1_2vop7")
+region = Rect2(0, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fy4fs"]
+atlas = ExtResource("1_2vop7")
+region = Rect2(640, 0, 640, 360)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_shh1g"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g8le3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fy4fs")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 643.0
+offset_bottom = 361.0
+color = Color(0.454902, 0.247059, 0.223529, 1)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(320, 180)
+sprite_frames = SubResource("SpriteFrames_shh1g")
