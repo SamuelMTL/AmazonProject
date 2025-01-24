@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scripts/dungeon_generator.gd" id="2_k8ebg"]
 [ext_resource type="PackedScene" uid="uid://d2dsqxkjcgtil" path="res://scenes/player.tscn" id="3_hy87r"]
 
-[node name="Game" type="Node2D"]
+[node name="DungeonOne" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_u1gvo")
 
