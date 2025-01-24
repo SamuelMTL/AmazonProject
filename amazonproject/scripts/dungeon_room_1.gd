@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var fire_barrier_animation = $AnimatedSprite2D
+@onready var fire_barrier_animation = $FireWall
 
 func _ready():
-	fire_barrier_animation.play("fire_barrier")
+	fire_barrier_animation.play("fire_corners")
