@@ -5,4 +5,3 @@ func _physics_process(delta):
 	velocity = direction * 200
 	move_and_slide()
 	
-	print(position)

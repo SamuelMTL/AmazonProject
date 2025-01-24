@@ -30,38 +30,21 @@ func build_dungeon():
 				add_child(room)
 				room.position = Vector2(col * 640, row * 360)
 				
-				var x = position.x
-				var y = position.y
+				var x = col
+				var y = row
 				
 				#verifica se tem sala do lado
 				var has_top = y > 0 and dungeon_layout[y - 1][x] == 1
 				var has_bottom = y < dungeon_size.y - 1 and dungeon_layout[y + 1][x] == 1
 				var has_left = x > 0 and dungeon_layout[y][x - 1] == 1
 				var has_right = x < dungeon_size.x - 1 and dungeon_layout[y][x + 1] == 1
+			
 				
-				var anim_player = room.get_node("FireWall")
-				
-				if has_top:
-					anim_player.play("topWall_open")
-				else:
-					anim_player.play("topWall_closed")
-					
-				if has_bottom:
-					anim_player.play("bottomWall_open")
-				else:
-					anim_player.play("bottomWall_closed")
-					
-				if has_left: 
-					anim_player.play("leftWall_open")
-				else:
-					anim_player.play("leftWall_closed")
-					
-				if has_right:
-					anim_player.play("rightWall_open")
-				else: 
-					anim_player.play("rightWall_closed")
+				room.get_node("FireWallCorners").play("fire_corners")
+		
+				room.get_node("FireWallTop").play("topWall_open" if has_top else "topWall_closed")
+				room.get_node("FireWallBottom").play("bottomWall_open" if has_bottom else "bottomWall_closed")
+				room.get_node("FireWallLeft").play("leftWall_open" if has_left else "leftWall_closed")
+				room.get_node("FireWallRight").play("rightWall_open" if has_right else "rightWall_closed")
 				
 				
-func focus_on_room(col, row):
-	$Camera2D.position = Vector2(col * 640 + 320, row * 360 + 180)
-	
