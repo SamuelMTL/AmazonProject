@@ -1,0 +1,221 @@
+[gd_scene load_steps=25 format=3 uid="uid://dpiunkjiewjd8"]
+
+[ext_resource type="Texture2D" uid="uid://b288f0opj8dkv" path="res://assets/fireAnimationSpriteSheet.png" id="1_j61ej"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y4ugp"]
+atlas = ExtResource("1_j61ej")
+region = Rect2(0, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q33ah"]
+atlas = ExtResource("1_j61ej")
+region = Rect2(640, 0, 640, 360)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lm1ue"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y4ugp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q33ah")
+}],
+"loop": true,
+"name": &"fire_corners",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_830rr"]
+atlas = ExtResource("1_j61ej")
+region = Rect2(1280, 360, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gtr8h"]
+atlas = ExtResource("1_j61ej")
+region = Rect2(1920, 360, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s44yn"]
+atlas = ExtResource("1_j61ej")
+region = Rect2(0, 360, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tlx48"]
+atlas = ExtResource("1_j61ej")
+region = Rect2(640, 360, 640, 360)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_eykfc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_830rr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gtr8h")
+}],
+"loop": true,
+"name": &"topWall_closed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s44yn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tlx48")
+}],
+"loop": true,
+"name": &"topWall_open",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_awyac"]
+atlas = ExtResource("1_j61ej")
+region = Rect2(1280, 720, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j7qua"]
+atlas = ExtResource("1_j61ej")
+region = Rect2(1920, 720, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1o0fv"]
+atlas = ExtResource("1_j61ej")
+region = Rect2(0, 720, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j53i7"]
+atlas = ExtResource("1_j61ej")
+region = Rect2(640, 720, 640, 360)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ttj32"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_awyac")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j7qua")
+}],
+"loop": true,
+"name": &"bottomWall_closed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1o0fv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j53i7")
+}],
+"loop": true,
+"name": &"bottomWall_open",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0mv6c"]
+atlas = ExtResource("1_j61ej")
+region = Rect2(1280, 1080, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_au2pr"]
+atlas = ExtResource("1_j61ej")
+region = Rect2(1920, 1080, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hwopi"]
+atlas = ExtResource("1_j61ej")
+region = Rect2(0, 1080, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_06hr8"]
+atlas = ExtResource("1_j61ej")
+region = Rect2(640, 1080, 640, 360)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tgqcq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0mv6c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_au2pr")
+}],
+"loop": true,
+"name": &"leftWall_closed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hwopi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_06hr8")
+}],
+"loop": true,
+"name": &"leftWall_open",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q1qci"]
+atlas = ExtResource("1_j61ej")
+region = Rect2(1280, 1440, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w62eg"]
+atlas = ExtResource("1_j61ej")
+region = Rect2(1920, 1440, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t0yi4"]
+atlas = ExtResource("1_j61ej")
+region = Rect2(0, 1440, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gmk68"]
+atlas = ExtResource("1_j61ej")
+region = Rect2(640, 1440, 640, 360)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vwdfu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q1qci")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w62eg")
+}],
+"loop": true,
+"name": &"rightWall_closed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t0yi4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gmk68")
+}],
+"loop": true,
+"name": &"rightWall_open",
+"speed": 5.0
+}]
+
+[node name="dungeon_room_first" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 643.0
+offset_bottom = 361.0
+color = Color(0.454902, 0.247059, 0.223529, 1)
+
+[node name="FireWallCorners" type="AnimatedSprite2D" parent="."]
+position = Vector2(320, 180)
+sprite_frames = SubResource("SpriteFrames_lm1ue")
+animation = &"fire_corners"
+
+[node name="FireWallTop" type="AnimatedSprite2D" parent="."]
+position = Vector2(320, 180)
+sprite_frames = SubResource("SpriteFrames_eykfc")
+animation = &"topWall_closed"
+
+[node name="FireWallBottom" type="AnimatedSprite2D" parent="."]
+position = Vector2(320, 180)
+sprite_frames = SubResource("SpriteFrames_ttj32")
+animation = &"bottomWall_closed"
+
+[node name="FireWallLeft" type="AnimatedSprite2D" parent="."]
+position = Vector2(321, 180)
+sprite_frames = SubResource("SpriteFrames_tgqcq")
+animation = &"leftWall_closed"
+
+[node name="FireWallRight" type="AnimatedSprite2D" parent="."]
+position = Vector2(320, 180)
+sprite_frames = SubResource("SpriteFrames_vwdfu")
+animation = &"rightWall_closed"
