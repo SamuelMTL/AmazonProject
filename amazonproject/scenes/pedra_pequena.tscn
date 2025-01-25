@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://dpbqplvl5w8tk"]
+
+[ext_resource type="Texture2D" uid="uid://brwbncivpt8ep" path="res://assets/pedrapequena.png" id="1_lwhms"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4dawk"]
+radius = 16.0
+
+[node name="pedraPequena" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_lwhms")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 4)
+shape = SubResource("CircleShape2D_4dawk")
