@@ -1,17 +1,69 @@
-[gd_scene load_steps=4 format=3 uid="uid://d2dsqxkjcgtil"]
+[gd_scene load_steps=9 format=3 uid="uid://d2dsqxkjcgtil"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_dlm78"]
-[ext_resource type="Texture2D" uid="uid://f3mmnow5qsps" path="res://assets/Caipora02.png" id="2_olta5"]
+[ext_resource type="Texture2D" uid="uid://b7d5bmpnfndx3" path="res://assets/CaiporaSpriteSheet1.png" id="3_tkv67"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fi2kg"]
 height = 32.0
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_pfp70"]
+atlas = ExtResource("3_tkv67")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f1v7y"]
+atlas = ExtResource("3_tkv67")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y3fp5"]
+atlas = ExtResource("3_tkv67")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i2ef6"]
+atlas = ExtResource("3_tkv67")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wjqk6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pfp70")
+}],
+"loop": true,
+"name": &"DownView",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f1v7y")
+}],
+"loop": true,
+"name": &"LeftView",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y3fp5")
+}],
+"loop": true,
+"name": &"RightView",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i2ef6")
+}],
+"loop": true,
+"name": &"UpView",
+"speed": 5.0
+}]
+
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_dlm78")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_olta5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 17)
 shape = SubResource("CapsuleShape2D_fi2kg")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_wjqk6")
+animation = &"RightView"
