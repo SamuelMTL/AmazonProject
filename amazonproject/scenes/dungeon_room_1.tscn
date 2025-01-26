@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://ba1chmuwsymie"]
+[gd_scene load_steps=37 format=3 uid="uid://ba1chmuwsymie"]
 
 [ext_resource type="PackedScene" uid="uid://dpbqplvl5w8tk" path="res://scenes/pedra_pequena.tscn" id="2_3htaa"]
 [ext_resource type="Texture2D" uid="uid://b288f0opj8dkv" path="res://assets/fireAnimationSpriteSheet.png" id="2_3y6x4"]
@@ -29,6 +29,12 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yf4i0"]
+size = Vector2(127, 41.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bwpg2"]
+size = Vector2(30, 39)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_830rr"]
 atlas = ExtResource("2_3y6x4")
 region = Rect2(1280, 360, 640, 360)
@@ -45,7 +51,7 @@ region = Rect2(0, 360, 640, 360)
 atlas = ExtResource("2_3y6x4")
 region = Rect2(640, 360, 640, 360)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_ag62x"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_gylxj"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -70,6 +76,12 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gwj7c"]
+size = Vector2(386, 48)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hulcg"]
+size = Vector2(102, 44.5)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_awyac"]
 atlas = ExtResource("2_3y6x4")
 region = Rect2(1280, 720, 640, 360)
@@ -86,7 +98,7 @@ region = Rect2(0, 720, 640, 360)
 atlas = ExtResource("2_3y6x4")
 region = Rect2(640, 720, 640, 360)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_hfw2k"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_nj642"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -111,6 +123,12 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3qe12"]
+size = Vector2(384, 34)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3gp2w"]
+size = Vector2(100, 33)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_0mv6c"]
 atlas = ExtResource("2_3y6x4")
 region = Rect2(1280, 1080, 640, 360)
@@ -127,7 +145,7 @@ region = Rect2(0, 1080, 640, 360)
 atlas = ExtResource("2_3y6x4")
 region = Rect2(640, 1080, 640, 360)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_ubnyb"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_j2gxj"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -152,6 +170,12 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o3n1h"]
+size = Vector2(28, 217)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qw8po"]
+size = Vector2(28, 42)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_q1qci"]
 atlas = ExtResource("2_3y6x4")
 region = Rect2(1280, 1440, 640, 360)
@@ -168,7 +192,7 @@ region = Rect2(0, 1440, 640, 360)
 atlas = ExtResource("2_3y6x4")
 region = Rect2(640, 1440, 640, 360)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_fwvuf"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_2l7jp"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -193,6 +217,12 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gqrtp"]
+size = Vector2(28, 217)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5fdiv"]
+size = Vector2(28, 42)
+
 [node name="Node2D" type="Node2D"]
 script = SubResource("GDScript_5dhjl")
 
@@ -202,29 +232,150 @@ offset_bottom = 361.0
 color = Color(0.454902, 0.247059, 0.223529, 1)
 
 [node name="FireWallCorners" type="AnimatedSprite2D" parent="."]
+z_index = 1
 position = Vector2(320, 180)
 sprite_frames = SubResource("SpriteFrames_shh1g")
 animation = &"fire_corners"
 
+[node name="StaticBody2D2" type="StaticBody2D" parent="FireWallCorners"]
+position = Vector2(-302, 163)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FireWallCorners/StaticBody2D2"]
+position = Vector2(46.5, 4.75)
+shape = SubResource("RectangleShape2D_yf4i0")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="FireWallCorners/StaticBody2D2"]
+position = Vector2(-2, -36)
+shape = SubResource("RectangleShape2D_bwpg2")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="FireWallCorners"]
+position = Vector2(-302, -163)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FireWallCorners/StaticBody2D"]
+position = Vector2(46.5, 8.5)
+shape = SubResource("RectangleShape2D_yf4i0")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="FireWallCorners/StaticBody2D"]
+position = Vector2(-2, 36.25)
+shape = SubResource("RectangleShape2D_bwpg2")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="FireWallCorners"]
+position = Vector2(302, 163)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FireWallCorners/StaticBody2D3"]
+position = Vector2(-46.5, 4)
+shape = SubResource("RectangleShape2D_yf4i0")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="FireWallCorners/StaticBody2D3"]
+position = Vector2(3, -36)
+shape = SubResource("RectangleShape2D_bwpg2")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="FireWallCorners"]
+position = Vector2(303, -163)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FireWallCorners/StaticBody2D4"]
+position = Vector2(-46.5, 9.125)
+shape = SubResource("RectangleShape2D_yf4i0")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="FireWallCorners/StaticBody2D4"]
+position = Vector2(3, 37)
+shape = SubResource("RectangleShape2D_bwpg2")
+
 [node name="FireWallTop" type="AnimatedSprite2D" parent="."]
+z_index = 1
 position = Vector2(320, 180)
-sprite_frames = SubResource("SpriteFrames_ag62x")
-animation = &"topWall_closed"
+sprite_frames = SubResource("SpriteFrames_gylxj")
+animation = &"topWall_open"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="FireWallTop"]
+position = Vector2(-10, -167)
+
+[node name="WallTopCollision" type="CollisionShape2D" parent="FireWallTop/StaticBody2D"]
+position = Vector2(11, 11)
+shape = SubResource("RectangleShape2D_gwj7c")
+disabled = true
+
+[node name="DoorTopCollision" type="CollisionShape2D" parent="FireWallTop/StaticBody2D"]
+position = Vector2(-135, 8.75)
+shape = SubResource("RectangleShape2D_hulcg")
+disabled = true
+
+[node name="DoorTopCollision2" type="CollisionShape2D" parent="FireWallTop/StaticBody2D"]
+position = Vector2(151, 9)
+shape = SubResource("RectangleShape2D_hulcg")
+disabled = true
 
 [node name="FireWallBottom" type="AnimatedSprite2D" parent="."]
+z_index = 1
 position = Vector2(320, 180)
-sprite_frames = SubResource("SpriteFrames_hfw2k")
-animation = &"bottomWall_closed"
+sprite_frames = SubResource("SpriteFrames_nj642")
+animation = &"bottomWall_open"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="FireWallBottom"]
+position = Vector2(4, 163)
+
+[node name="WallBottomCollision" type="CollisionShape2D" parent="FireWallBottom/StaticBody2D"]
+position = Vector2(-4, 0)
+shape = SubResource("RectangleShape2D_3qe12")
+disabled = true
+
+[node name="DoorBottomCollision" type="CollisionShape2D" parent="FireWallBottom/StaticBody2D"]
+position = Vector2(-146, 0)
+shape = SubResource("RectangleShape2D_3gp2w")
+disabled = true
+
+[node name="DoorBottomCollision2" type="CollisionShape2D" parent="FireWallBottom/StaticBody2D"]
+position = Vector2(138, 0)
+shape = SubResource("RectangleShape2D_3gp2w")
+disabled = true
 
 [node name="FireWallLeft" type="AnimatedSprite2D" parent="."]
+z_index = 1
 position = Vector2(321, 180)
-sprite_frames = SubResource("SpriteFrames_ubnyb")
-animation = &"leftWall_closed"
+sprite_frames = SubResource("SpriteFrames_j2gxj")
+animation = &"leftWall_open"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="FireWallLeft"]
+position = Vector2(-310, -12)
+
+[node name="WallLeftCollision" type="CollisionShape2D" parent="FireWallLeft/StaticBody2D"]
+position = Vector2(4, 12.5)
+shape = SubResource("RectangleShape2D_o3n1h")
+disabled = true
+
+[node name="DoorLeftCollision2" type="CollisionShape2D" parent="FireWallLeft/StaticBody2D"]
+position = Vector2(4, 99)
+shape = SubResource("RectangleShape2D_qw8po")
+disabled = true
+
+[node name="DoorLeftCollision" type="CollisionShape2D" parent="FireWallLeft/StaticBody2D"]
+position = Vector2(4, -75)
+shape = SubResource("RectangleShape2D_qw8po")
+disabled = true
 
 [node name="FireWallRight" type="AnimatedSprite2D" parent="."]
+z_index = 1
 position = Vector2(320, 180)
-sprite_frames = SubResource("SpriteFrames_fwvuf")
-animation = &"rightWall_closed"
+sprite_frames = SubResource("SpriteFrames_2l7jp")
+animation = &"rightWall_open"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="FireWallRight"]
+position = Vector2(302, -12)
+
+[node name="WallRightCollision" type="CollisionShape2D" parent="FireWallRight/StaticBody2D"]
+position = Vector2(4, 12.5)
+shape = SubResource("RectangleShape2D_gqrtp")
+disabled = true
+
+[node name="DoorRightCollision2" type="CollisionShape2D" parent="FireWallRight/StaticBody2D"]
+position = Vector2(4, 99)
+shape = SubResource("RectangleShape2D_5fdiv")
+disabled = true
+
+[node name="DoorRightCollision" type="CollisionShape2D" parent="FireWallRight/StaticBody2D"]
+position = Vector2(4, -75)
+shape = SubResource("RectangleShape2D_5fdiv")
+disabled = true
 
 [node name="pedraPequena2" parent="." instance=ExtResource("2_3htaa")]
 position = Vector2(316, 121)
@@ -233,7 +384,7 @@ position = Vector2(316, 121)
 position = Vector2(316, 143)
 
 [node name="pedraPequena4" parent="." instance=ExtResource("2_3htaa")]
-position = Vector2(317, 165)
+position = Vector2(318, 161)
 
 [node name="pedraPequena" parent="." instance=ExtResource("2_3htaa")]
-position = Vector2(317, 187)
+position = Vector2(319, 179)

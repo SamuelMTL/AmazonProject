@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://f3mmnow5qsps" path="res://assets/Caipora02.png" id="2_olta5"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fi2kg"]
-height = 20.0
+height = 32.0
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_dlm78")
@@ -13,5 +13,5 @@ script = ExtResource("1_dlm78")
 texture = ExtResource("2_olta5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, 22)
+position = Vector2(0, 17)
 shape = SubResource("CapsuleShape2D_fi2kg")
