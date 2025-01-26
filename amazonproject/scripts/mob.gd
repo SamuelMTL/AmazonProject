@@ -1,24 +1,22 @@
-extends CharacterBody2D
+class_name Enemy
+extends CombatEntity
 
-var speed = 50
-var player_chase = false
+
 var target: Player
+var detection_radius = 200
 
 func _physics_process(delta):
-	if !player_chase and target:
+	if is_alive and target and target.is_alive:
 		var direction = (target.global_position - global_position).normalized()
-		velocity = direction * speed
+		move_entity(direction)
+		attack(target)
 	else:
-		velocity = Vector2.ZERO
-		
-	move_and_slide()
+		move_entity(Vector2.ZERO)
 
 func _on_detection_area_body_entered(body):
 	if body is Player:
 		target = body
 
-
 func _on_detection_area_body_exited(body):
-	if body is Player and body == target:
-		player_chase = false
+	if body is Player:
 		target = null

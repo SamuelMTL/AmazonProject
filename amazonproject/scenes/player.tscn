@@ -1,10 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://d2dsqxkjcgtil"]
+[gd_scene load_steps=10 format=3 uid="uid://d2dsqxkjcgtil"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_dlm78"]
 [ext_resource type="Texture2D" uid="uid://b7d5bmpnfndx3" path="res://assets/CaiporaSpriteSheet1.png" id="3_tkv67"]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fi2kg"]
-height = 32.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pfp70"]
 atlas = ExtResource("3_tkv67")
@@ -57,14 +54,32 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fi2kg"]
+height = 32.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ppm2s"]
+radius = 37.0
+height = 76.0
+
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 collision_layer = 3
+platform_floor_layers = 4294901760
 script = ExtResource("1_dlm78")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_wjqk6")
+animation = &"UpView"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 17)
 shape = SubResource("CapsuleShape2D_fi2kg")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_wjqk6")
-animation = &"RightView"
+[node name="HitBox" type="Area2D" parent="."]
+position = Vector2(0, 4)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+shape = SubResource("CapsuleShape2D_ppm2s")
+
+[node name="AttackCooldownTimer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]
