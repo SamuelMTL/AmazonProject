@@ -1,7 +1,8 @@
-[gd_scene load_steps=37 format=3 uid="uid://ba1chmuwsymie"]
+[gd_scene load_steps=38 format=3 uid="uid://ba1chmuwsymie"]
 
 [ext_resource type="PackedScene" uid="uid://dpbqplvl5w8tk" path="res://scenes/pedra_pequena.tscn" id="2_3htaa"]
 [ext_resource type="Texture2D" uid="uid://b288f0opj8dkv" path="res://assets/fireAnimationSpriteSheet.png" id="2_3y6x4"]
+[ext_resource type="PackedScene" uid="uid://m4o61hbrini1" path="res://scenes/mob.tscn" id="3_lp2h1"]
 
 [sub_resource type="GDScript" id="GDScript_5dhjl"]
 script/source = "extends Node2D
@@ -239,6 +240,8 @@ animation = &"fire_corners"
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="FireWallCorners"]
 position = Vector2(-302, 163)
+collision_layer = 8
+collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FireWallCorners/StaticBody2D2"]
 position = Vector2(46.5, 4.75)
@@ -250,6 +253,8 @@ shape = SubResource("RectangleShape2D_bwpg2")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="FireWallCorners"]
 position = Vector2(-302, -163)
+collision_layer = 8
+collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FireWallCorners/StaticBody2D"]
 position = Vector2(46.5, 8.5)
@@ -261,6 +266,8 @@ shape = SubResource("RectangleShape2D_bwpg2")
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="FireWallCorners"]
 position = Vector2(302, 163)
+collision_layer = 8
+collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FireWallCorners/StaticBody2D3"]
 position = Vector2(-46.5, 4)
@@ -272,6 +279,8 @@ shape = SubResource("RectangleShape2D_bwpg2")
 
 [node name="StaticBody2D4" type="StaticBody2D" parent="FireWallCorners"]
 position = Vector2(303, -163)
+collision_layer = 8
+collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FireWallCorners/StaticBody2D4"]
 position = Vector2(-46.5, 9.125)
@@ -388,3 +397,6 @@ position = Vector2(318, 161)
 
 [node name="pedraPequena" parent="." instance=ExtResource("2_3htaa")]
 position = Vector2(319, 179)
+
+[node name="Mob" parent="." instance=ExtResource("3_lp2h1")]
+position = Vector2(134, 183)

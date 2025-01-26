@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://m4o61hbrini1"]
+[gd_scene load_steps=5 format=3 uid="uid://m4o61hbrini1"]
 
 [ext_resource type="Texture2D" uid="uid://chgbt6u0kn6t" path="res://assets/mob.png" id="1_1hkmj"]
 [ext_resource type="Script" path="res://scripts/mob.gd" id="1_u8v6g"]
@@ -6,8 +6,11 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_hknua"]
 radius = 12.0416
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_nxqs5"]
+radius = 159.028
+
 [node name="Mob" type="CharacterBody2D"]
-collision_layer = 2
+collision_layer = 3
 collision_mask = 3
 script = ExtResource("1_u8v6g")
 
@@ -17,3 +20,14 @@ texture = ExtResource("1_1hkmj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_hknua")
+
+[node name="DetectionArea" type="Area2D" parent="."]
+position = Vector2(0, -14)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+shape = SubResource("CircleShape2D_nxqs5")
+
+[connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
+[connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]
