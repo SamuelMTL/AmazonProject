@@ -6,6 +6,8 @@ extends CombatEntity
 var enemy_in_range: bool = false
 var target: CombatEntity = null
 
+var last_direction = "down"
+
 func _physics_process(delta):
 	handle_input()
 	update_animation()
@@ -22,16 +24,31 @@ func handle_input():
 	
 func update_animation():
 	if velocity == Vector2.ZERO:
-		animations.stop()
+		
+		match last_direction:
+			"right":
+				animations.play("RightIdle")
+			"left":
+				animations.play("LeftIdle")
+			"down":
+				animations.play("DownIdle")
+			"up":
+				animations.play("UpIdle")
+			
 	else:
+		
 		if velocity.x > 0:
-			animations.play("RightView")
+			animations.play("LeftWalking")
+			last_direction = "right"
 		elif velocity.x < 0:
-			animations.play("LeftView")
+			animations.play("RightWalking")
+			last_direction = "left"
 		elif velocity.y > 0:
-			animations.play("DownView")
+			animations.play("DownWalking")
+			last_direction = "down"
 		else:
-			animations.play("UpView")
+			animations.play("UpWalking")
+			last_direction = "up"
 
 
 func _on_hit_box_body_entered(body):

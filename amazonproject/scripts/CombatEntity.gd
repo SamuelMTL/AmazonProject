@@ -23,6 +23,7 @@ func take_damage(amount: int):
 	if not is_alive:
 		return
 	health -= amount
+	print(health)
 	if health <= 0:
 		health = 0
 		is_alive = false
