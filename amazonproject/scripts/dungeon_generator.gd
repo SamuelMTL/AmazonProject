@@ -1,11 +1,31 @@
 extends Node2D
 
-var dungeon_size = Vector2(5, 5)
+var dungeon_size = Vector2(3, 3)
 var dungeon_layout = [] #isso aqui vai armazenar o layout criado
 
+#salas de 4 portas
 var room1_scene = preload("res://scenes/Dungeons/MataDaTerraFirme/4portas/dungeon_room_1.4.1.tscn")
 var room2_scene = preload("res://scenes/Dungeons/MataDaTerraFirme/4portas/dungeon_room_1.4.2.tscn")
 var room3_scene = preload("res://scenes/Dungeons/MataDaTerraFirme/4portas/dungeon_room_1.4.3.tscn")
+#salas de 3 portas
+var room4_scene = preload("res://scenes/Dungeons/MataDaTerraFirme/3portas/dungeon_room_1.3.1.tscn")
+var room5_scene = preload("res://scenes/Dungeons/MataDaTerraFirme/3portas/dungeon_room_1.3.2.tscn")
+var room6_scene = preload("res://scenes/Dungeons/MataDaTerraFirme/3portas/dungeon_room_1.3.3.tscn")
+var room7_scene = preload("res://scenes/Dungeons/MataDaTerraFirme/3portas/dungeon_room_1.3.4.tscn")
+#salas de 2 portas
+var room8_scene = preload("res://scenes/Dungeons/MataDaTerraFirme/2portas/dungeon_room_1.2.1.tscn")
+var room9_scene = preload("res://scenes/Dungeons/MataDaTerraFirme/2portas/dungeon_room_1.2.2.tscn")
+var room10_scene = preload("res://scenes/Dungeons/MataDaTerraFirme/2portas/dungeon_room_1.2.3.tscn")
+var room11_scene = preload("res://scenes/Dungeons/MataDaTerraFirme/2portas/dungeon_room_1.2.4.tscn")
+var room12_scene = preload("res://scenes/Dungeons/MataDaTerraFirme/2portas/dungeon_room_1.2.5.tscn")
+var room13_scene = preload("res://scenes/Dungeons/MataDaTerraFirme/2portas/dungeon_room_1.2.6.tscn")
+#salas de 1 porta
+var room14_scene = preload("res://scenes/Dungeons/MataDaTerraFirme/1porta/dungeon_room_1.1.1.tscn")
+var room15_scene = preload("res://scenes/Dungeons/MataDaTerraFirme/1porta/dungeon_room_1.1.2.tscn")
+var room16_scene = preload("res://scenes/Dungeons/MataDaTerraFirme/1porta/dungeon_room_1.1.3.tscn")
+var room17_scene = preload("res://scenes/Dungeons/MataDaTerraFirme/1porta/dungeon_room_1.1.4.tscn")
+
+#primeira sala
 var first_room_scene = preload("res://scenes/Dungeons/MataDaTerraFirme/dungeon_room_1.0.tscn")
 
 func _ready():
@@ -13,27 +33,34 @@ func _ready():
 	build_dungeon()
 	
 func generate_dungeon():
+	var room_count = 0
 
 	for row in range(dungeon_size.y):
 		var row_data = []
 		for col in range(dungeon_size.x):
-			var cell_value = randi() % 2 # 0 = sem sala  1 = sala normal
+			var cell_value = 0 # 0 = sem sala  1 = sala normal
+			if room_count < 5 and (randi() % 2 == 1):
+				cell_value = 1
+				room_count += 1
+				
 			row_data.append(cell_value)
+				
 		dungeon_layout.append(row_data) 
 		
-		
 	# garantindo a entrada da dungeon no lugar q eu quero
-	dungeon_layout[4][2] = 2 
+	dungeon_layout[2][1] = 2 
 	
 	print("primeira dungeon")
 	for row in dungeon_layout:
 		print(row)
 	
 	#garantindo que a primeira sala tenha conexoes 
-	var x = 2
-	var y = 4
+	var x = 1
+	var y = 2
 	
 	var has_connection = false
+	
+	#testa se a primeira sala tem pelo menos uma conexao
 	if y > 0 and dungeon_layout[y - 1][x] == 1: #cima
 		has_connection = true
 	if y < dungeon_size.y - 1 and dungeon_layout[y + 1][x] == 1: #baixo
@@ -43,19 +70,26 @@ func generate_dungeon():
 	if x < dungeon_size.x - 1 and dungeon_layout[y][x + 1] == 1: #direita
 		has_connection = true
 		
+	#caso a primeira sala nao tenha nenhuma conexao, uma conexao é criada
 	if not has_connection:
 		print("n houve conexao com a primeira sala")
 		if y > 0: 
 			dungeon_layout[y - 1][x] = 1
+			room_count += 1
 		elif y < dungeon_size.y - 1:
 			dungeon_layout[y + 1][x] = 1
+			room_count += 1
 		elif x > 0:
 			dungeon_layout[y][x - 1] = 1
+			room_count += 1
 		elif x < dungeon_size.x - 1:
 			dungeon_layout[y][x + 1] = 1
+			room_count += 1
 		
 		for row in dungeon_layout:
 			print(row)
+			
+	print("Quantidade de salas:", room_count)
 	
 	
 func build_dungeon():
