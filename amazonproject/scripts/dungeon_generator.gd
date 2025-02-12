@@ -3,8 +3,10 @@ extends Node2D
 var dungeon_size = Vector2(5, 5)
 var dungeon_layout = [] #isso aqui vai armazenar o layout criado
 
-var room_scene = preload("res://scenes/dungeon_room_1.tscn")
-var first_room_scene = preload("res://scenes/dungeon_room_first.tscn")
+var room1_scene = preload("res://scenes/Dungeons/MataDaTerraFirme/4portas/dungeon_room_1.4.1.tscn")
+var room2_scene = preload("res://scenes/Dungeons/MataDaTerraFirme/4portas/dungeon_room_1.4.2.tscn")
+var room3_scene = preload("res://scenes/Dungeons/MataDaTerraFirme/4portas/dungeon_room_1.4.3.tscn")
+var first_room_scene = preload("res://scenes/Dungeons/MataDaTerraFirme/dungeon_room_1.0.tscn")
 
 func _ready():
 	generate_dungeon()
@@ -66,7 +68,8 @@ func build_dungeon():
 
 
 func build_room(x, y, is_first_room=false):
-	var room = first_room_scene.instantiate() if is_first_room else room_scene.instantiate()
+	var room_scene = first_room_scene if is_first_room else [room1_scene, room2_scene, room3_scene][randi() % 3]
+	var room = room_scene.instantiate()
 	add_child(room)
 	room.position = Vector2(x * 640, y * 360)
 	
