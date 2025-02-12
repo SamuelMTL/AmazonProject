@@ -34,6 +34,7 @@ func _ready():
 	
 func generate_dungeon():
 	var room_count = 0
+	dungeon_layout = []
 
 	for row in range(dungeon_size.y):
 		var row_data = []
@@ -42,9 +43,7 @@ func generate_dungeon():
 			if room_count < 5 and (randi() % 2 == 1):
 				cell_value = 1
 				room_count += 1
-				
 			row_data.append(cell_value)
-				
 		dungeon_layout.append(row_data) 
 		
 	# garantindo a entrada da dungeon no lugar q eu quero
@@ -53,45 +52,101 @@ func generate_dungeon():
 	print("primeira dungeon")
 	for row in dungeon_layout:
 		print(row)
-	
-	#garantindo que a primeira sala tenha conexoes 
-	var x = 1
-	var y = 2
-	
-	var has_connection = false
-	
-	#testa se a primeira sala tem pelo menos uma conexao
-	if y > 0 and dungeon_layout[y - 1][x] == 1: #cima
-		has_connection = true
-	if y < dungeon_size.y - 1 and dungeon_layout[y + 1][x] == 1: #baixo
-		has_connection = true
-	if x > 0 and dungeon_layout[y][x - 1] == 1: #esquerda
-		has_connection = true
-	if x < dungeon_size.x - 1 and dungeon_layout[y][x + 1] == 1: #direita
-		has_connection = true
 		
-	#caso a primeira sala nao tenha nenhuma conexao, uma conexao é criada
-	if not has_connection:
-		print("n houve conexao com a primeira sala")
-		if y > 0: 
-			dungeon_layout[y - 1][x] = 1
-			room_count += 1
-		elif y < dungeon_size.y - 1:
-			dungeon_layout[y + 1][x] = 1
-			room_count += 1
-		elif x > 0:
-			dungeon_layout[y][x - 1] = 1
-			room_count += 1
-		elif x < dungeon_size.x - 1:
-			dungeon_layout[y][x + 1] = 1
-			room_count += 1
-		
-		for row in dungeon_layout:
+	# Garantindo que a primeira sala tenha conexões
+	ensure_connectivity()
+	print("Dungeon Conectada:")
+	for row in dungeon_layout:
 			print(row)
 			
 	print("Quantidade de salas:", room_count)
 	
+func ensure_connectivity():
+	var start_pos = Vector2(1,2)
+	var rooms = []
 	
+	for y in range(dungeon_size.y):
+		for x in range (dungeon_size.x):
+			if dungeon_layout[y][x] == 1 or dungeon_layout[y][x] == 2:
+				rooms.append(Vector2(x,y))
+				
+	var visited = []
+	var queue = [start_pos]
+	
+	while queue.size() > 0:
+		var current = queue.pop_front()
+		if current in visited:
+			continue
+		visited.append(current)
+		
+		var x = int(current.x)
+		var y = int(current.y)
+		
+		var directions = [Vector2(0, -1), Vector2(0, 1), Vector2(-1, 0), Vector2(1, 0)]
+		for dir in directions:
+			var nx = x + int(dir.x)
+			var ny = y + int(dir.y)
+			if nx >= 0 and nx < dungeon_size.x and ny >= 0 and ny < dungeon_size.y:
+				if dungeon_layout[ny][nx] > 0 and Vector2(nx, ny) not in visited:
+					queue.append(Vector2(nx, ny))
+					
+	for room in rooms:
+		if room not in visited:
+			print("Sala isolada encontrada em:", room)
+			connect_room(int(room.x), int(room.y), visited)
+			
+	# Verificar novamente se todas as salas estão conectadas
+	visited = []
+	queue = [start_pos]
+	
+	while queue.size() > 0:
+		var current = queue.pop_front()
+		if current in visited:
+			continue
+		visited.append(current)
+		
+		var x = int(current.x)
+		var y = int(current.y)
+		
+		var directions = [Vector2(0, -1), Vector2(0, 1), Vector2(-1, 0), Vector2(1, 0)]
+		for dir in directions:
+			var nx = x + int(dir.x)
+			var ny = y + int(dir.y)
+			if nx >= 0 and nx < dungeon_size.x and ny >= 0 and ny < dungeon_size.y:
+				if dungeon_layout[ny][nx] > 0 and Vector2(nx, ny) not in visited:
+					queue.append(Vector2(nx, ny))
+					
+		for room in rooms:
+			if room not in visited:
+				print("Sala ainda isolada em:", room)
+				# Conectar manualmente
+				dungeon_layout[int(room.y)][int(room.x)] = 0  # Remover sala isolada
+				print("Sala removida para garantir conectividade.")
+		
+	
+	
+func connect_room(x, y, visited):
+	var directions = [Vector2(0, -1), Vector2(0, 1), Vector2(-1, 0), Vector2(1, 0)]
+	var possible_connections = []
+	
+	for dir in directions:
+		var nx = x + int(dir.x)
+		var ny = y + int(dir.y)
+		
+		if nx >= 0 and nx < dungeon_size.x and ny >= 0 and ny < dungeon_size.y:
+			if dungeon_layout[ny][nx] > 0 and Vector2(nx, ny) in visited:
+				possible_connections.append(Vector2(nx, ny))
+		
+	if possible_connections.size() > 0:
+		var chosen_connection = possible_connections[randi() % possible_connections.size()]
+		print("Conectando sala em (%d, %d) com sala em (%d, %d)" % [x, y, chosen_connection.x, chosen_connection.y])
+		dungeon_layout[y][x] = 1
+		dungeon_layout[int(chosen_connection.y)][int(chosen_connection.x)] = 1
+		visited.append(Vector2(x, y))
+	else:
+		print("Não foi possível conectar a sala em (%d, %d)" % [x, y])
+		dungeon_layout[y][x] = 0  # Remover sala isolada	
+				
 func build_dungeon():
 	for row in range(dungeon_size.y):
 		for col in range(dungeon_size.x):
@@ -99,8 +154,6 @@ func build_dungeon():
 				var is_first_room = dungeon_layout[row][col] == 2
 				build_room(col, row, is_first_room)
 				
-
-
 func build_room(x, y, is_first_room=false):
 	var room_scene = first_room_scene if is_first_room else [room1_scene, room2_scene, room3_scene][randi() % 3]
 	var room = room_scene.instantiate()
