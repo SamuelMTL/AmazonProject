@@ -23,7 +23,18 @@ func handle_input():
 
 	
 func update_animation():
-	if velocity == Vector2.ZERO:
+	if is_attacking:
+		match last_direction:
+			"right":
+				animations.play("RightAttacking")
+			"left":
+				animations.play("LeftAttacking")
+			"down":
+				animations.play("DownAttacking")
+			"up":
+				animations.play("UpAttacking")
+				
+	elif velocity == Vector2.ZERO:
 		
 		match last_direction:
 			"right":
@@ -36,7 +47,6 @@ func update_animation():
 				animations.play("UpIdle")
 			
 	else:
-		
 		if velocity.x > 0:
 			animations.play("LeftWalking")
 			last_direction = "right"

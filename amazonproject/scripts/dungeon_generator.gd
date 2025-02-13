@@ -144,8 +144,8 @@ func get_room_by_connections(num_connections, has_top, has_bottom, has_left, has
 		"FBFR": return room12_scene #2 portas bot right
 		"FBLF": return room13_scene #2 portas bot left
 		"TBFR": return room4_scene #3 portas top bot right
-		"TBLF": return room5_scene #3portas top bot left
-		"TFLR": return room6_scene #3portas top left right
+		"TBLF": return room5_scene #3 portas top bot left
+		"TFLR": return room6_scene #3 portas top left right
 		"FBLR": return room7_scene #3 portas bot left right
 		_:
 			return [room1_scene, room2_scene, room3_scene][randi() % 3]
