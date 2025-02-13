@@ -381,7 +381,7 @@ position = Vector2(315, 249)
 [node name="Mob" parent="." instance=ExtResource("2_tp5ji")]
 position = Vector2(312, 107)
 
-[node name="Area2D2" type="Area2D" parent="."]
+[node name="Area2D2" type="StaticBody2D" parent="."]
 position = Vector2(572, 186)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
@@ -395,7 +395,7 @@ offset_right = 67.0
 offset_bottom = 175.0
 color = Color(0, 0.54, 0.261, 1)
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="StaticBody2D" parent="."]
 position = Vector2(69, 178)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]

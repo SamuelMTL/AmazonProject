@@ -381,7 +381,7 @@ position = Vector2(555, 272)
 [node name="Mob" parent="." instance=ExtResource("2_ijasm")]
 position = Vector2(109, 101)
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="StaticBody2D" parent="."]
 position = Vector2(203, 206)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
