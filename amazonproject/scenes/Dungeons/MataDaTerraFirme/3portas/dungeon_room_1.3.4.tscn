@@ -387,7 +387,7 @@ offset_left = -432.0
 offset_top = 265.0
 offset_right = 206.0
 offset_bottom = 358.0
-color = Color(0, 0.54, 0.261, 1)
+color = Color(0.192157, 0.0941176, 0.027451, 1)
 
 [node name="Mob2" parent="." instance=ExtResource("2_4a7xd")]
 position = Vector2(554, 189)

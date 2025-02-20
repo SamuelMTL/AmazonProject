@@ -376,6 +376,13 @@ shape = SubResource("RectangleShape2D_111de")
 disabled = true
 
 [node name="Area2D" type="StaticBody2D" parent="."]
+disable_mode = 1
+
+[node name="ColorRect" type="ColorRect" parent="Area2D"]
+offset_left = 3.0
+offset_right = 208.0
+offset_bottom = 360.0
+color = Color(0.192157, 0.0941176, 0.027451, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(104, 179)
@@ -389,10 +396,3 @@ position = Vector2(517, 185)
 
 [node name="Mob" parent="." instance=ExtResource("2_mlytc")]
 position = Vector2(313, 103)
-
-[node name="ColorRect" type="ColorRect" parent="Mob"]
-offset_left = -310.0
-offset_top = -103.0
-offset_right = -105.0
-offset_bottom = 257.0
-color = Color(0, 0.54, 0.261, 1)

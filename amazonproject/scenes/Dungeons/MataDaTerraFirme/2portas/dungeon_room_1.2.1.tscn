@@ -392,7 +392,7 @@ offset_left = -317.0
 offset_top = -47.0
 offset_right = 321.0
 offset_bottom = 46.0
-color = Color(0, 0.54, 0.261, 1)
+color = Color(0.192157, 0.0941176, 0.027451, 1)
 
 [node name="Area2D" type="StaticBody2D" parent="Area2D"]
 position = Vector2(2, 266)
@@ -405,4 +405,4 @@ offset_left = -317.0
 offset_top = -47.0
 offset_right = 321.0
 offset_bottom = 46.0
-color = Color(0, 0.54, 0.261, 1)
+color = Color(0.192157, 0.0941176, 0.027451, 1)

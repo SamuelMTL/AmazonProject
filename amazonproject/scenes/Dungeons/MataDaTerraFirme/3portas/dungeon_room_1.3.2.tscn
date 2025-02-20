@@ -386,7 +386,7 @@ shape = SubResource("RectangleShape2D_hgtkm")
 offset_left = 3.0
 offset_right = 206.0
 offset_bottom = 358.0
-color = Color(0, 0.54, 0.261, 1)
+color = Color(0.192157, 0.0941176, 0.027451, 1)
 
 [node name="Mob2" parent="." instance=ExtResource("2_s3hwn")]
 position = Vector2(317, 273)

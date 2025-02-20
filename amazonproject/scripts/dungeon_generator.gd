@@ -127,11 +127,11 @@ func build_room(x, y, is_first_room=false):
 	# Tratamento especial para a primeira sala
 	if is_first_room:
 		# A primeira sala sempre tem a saída aberta na parte de baixo
-		room.get_node("FireWallBottom/StaticBody2D/WallBottomCollision").disabled = true
+		room.get_node("FireWallBottom/StaticBody2D/WallBottomCollision").disabled = false
 		room.get_node("FireWallBottom/StaticBody2D/DoorBottomCollision").disabled = false
 		room.get_node("FireWallBottom/StaticBody2D/DoorBottomCollision2").disabled = false
 		# Configuração da animação para manter a parte de baixo aberta
-		room.get_node("FireWallBottom").play("bottomWall_open")
+		room.get_node("FireWallBottom").play("bottomWall_closed")
 	else:
 		# Para as demais salas, ativamos ou desativamos portas e paredes conforme a necessidade
 		room.get_node("FireWallBottom/StaticBody2D/WallBottomCollision").disabled = has_bottom
