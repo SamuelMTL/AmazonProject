@@ -4,12 +4,20 @@ AmazonProject is a rogue-lite game inspired by the rich Brazilian folklore, deve
 
 ## About the Project
 
-This project is being developed by a solo developer, handling all aspects of creation, including:
+This project started as a solo project by **Samuel Mendonça** and has now become a team effort with the following collaborators:
 
-Code
-Story
-Game Design
-Art
+- Efraim Costa
+- Gabriel Eirado
+- João Vítor
+- Renan Dias
+
+The developers will handle all alpects of a game:
+
+- Code
+- Story
+- Game Design
+- Art
+
 The goal is to deliver a unique experience that combines challenging gameplay with the richness of Brazilian culture.
 
 ## Key Features (Planned)
@@ -26,7 +34,7 @@ Design Tools: Krita, Aseprite, Figma.
 
 ## How to Contribute
 
-This is a solo project, but feedback and suggestions are always welcome! Feel free to reach out via email: samuel.mtl11@gmail.com.
+This is a collaborative project developed and maintained by our team, but feedback and suggestions are always welcome! Feel free to reach out via email: samuel.mtl11@gmail.com.
 
 ## Project Status
 
@@ -35,5 +43,4 @@ The project is currently in the early stages of development. Stay tuned for upda
 ## Contact
 
 Developer: Samuel Mendonça Toledo de Lima
-Email: samuel.mtl11@gmail.com
- 
+E-mail: samuel.mtl11@gmail.com
