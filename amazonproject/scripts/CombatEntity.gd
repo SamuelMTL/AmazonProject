@@ -4,7 +4,7 @@ extends CharacterBody2D
 @export var health: int = 100
 @export var attack_damage: int = 20
 @export var attack_cooldown_time: float = 1.0
-@export var speed: float = 200
+@export var speed: float = 150
 
 @onready var attack_timer : Timer = $AttackCooldownTimer
 
