@@ -446,13 +446,15 @@ script = ExtResource("1_dlm78")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_wjqk6")
-animation = &"DownWalking"
+animation = &"RightWalking"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+show_behind_parent = true
 position = Vector2(0, 17)
 shape = SubResource("CapsuleShape2D_fi2kg")
 
 [node name="HitBox" type="Area2D" parent="."]
+show_behind_parent = true
 position = Vector2(0, 4)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
@@ -461,7 +463,7 @@ shape = SubResource("CapsuleShape2D_ppm2s")
 [node name="AttackCooldownTimer" type="Timer" parent="."]
 
 [node name="DashTimer" type="Timer" parent="."]
-wait_time = 0.2
+wait_time = 0.16
 
 [node name="DashCooldown" type="Timer" parent="."]
 
