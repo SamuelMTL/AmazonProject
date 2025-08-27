@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://c5utbgu03vl7x"]
+
+[ext_resource type="Script" uid="uid://dte7g8yqgvkjm" path="res://scenes/Dungeons/MataDaTerraFirme/dungeon.gd" id="1_ms8tt"]
+[ext_resource type="Script" uid="uid://c4tce8fso2qtw" path="res://scripts/new_dungeon_generator.gd" id="2_bahxf"]
+[ext_resource type="PackedScene" uid="uid://d2dsqxkjcgtil" path="res://scenes/player.tscn" id="3_desvm"]
+
+[node name="Dungeon" type="Node2D"]
+script = ExtResource("1_ms8tt")
+
+[node name="DungeonGenerator" type="TileMapLayer" parent="."]
+script = ExtResource("2_bahxf")
+
+[node name="Player" parent="." instance=ExtResource("3_desvm")]
+position = Vector2(963, 1030)
+
+[node name="Camera2D" type="Camera2D" parent="."]

@@ -11,6 +11,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Sair" type="Button" parent="."]
+layout_mode = 0
 offset_left = 245.0
 offset_top = 284.0
 offset_right = 395.0
@@ -19,6 +20,7 @@ text = "Sair
 "
 
 [node name="Options" type="Button" parent="."]
+layout_mode = 0
 offset_left = 246.0
 offset_top = 219.0
 offset_right = 396.0
