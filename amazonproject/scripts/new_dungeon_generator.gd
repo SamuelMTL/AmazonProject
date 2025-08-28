@@ -135,8 +135,16 @@ func left_door_closed(tilemap: TileMapLayer):
 	tilemap.set_cell(Vector2i(2,5),0,Vector2i(7,3))
 	tilemap.set_cell(Vector2i(2,6),0,Vector2i(7,3))
 
-#func bottom_door_closed(tilemap: TileMapLayer):
+func bottom_door_closed(tilemap: TileMapLayer):
+	tilemap.set_cell(Vector2i(11,8),0,Vector2i(4,5))
+	tilemap.set_cell(Vector2i(10,8),0,Vector2i(4,5))
+	tilemap.set_cell(Vector2i(9,8),0,Vector2i(4,5))
+	tilemap.set_cell(Vector2i(8,8),0,Vector2i(4,5))
 	
+	tilemap.set_cell(Vector2i(11,9),0,Vector2i(0,5))
+	tilemap.set_cell(Vector2i(10,9),0,Vector2i(0,5))
+	tilemap.set_cell(Vector2i(9,9),0,Vector2i(0,5))
+	tilemap.set_cell(Vector2i(8,9),0,Vector2i(0,5))
 
 # Função que escolhe a cena da sala com base nas conexões que ela tem
 func get_room_by_connections(num_connections, has_top, has_bottom, has_left, has_right, tilemap: TileMapLayer):
@@ -151,6 +159,7 @@ func get_room_by_connections(num_connections, has_top, has_bottom, has_left, has
 	# Comparamos esse padrão com diferentes possibilidades para escolher a sala correta
 	match connection_pattern:
 		"TFFF": 
+			bottom_door_closed(tilemap)
 			left_door_closed(tilemap)
 			right_door_closed(tilemap)
 			return room_scene # 1 porta top
@@ -160,15 +169,18 @@ func get_room_by_connections(num_connections, has_top, has_bottom, has_left, has
 			top_door_closed(tilemap)
 			return room_scene
 		"FFLF": 
+			bottom_door_closed(tilemap)
 			right_door_closed(tilemap)
 			top_door_closed(tilemap)
 			return room_scene
 		 # 1 porta left
 		"FFFR": 
+			bottom_door_closed(tilemap)
 			left_door_closed(tilemap)
 			top_door_closed(tilemap)
 			return room_scene # 1 porta right
 		"FFLR": 
+			bottom_door_closed(tilemap)
 			top_door_closed(tilemap)
 			return room_scene # 2 portas left right
 		"TBFF":
@@ -176,9 +188,11 @@ func get_room_by_connections(num_connections, has_top, has_bottom, has_left, has
 			right_door_closed(tilemap) 
 			return room_scene  #2 portas top bot
 		"TFFR": 
+			bottom_door_closed(tilemap)
 			left_door_closed(tilemap)
 			return room_scene  #2 portas top right
 		"TFLF":
+			bottom_door_closed(tilemap)
 			right_door_closed(tilemap) 
 			return room_scene  #2 portas top left
 		"FBFR": 
@@ -195,7 +209,9 @@ func get_room_by_connections(num_connections, has_top, has_bottom, has_left, has
 		"TBLF":
 			right_door_closed(tilemap) 
 			return room_scene  #3 portas top bot left
-		"TFLR": return room_scene  #3 portas top left right
+		"TFLR":
+			bottom_door_closed(tilemap) 
+			return room_scene  #3 portas top left right
 		"FBLR":
 			top_door_closed(tilemap)
 			return room_scene  #3 portas bot left right
