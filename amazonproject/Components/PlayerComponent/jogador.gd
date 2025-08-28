@@ -1,22 +1,28 @@
-class_name Player 
-extends CombatEntity
+extends CharacterBody2D
 
 @onready var animations = $AnimatedSprite2D
 
-var enemy_in_range: bool = false
-var target: CombatEntity = null
-
-var last_direction = "down"
+@export var speed: float = 150
 
 const DASH_SPEED = 900
 var dashing = false
 var can_dash = true
+
+var is_attacking = false
+var is_alive = true
+var enemy_in_range: bool = false
+
+var last_direction = "down"
 
 func _physics_process(delta):
 	handle_input()
 	update_animation()
 	move_and_slide()
 	
+func move_entity(direction: Vector2):
+	velocity = direction.normalized() * speed
+	move_and_slide()
+
 func handle_input():
 	var move_direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	
@@ -32,12 +38,13 @@ func handle_input():
 		move_entity(move_direction)
 		
 	if Input.is_action_just_pressed("attack") and is_alive:
-		if enemy_in_range and is_instance_valid(target):
-			attack(target)
-
+		pass
+		#if enemy_in_range and is_instance_valid(target):
+			#attack(target)
+			
 func player_dash(direction: Vector2):
 	velocity = direction.normalized() * DASH_SPEED
-	
+
 func update_animation():
 	if is_attacking:
 		match last_direction:
@@ -75,28 +82,9 @@ func update_animation():
 		else:
 			animations.play("UpWalking")
 			last_direction = "up"
-
-
-func _on_hit_box_body_entered(body):
-	if body is CombatEntity and body != self:  
-		enemy_in_range = true
-		target = body
-
-
-func _on_hit_box_body_exited(body):
-	if body is CombatEntity and body == target:
-		enemy_in_range = false
-		target = null
-
-func on_death():
-	print("Player morreu!")
-	get_tree().change_scene_to_file("res://scenes/aldeia.tscn")
-	health = 100
-
-
+			
 func _on_dash_timer_timeout() -> void:
 	dashing = false
-
 
 func _on_dash_cooldown_timeout() -> void:
 	can_dash = true
