@@ -111,10 +111,29 @@ func top_door_closed(tilemap: TileMapLayer):
 	tilemap.set_cell(Vector2i(10,1),0,Vector2i(6,0))
 	tilemap.set_cell(Vector2i(9,1),0,Vector2i(6,0))
 	tilemap.set_cell(Vector2i(8,1),0,Vector2i(6,0))
+	
 	tilemap.set_cell(Vector2i(11,2),0,Vector2i(4,0))
 	tilemap.set_cell(Vector2i(10,2),0,Vector2i(4,0))
 	tilemap.set_cell(Vector2i(9,2),0,Vector2i(4,0))
 	tilemap.set_cell(Vector2i(8,2),0,Vector2i(4,0))
+	
+func right_door_closed(tilemap: TileMapLayer):
+	tilemap.set_cell(Vector2i(18,4),0,Vector2i(2,0))
+	tilemap.set_cell(Vector2i(18,5),0,Vector2i(2,0))
+	tilemap.set_cell(Vector2i(18,6),0,Vector2i(2,0))
+	
+	tilemap.set_cell(Vector2i(17,4),0,Vector2i(3,0))
+	tilemap.set_cell(Vector2i(17,5),0,Vector2i(3,0))
+	tilemap.set_cell(Vector2i(17,6),0,Vector2i(3,0))
+	
+func left_door_closed(tilemap: TileMapLayer):
+	tilemap.set_cell(Vector2i(1,4),0,Vector2i(8,0))
+	tilemap.set_cell(Vector2i(1,5),0,Vector2i(8,0))
+	tilemap.set_cell(Vector2i(1,6),0,Vector2i(8,0))
+	
+	tilemap.set_cell(Vector2i(2,4),0,Vector2i(7,3))
+	tilemap.set_cell(Vector2i(2,5),0,Vector2i(7,3))
+	tilemap.set_cell(Vector2i(2,6),0,Vector2i(7,3))
 
 # Função que escolhe a cena da sala com base nas conexões que ela tem
 func get_room_by_connections(num_connections, has_top, has_bottom, has_left, has_right, tilemap: TileMapLayer):
@@ -129,31 +148,50 @@ func get_room_by_connections(num_connections, has_top, has_bottom, has_left, has
 	# Comparamos esse padrão com diferentes possibilidades para escolher a sala correta
 	match connection_pattern:
 		"TFFF": 
+			left_door_closed(tilemap)
+			right_door_closed(tilemap)
 			return room_scene # 1 porta top
 		"FBFF": #1 porta bottom
+			left_door_closed(tilemap)
+			right_door_closed(tilemap)
 			top_door_closed(tilemap)
 			return room_scene
 		"FFLF": 
+			right_door_closed(tilemap)
 			top_door_closed(tilemap)
 			return room_scene
 		 # 1 porta left
 		"FFFR": 
+			left_door_closed(tilemap)
 			top_door_closed(tilemap)
 			return room_scene # 1 porta right
 		"FFLR": 
 			top_door_closed(tilemap)
 			return room_scene # 2 portas left right
-		"TBFF": return room_scene  #2 portas top bot
-		"TFFR": return room_scene  #2 portas top right
-		"TFLF": return room_scene  #2 portas top left
+		"TBFF":
+			left_door_closed(tilemap)
+			right_door_closed(tilemap) 
+			return room_scene  #2 portas top bot
+		"TFFR": 
+			left_door_closed(tilemap)
+			return room_scene  #2 portas top right
+		"TFLF":
+			right_door_closed(tilemap) 
+			return room_scene  #2 portas top left
 		"FBFR": 
+			left_door_closed(tilemap)
 			top_door_closed(tilemap)
 			return room_scene  #2 portas bot right
 		"FBLF": 
+			right_door_closed(tilemap)
 			top_door_closed(tilemap)
 			return room_scene  #2 portas bot left
-		"TBFR": return room_scene  #3 portas top bot right
-		"TBLF": return room_scene  #3 portas top bot left
+		"TBFR":
+			left_door_closed(tilemap) 
+			return room_scene  #3 portas top bot right
+		"TBLF":
+			right_door_closed(tilemap) 
+			return room_scene  #3 portas top bot left
 		"TFLR": return room_scene  #3 portas top left right
 		"FBLR":
 			top_door_closed(tilemap)
