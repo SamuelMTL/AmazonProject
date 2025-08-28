@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://divgwu1mv5xx3"]
+
+[ext_resource type="PackedScene" uid="uid://c6yd2kl7pfr2f" path="res://Components/MainMenuButtonComponent/MainMenuButton.tscn" id="1_qhq73"]
+
+[node name="CutsceneScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MainMenuButton" parent="." instance=ExtResource("1_qhq73")]
+layout_mode = 0
+label_text = "Pular cutscene"
+next_scene = "res://scenes/aldeia.tscn"

@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://c6yd2kl7pfr2f"]
+
+[ext_resource type="Script" uid="uid://bgtquv2jobd53" path="res://Components/MainMenuButtonComponent/main_menu_button.gd" id="1_2v82r"]
+
+[node name="MainMenuButton" type="Button"]
+text = "texto"
+script = ExtResource("1_2v82r")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]
