@@ -135,6 +135,9 @@ func left_door_closed(tilemap: TileMapLayer):
 	tilemap.set_cell(Vector2i(2,5),0,Vector2i(7,3))
 	tilemap.set_cell(Vector2i(2,6),0,Vector2i(7,3))
 
+#func bottom_door_closed(tilemap: TileMapLayer):
+	
+
 # Função que escolhe a cena da sala com base nas conexões que ela tem
 func get_room_by_connections(num_connections, has_top, has_bottom, has_left, has_right, tilemap: TileMapLayer):
 	# Criamos um código de conexão baseado na presença de salas vizinhas
