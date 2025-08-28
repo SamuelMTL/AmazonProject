@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bb25nrxf6obbt"
-path="res://.godot/imported/Yanomami01.png-f3e2b65b3c0f9eb2da501a15bfff001a.ctex"
+uid="uid://bni72ega0at6"
+path="res://.godot/imported/barra_de 4.png-776ebb67565a6fb9b0f22a99ee820b95.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Yanomami01.png"
-dest_files=["res://.godot/imported/Yanomami01.png-f3e2b65b3c0f9eb2da501a15bfff001a.ctex"]
+source_file="res://Components/HUDComponent/LifeBarComponent/assets/barra_de 4.png"
+dest_files=["res://.godot/imported/barra_de 4.png-776ebb67565a6fb9b0f22a99ee820b95.ctex"]
 
 [params]
 

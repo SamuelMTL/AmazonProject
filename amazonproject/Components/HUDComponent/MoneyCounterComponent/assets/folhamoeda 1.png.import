@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bbv3u35sdctkk"
-path="res://.godot/imported/cenariomockup.png-e98a06565f56b28628dbfa8129fbdbd9.ctex"
+uid="uid://duasbb3rut4xy"
+path="res://.godot/imported/folhamoeda 1.png-91a1fc46771759211b563b9850b77b50.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/cenariomockup.png"
-dest_files=["res://.godot/imported/cenariomockup.png-e98a06565f56b28628dbfa8129fbdbd9.ctex"]
+source_file="res://Components/HUDComponent/MoneyCounterComponent/assets/folhamoeda 1.png"
+dest_files=["res://.godot/imported/folhamoeda 1.png-91a1fc46771759211b563b9850b77b50.ctex"]
 
 [params]
 
