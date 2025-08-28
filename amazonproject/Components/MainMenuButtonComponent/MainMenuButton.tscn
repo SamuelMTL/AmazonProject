@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://c6yd2kl7pfr2f"]
+[gd_scene load_steps=3 format=3 uid="uid://c6yd2kl7pfr2f"]
 
 [ext_resource type="Script" uid="uid://bgtquv2jobd53" path="res://Components/MainMenuButtonComponent/main_menu_button.gd" id="1_2v82r"]
+[ext_resource type="FontFile" uid="uid://bm1yrc41rrxlf" path="res://assets/fonts/VCR_OSD_MONO_1.001.ttf" id="1_we2ol"]
 
 [node name="MainMenuButton" type="Button"]
+theme_override_fonts/font = ExtResource("1_we2ol")
 text = "texto"
 script = ExtResource("1_2v82r")
 
