@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://ro26veasxoc8"]
 
-[ext_resource type="PackedScene" uid="uid://d2dsqxkjcgtil" path="res://scenes/player.tscn" id="1_5pd1s"]
-[ext_resource type="PackedScene" uid="uid://cfeddkm37oqp1" path="res://scenes/next_scene.tscn" id="2_id0fx"]
+[ext_resource type="PackedScene" uid="uid://d2dsqxkjcgtil" path="res://Components/PlayerComponent/player.tscn" id="1_5pd1s"]
+[ext_resource type="PackedScene" uid="uid://cfeddkm37oqp1" path="res://Components/next_scene.tscn" id="2_id0fx"]
 
 [node name="Aldeia" type="Node2D"]
 

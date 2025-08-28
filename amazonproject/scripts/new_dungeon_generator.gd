@@ -5,7 +5,7 @@ var dungeon_layout = []
 var max_rooms = 5
 
 #sala de 4 portas
-var room_scene = preload("res://scenes/Dungeons/MataDaTerraFirme/1porta/dungeon_room_teste.tscn")
+var room_scene = preload("res://scenes/Dungeons/MataDaTerraFirme/dungeon_room_MTF.tscn")
 
 func _ready():
 	generate_dungeon()
