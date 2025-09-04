@@ -2,7 +2,7 @@ class_name Player
 extends CharacterBody2D
 
 @onready var animations = $AnimatedSprite2D
-@onready var attack_timer : Timer = $AttackCooldownTimer
+@onready var attack_timer : Timer = $AttackCooldown
 
 @export var speed: float = 150
 @export var attack_damage: int = 20
@@ -17,10 +17,12 @@ var is_alive = true
 var enemy_in_range: bool = false
 var attack_cooldown = false
 
-var weapon_equiped: String
+var enemies_in_range = []
+
+var weapon_equiped = "tacape"
 
 var last_direction = "down"
-
+	
 
 func _physics_process(delta):
 	handle_input()
@@ -45,6 +47,8 @@ func handle_input():
 	else:
 		move_entity(move_direction)
 		
+	if Input.is_action_just_pressed("attack"):
+		attack()
 			
 func player_dash(direction: Vector2):
 	velocity = direction.normalized() * DASH_SPEED
@@ -88,6 +92,37 @@ func update_animation():
 			last_direction = "up"
 	
 func attack():
+	if attack_cooldown or not is_alive:
+		return
+		
+	is_attacking = true
+	attack_cooldown = true
+	attack_timer.start(attack_cooldown_time)
+	
+	match weapon_equiped:
+		"tacape":
+			tacape_attack()
+		"lanca":
+			lanca_attack()
+		"boleadeira":
+			boleadeira_attack()
+		"zarabatana":
+			zarabatana_attack()
+		_:
+			print("No weapon equipped")
+			
+func tacape_attack():
+	for enemy in get_overlapping_bodies():
+		if enemy.is_in_group("enemies"):
+			enemy.take_damage(attack_damage)
+
+func lanca_attack():
+	pass
+
+func boleadeira_attack():
+	pass
+
+func zarabatana_attack():
 	pass
 			
 func _on_dash_timer_timeout() -> void:
@@ -100,3 +135,16 @@ func _on_dash_cooldown_timeout() -> void:
 func _on_attack_cooldown_timeout() -> void:
 	attack_cooldown = false
 	is_attacking = false 
+
+
+func _on_attack_area_body_entered(body: Node2D) -> void:
+	if body.is_in_group("enemies"):
+		enemies_in_range.append(body)
+
+
+func _on_attack_area_body_exited(body: Node2D) -> void:
+	if body.is_in_group("enemies"):
+		enemies_in_range.erase(body)
+		
+func get_overlapping_bodies():
+	return enemies_in_range

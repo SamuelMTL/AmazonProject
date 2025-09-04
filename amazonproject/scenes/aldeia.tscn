@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://ro26veasxoc8"]
+[gd_scene load_steps=7 format=3 uid="uid://ro26veasxoc8"]
 
 [ext_resource type="PackedScene" uid="uid://cfeddkm37oqp1" path="res://Components/next_scene.tscn" id="2_id0fx"]
 [ext_resource type="PackedScene" uid="uid://dcnpjpoqff5ms" path="res://Components/PlayerComponent/Jogador.tscn" id="2_rcrhj"]
 [ext_resource type="PackedScene" uid="uid://b10h4cuhgc3sd" path="res://Components/PauseComponent/PauseComponent.tscn" id="2_tfw0m"]
 [ext_resource type="PackedScene" uid="uid://cmi8nuu5phug0" path="res://scenes/InventárioScene/Inventario.tscn" id="3_rcrhj"]
 [ext_resource type="PackedScene" uid="uid://2pc7376wjlng" path="res://scenes/HabilidadesScene/HabilidadesScene.tscn" id="4_4mrti"]
+[ext_resource type="PackedScene" uid="uid://c383yg4oxbb15" path="res://inimigoteste.tscn" id="6_4mrti"]
 
 [node name="Aldeia" type="Node2D"]
 
@@ -29,3 +30,6 @@ process_mode = 3
 
 [node name="HabilidadesScene" parent="Jogador" instance=ExtResource("4_4mrti")]
 process_mode = 3
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("6_4mrti")]
+position = Vector2(128, 0)
