@@ -5,7 +5,6 @@ extends CharacterBody2D
 @onready var attack_timer : Timer = $AttackCooldown
 
 @export var speed: float = 150
-@export var attack_damage: int = 20
 @export var attack_cooldown_time: float = 1.0
 
 const DASH_SPEED = 900
@@ -17,7 +16,8 @@ var is_alive = true
 var enemy_in_range: bool = false
 var attack_cooldown = false
 
-var enemies_in_range = []
+var enemies_in_melee_range = []
+var enemies_in_lanca_range = []
 
 var weapon_equiped = "tacape"
 
@@ -50,6 +50,20 @@ func handle_input():
 	if Input.is_action_just_pressed("attack"):
 		attack()
 			
+	if Input.is_action_just_pressed("equip_tacape"):
+		weapon_equiped = "tacape"
+		print("tacape equipado")
+	elif Input.is_action_just_pressed("equip_lanca"):
+		weapon_equiped = "lanca"
+		print("lanca_equipada")
+	elif Input.is_action_just_pressed("equip_boleadeira"):
+		weapon_equiped = "boleadeira"
+		print("boleadeira equipada")
+	elif Input.is_action_just_pressed("equip_zarabatana"):
+		weapon_equiped = "zarabatana"
+		print("zarabatana equipada")
+		
+		
 func player_dash(direction: Vector2):
 	velocity = direction.normalized() * DASH_SPEED
 
@@ -90,7 +104,7 @@ func update_animation():
 		else:
 			animations.play("UpWalking")
 			last_direction = "up"
-	
+
 func attack():
 	if attack_cooldown or not is_alive:
 		return
@@ -114,17 +128,35 @@ func attack():
 func tacape_attack():
 	for enemy in get_overlapping_bodies():
 		if enemy.is_in_group("enemies"):
-			enemy.take_damage(attack_damage)
+			enemy.take_damage(10)
 
 func lanca_attack():
-	pass
+	for enemy in get_overlapping_bodies():
+		if enemy.is_in_group("enemies"):
+			enemy.take_damage(20)
 
 func boleadeira_attack():
 	pass
 
 func zarabatana_attack():
-	pass
+	var projectile_scene = preload("res://Components/WeaponsComponent/ProjectileComponent/Projectile.tscn")
+	var projectile = projectile_scene.instantiate()
+	projectile.position = global_position
+	projectile.direction = get_facing_direction()
+	get_parent().add_child(projectile)
 			
+func get_facing_direction() -> Vector2:
+	match last_direction:
+		"right":
+			return Vector2(1, 0)
+		"left":
+			return Vector2(-1, 0)
+		"down":
+			return Vector2(0, 1)
+		"up":
+			return Vector2(0, -1)
+	return Vector2(0, 0)
+	
 func _on_dash_timer_timeout() -> void:
 	dashing = false
 
@@ -136,15 +168,31 @@ func _on_attack_cooldown_timeout() -> void:
 	attack_cooldown = false
 	is_attacking = false 
 
-
-func _on_attack_area_body_entered(body: Node2D) -> void:
-	if body.is_in_group("enemies"):
-		enemies_in_range.append(body)
-
-
-func _on_attack_area_body_exited(body: Node2D) -> void:
-	if body.is_in_group("enemies"):
-		enemies_in_range.erase(body)
 		
 func get_overlapping_bodies():
-	return enemies_in_range
+	if weapon_equiped == "tacape":
+		return enemies_in_melee_range
+	elif weapon_equiped == "lanca":
+		return enemies_in_lanca_range
+	else:
+		return
+
+
+func _on_melee_attack_area_body_entered(body: Node2D) -> void:
+	if body.is_in_group("enemies"):
+		enemies_in_melee_range.append(body)
+
+
+func _on_melee_attack_area_body_exited(body: Node2D) -> void:
+	if body.is_in_group("enemies"):
+		enemies_in_melee_range.erase(body)
+
+
+func _on_lanca_attack_area_body_entered(body: Node2D) -> void:
+	if body.is_in_group("enemies"):
+		enemies_in_lanca_range.append(body)
+
+
+func _on_lanca_attack_area_body_exited(body: Node2D) -> void:
+	if body.is_in_group("enemies"):
+		enemies_in_lanca_range.erase(body)

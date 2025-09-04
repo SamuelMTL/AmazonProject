@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://dcnpjpoqff5ms"]
+[gd_scene load_steps=61 format=3 uid="uid://dcnpjpoqff5ms"]
 
 [ext_resource type="Script" uid="uid://cleou08us5pwg" path="res://Components/PlayerComponent/jogador.gd" id="1_ivn2g"]
 [ext_resource type="Texture2D" uid="uid://cek0bdnfikeu5" path="res://assets/CaiporaSpriteSheetAttack.png" id="1_k8qog"]
@@ -439,6 +439,9 @@ animations = [{
 radius = 38.0
 height = 90.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_ivn2g"]
+radius = 102.078
+
 [node name="Jogador" type="CharacterBody2D"]
 script = ExtResource("1_ivn2g")
 
@@ -458,13 +461,20 @@ wait_time = 0.16
 
 [node name="AttackCooldown" type="Timer" parent="."]
 
-[node name="AttackArea" type="Area2D" parent="."]
+[node name="MeleeAttackArea" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MeleeAttackArea"]
 shape = SubResource("CapsuleShape2D_ivn2g")
+
+[node name="LancaAttackArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LancaAttackArea"]
+shape = SubResource("CircleShape2D_ivn2g")
 
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
 [connection signal="timeout" from="DashCooldown" to="." method="_on_dash_cooldown_timeout"]
 [connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_timeout"]
-[connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
-[connection signal="body_exited" from="AttackArea" to="." method="_on_attack_area_body_exited"]
+[connection signal="body_entered" from="MeleeAttackArea" to="." method="_on_melee_attack_area_body_entered"]
+[connection signal="body_exited" from="MeleeAttackArea" to="." method="_on_melee_attack_area_body_exited"]
+[connection signal="body_entered" from="LancaAttackArea" to="." method="_on_lanca_attack_area_body_entered"]
+[connection signal="body_exited" from="LancaAttackArea" to="." method="_on_lanca_attack_area_body_exited"]
