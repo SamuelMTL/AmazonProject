@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://dhot3rp5v7nln"]
+
+[ext_resource type="Script" uid="uid://23w08hhaycfv" path="res://Components/AbilitysInGameComponent/Curupira/fire_trail.gd" id="1_07tvp"]
+[ext_resource type="Texture2D" uid="uid://brwbncivpt8ep" path="res://assets/pedrapequena.png" id="2_q03pa"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4x7f8"]
+radius = 17.1172
+
+[node name="FireTrail" type="Area2D"]
+script = ExtResource("1_07tvp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_4x7f8")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_q03pa")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

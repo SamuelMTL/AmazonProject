@@ -63,6 +63,13 @@ func handle_input():
 		weapon_equiped = "zarabatana"
 		print("zarabatana equipada")
 		
+	if Input.is_action_just_pressed("CurupiraPower"):
+		curupiraPower()
+	elif Input.is_action_just_pressed("IaraPower"):
+		iaraPower()
+	elif Input.is_action_just_pressed("BoitataPower"):
+		boitataPower()
+		
 		
 func player_dash(direction: Vector2):
 	velocity = direction.normalized() * DASH_SPEED
@@ -105,6 +112,15 @@ func update_animation():
 			animations.play("UpWalking")
 			last_direction = "up"
 
+func curupiraPower():
+	pass
+
+func iaraPower():
+	pass
+	
+func boitataPower():
+	pass
+	
 func attack():
 	if attack_cooldown or not is_alive:
 		return
@@ -162,7 +178,6 @@ func _on_dash_timer_timeout() -> void:
 
 func _on_dash_cooldown_timeout() -> void:
 	can_dash = true
-
 
 func _on_attack_cooldown_timeout() -> void:
 	attack_cooldown = false
