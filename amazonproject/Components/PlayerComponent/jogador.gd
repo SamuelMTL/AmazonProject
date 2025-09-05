@@ -32,6 +32,10 @@ var last_trail_time = 0.0
 var can_use_water_wave = true
 @export var water_wave_cooldown = 6.0
 
+var can_use_fire_beam = true
+@export var fire_beam_cooldown = 8.0
+
+@onready var fire_beam_scene = preload("res://Components/AbilitysInGameComponent/Boitata/FireBeam.tscn")
 @onready var water_wave_scene = preload("res://Components/AbilitysInGameComponent/Iara/WaterWave.tscn")
 @onready var fire_trail_scene = preload("res://Components/AbilitysInGameComponent/Curupira/FireTrail.tscn")
 
@@ -82,7 +86,7 @@ func handle_input():
 	elif Input.is_action_just_pressed("IaraPower"):
 		activate_iara_power()
 	elif Input.is_action_just_pressed("BoitataPower"):
-		boitataPower()
+		activate_boitata_power()
 		
 		
 func player_dash(direction: Vector2):
@@ -160,9 +164,21 @@ func activate_iara_power():
 	await get_tree().create_timer(water_wave_cooldown).timeout
 	can_use_water_wave = true
 	
-func boitataPower():
-	pass
+func activate_boitata_power():
+	if not can_use_fire_beam:
+		return
 	
+	can_use_fire_beam = false
+	
+	var beam = fire_beam_scene.instantiate()
+	beam.position = global_position
+	beam.rotation = get_facing_angle()
+	get_parent().add_child(beam)	
+	
+	await get_tree().create_timer(fire_beam_cooldown).timeout
+	can_use_fire_beam = true
+	
+
 func attack():
 	if attack_cooldown or not is_alive:
 		return
@@ -214,6 +230,14 @@ func get_facing_direction() -> Vector2:
 		"up":
 			return Vector2(0, -1)
 	return Vector2(0, 0)
+	
+func get_facing_angle() -> float:
+	match last_direction:
+		"right": return 0
+		"down": return PI / 2
+		"left": return PI
+		"up": return -PI/2
+	return 0
 	
 func _on_dash_timer_timeout() -> void:
 	dashing = false

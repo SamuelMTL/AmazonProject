@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://sri2uano4khh"]
+
+[ext_resource type="Script" uid="uid://h3sk7djpj36n" path="res://Components/AbilitysInGameComponent/Boitata/fire_beam.gd" id="1_0s7ov"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ei8nl"]
+size = Vector2(341, 8)
+
+[node name="FireBeam" type="Area2D"]
+script = ExtResource("1_0s7ov")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 341.0
+offset_bottom = 8.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(170.5, 4)
+shape = SubResource("RectangleShape2D_ei8nl")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
