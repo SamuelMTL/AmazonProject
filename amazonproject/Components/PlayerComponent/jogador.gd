@@ -29,6 +29,10 @@ var can_use_fire_trail = true
 var last_trail_time = 0.0
 @export var trail_spawn_interval: float = 0.2
 
+var can_use_water_wave = true
+@export var water_wave_cooldown = 6.0
+
+@onready var water_wave_scene = preload("res://Components/AbilitysInGameComponent/Iara/WaterWave.tscn")
 @onready var fire_trail_scene = preload("res://Components/AbilitysInGameComponent/Curupira/FireTrail.tscn")
 
 func _physics_process(delta):
@@ -76,7 +80,7 @@ func handle_input():
 	if Input.is_action_just_pressed("CurupiraPower"):
 		activate_curupira_power()
 	elif Input.is_action_just_pressed("IaraPower"):
-		iaraPower()
+		activate_iara_power()
 	elif Input.is_action_just_pressed("BoitataPower"):
 		boitataPower()
 		
@@ -142,10 +146,19 @@ func spawn_fire_trail():
 		get_parent().add_child(fire)
 		last_trail_time = Time.get_ticks_msec() / 1000.0
 	
+func activate_iara_power():
+	if not can_use_water_wave:
+		return
 	
-
-func iaraPower():
-	pass
+	can_use_water_wave = false
+	
+	var wave = water_wave_scene.instantiate()
+	wave.position = global_position
+	wave.direction = get_facing_direction()
+	get_parent().add_child(wave)
+	
+	await get_tree().create_timer(water_wave_cooldown).timeout
+	can_use_water_wave = true
 	
 func boitataPower():
 	pass

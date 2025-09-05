@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://dmqiidaqrghep"]
+
+[ext_resource type="Script" uid="uid://duwhr1bba0eng" path="res://Components/AbilitysInGameComponent/Iara/water_wave.gd" id="1_k5rsb"]
+[ext_resource type="Texture2D" uid="uid://brwbncivpt8ep" path="res://assets/pedrapequena.png" id="2_6oali"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gdwl1"]
+radius = 18.0
+
+[node name="WaterWave" type="Area2D"]
+script = ExtResource("1_k5rsb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_6oali")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_gdwl1")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
