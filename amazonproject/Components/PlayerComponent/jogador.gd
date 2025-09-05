@@ -18,16 +18,26 @@ var attack_cooldown = false
 
 var enemies_in_melee_range = []
 var enemies_in_lanca_range = []
-
 var weapon_equiped = "tacape"
 
 var last_direction = "down"
 	
+var fire_trail_active = false
+@export var fire_trail_duration: float = 5.0
+@export var fire_trail_cooldown: float = 10.0
+var can_use_fire_trail = true
+var last_trail_time = 0.0
+@export var trail_spawn_interval: float = 0.2
+
+@onready var fire_trail_scene = preload("res://Components/AbilitysInGameComponent/Curupira/FireTrail.tscn")
 
 func _physics_process(delta):
 	handle_input()
 	update_animation()
 	move_and_slide()
+	
+	if fire_trail_active and velocity != Vector2.ZERO:
+		spawn_fire_trail()
 	
 func move_entity(direction: Vector2):
 	velocity = direction.normalized() * speed
@@ -64,7 +74,7 @@ func handle_input():
 		print("zarabatana equipada")
 		
 	if Input.is_action_just_pressed("CurupiraPower"):
-		curupiraPower()
+		activate_curupira_power()
 	elif Input.is_action_just_pressed("IaraPower"):
 		iaraPower()
 	elif Input.is_action_just_pressed("BoitataPower"):
@@ -112,8 +122,27 @@ func update_animation():
 			animations.play("UpWalking")
 			last_direction = "up"
 
-func curupiraPower():
-	pass
+func activate_curupira_power():
+	if not can_use_fire_trail:
+		return
+		
+	fire_trail_active = true
+	can_use_fire_trail = false
+	
+	await get_tree().create_timer(fire_trail_duration).timeout
+	fire_trail_active = false
+	
+	await get_tree().create_timer(fire_trail_cooldown).timeout
+	can_use_fire_trail = true
+	
+func spawn_fire_trail():
+	if Time.get_ticks_msec() / 1000.0 - last_trail_time >= trail_spawn_interval:
+		var fire = fire_trail_scene.instantiate()
+		fire.position = global_position
+		get_parent().add_child(fire)
+		last_trail_time = Time.get_ticks_msec() / 1000.0
+	
+	
 
 func iaraPower():
 	pass
