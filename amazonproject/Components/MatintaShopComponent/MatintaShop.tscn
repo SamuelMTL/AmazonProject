@@ -1,4 +1,7 @@
-[gd_scene format=3 uid="uid://tnrt1ewx2brk"]
+[gd_scene load_steps=3 format=3 uid="uid://tnrt1ewx2brk"]
+
+[ext_resource type="Script" uid="uid://0hlodg0afi5" path="res://Components/MatintaShopComponent/matinta_shop.gd" id="1_fdocv"]
+[ext_resource type="Texture2D" uid="uid://dx0cgmyk4i5fj" path="res://assets/Caipora01.png" id="2_srh1r"]
 
 [node name="MatintaShop" type="Control"]
 layout_mode = 3
@@ -7,6 +10,15 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_fdocv")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 42.0
+offset_top = 19.0
+offset_right = 67.0
+offset_bottom = 47.0
+text = "Voltar"
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 1
@@ -16,5 +28,38 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Panel" type="Panel" parent="CenterContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="CenterContainer/PanelContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_srh1r")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="VenderButton" type="Button" parent="CenterContainer/PanelContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Vender"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CenterContainer/PanelContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/HBoxContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CenterContainer/PanelContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Comprar" type="Button" parent="CenterContainer/PanelContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "Comprar"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CenterContainer/PanelContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/HBoxContainer/VBoxContainer2/ScrollContainer"]
 layout_mode = 2
