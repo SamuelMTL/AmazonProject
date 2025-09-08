@@ -63,3 +63,11 @@ func buy_armor(armor_name: String):
 		PlayerInventory.add_armor(armor_name)
 		return true
 	return false
+
+
+func _on_vender_button_pressed() -> void:
+	pass # Replace with function body.
+
+
+func _on_comprar_button_pressed() -> void:
+	pass # Replace with function body.
