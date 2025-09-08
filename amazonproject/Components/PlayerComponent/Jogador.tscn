@@ -442,7 +442,7 @@ height = 90.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_ivn2g"]
 radius = 102.078
 
-[node name="Jogador" type="CharacterBody2D"]
+[node name="Jogador" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_ivn2g")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

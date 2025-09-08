@@ -71,3 +71,7 @@ func _on_vender_button_pressed() -> void:
 
 func _on_comprar_button_pressed() -> void:
 	pass # Replace with function body.
+
+
+func _on_voltar_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/aldeia.tscn")
