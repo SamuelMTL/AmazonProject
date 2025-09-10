@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://c4tce8fso2qtw" path="res://scripts/new_dungeon_generator.gd" id="2_cufjj"]
 [ext_resource type="PackedScene" uid="uid://dcnpjpoqff5ms" path="res://Components/PlayerComponent/Jogador.tscn" id="3_vlvtx"]
 [ext_resource type="PackedScene" uid="uid://b10h4cuhgc3sd" path="res://Components/PauseComponent/PauseComponent.tscn" id="4_cufjj"]
-[ext_resource type="PackedScene" uid="uid://cmi8nuu5phug0" path="res://scenes/InventárioScene/Inventario.tscn" id="5_vlvtx"]
+[ext_resource type="PackedScene" uid="uid://d2ynrtn7egk4q" path="res://Components/InventarioComponent/Inventory.tscn" id="4_vlvtx"]
 
 [node name="Dungeon" type="Node2D"]
 script = ExtResource("1_50j05")
@@ -17,7 +17,7 @@ position = Vector2(963, 1030)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="Inventario" parent="." instance=ExtResource("5_vlvtx")]
-process_mode = 3
-
 [node name="PauseComponent" parent="." instance=ExtResource("4_cufjj")]
+
+[node name="Inventory" parent="." instance=ExtResource("4_vlvtx")]
+visible = false
