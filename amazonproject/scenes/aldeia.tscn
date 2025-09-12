@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://ro26veasxoc8"]
+[gd_scene load_steps=10 format=3 uid="uid://ro26veasxoc8"]
 
 [ext_resource type="PackedScene" uid="uid://cfeddkm37oqp1" path="res://Components/next_scene.tscn" id="2_id0fx"]
 [ext_resource type="PackedScene" uid="uid://dcnpjpoqff5ms" path="res://Components/PlayerComponent/Jogador.tscn" id="2_rcrhj"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://d2ynrtn7egk4q" path="res://Components/InventarioComponent/Inventory.tscn" id="6_jtawj"]
 [ext_resource type="PackedScene" uid="uid://h4w0awd207em" path="res://Components/InventarioComponent/item.tscn" id="7_rg1t3"]
 [ext_resource type="PackedScene" uid="uid://muf73awrfgm0" path="res://Components/MatintaShopComponent/MatintaShopInGame.tscn" id="8_jtawj"]
+[ext_resource type="PackedScene" uid="uid://dasf7e50xyinw" path="res://scenes/Enemy.tscn" id="9_6vf28"]
 
 [node name="Aldeia" type="Node2D"]
 
@@ -46,3 +47,6 @@ item_name = "Cristais de Seiva"
 
 [node name="MatintaShopInGame" parent="." instance=ExtResource("8_jtawj")]
 position = Vector2(-448, 0)
+
+[node name="Enemy" parent="." instance=ExtResource("9_6vf28")]
+position = Vector2(309, 10)
