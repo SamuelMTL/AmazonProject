@@ -49,4 +49,4 @@ item_name = "Cristais de Seiva"
 position = Vector2(-448, 0)
 
 [node name="Enemy" parent="." instance=ExtResource("9_6vf28")]
-position = Vector2(309, 10)
+position = Vector2(260, 3)

@@ -1,4 +1,4 @@
-extends Node2D
+extends Node
 
 @export var initial_state: State
 
@@ -10,9 +10,9 @@ func _ready() -> void:
 		if child is State:
 			states[child.name.to_lower()] = child
 			child.Transitioned.connect(on_child_transition)
-		if initial_state: 
-			initial_state.Enter()
-			current_state = initial_state
+	if initial_state: 
+		initial_state.Enter()
+		current_state = initial_state
 			
 func _process(delta: float) -> void:
 		if current_state:
@@ -31,4 +31,5 @@ func on_child_transition(state: State, new_state_name):
 		if current_state:
 			current_state.Exit()
 		new_state.enter()
+		print(new_state)
 		new_state = new_state
