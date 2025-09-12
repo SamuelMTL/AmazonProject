@@ -24,14 +24,14 @@ shape = SubResource("CapsuleShape2D_5wwv6")
 
 [node name="StateMachine" type="Node" parent="Enemy" node_paths=PackedStringArray("initial_state")]
 script = ExtResource("2_55jtl")
-initial_state = NodePath("EnemyChase")
+initial_state = NodePath("Chase")
 
-[node name="EnemyIdle" type="Node" parent="Enemy/StateMachine" node_paths=PackedStringArray("enemy")]
+[node name="Idle" type="Node" parent="Enemy/StateMachine" node_paths=PackedStringArray("enemy")]
 script = ExtResource("3_mpr68")
 enemy = NodePath("../..")
 metadata/_custom_type_script = "uid://c784cd366cgni"
 
-[node name="EnemyChase" type="Node" parent="Enemy/StateMachine" node_paths=PackedStringArray("enemy")]
+[node name="Chase" type="Node" parent="Enemy/StateMachine" node_paths=PackedStringArray("enemy")]
 script = ExtResource("3_ft8do")
 enemy = NodePath("../..")
 metadata/_custom_type_script = "uid://dat7n0k8iklwk"
