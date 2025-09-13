@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://d2ynrtn7egk4q" path="res://Components/InventarioComponent/Inventory.tscn" id="6_jtawj"]
 [ext_resource type="PackedScene" uid="uid://h4w0awd207em" path="res://Components/InventarioComponent/item.tscn" id="7_rg1t3"]
 [ext_resource type="PackedScene" uid="uid://muf73awrfgm0" path="res://Components/MatintaShopComponent/MatintaShopInGame.tscn" id="8_jtawj"]
-[ext_resource type="PackedScene" uid="uid://dasf7e50xyinw" path="res://scenes/Enemy.tscn" id="9_6vf28"]
+[ext_resource type="PackedScene" path="res://scenes/Enemy.tscn" id="9_6vf28"]
 
 [node name="Aldeia" type="Node2D"]
 

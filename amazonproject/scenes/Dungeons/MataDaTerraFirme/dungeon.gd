@@ -10,7 +10,7 @@ var room_size = Vector2(640, 360)  # Ajuste para o tamanho real da sala
 func _process(delta):
 	update_position(camera)
 	update_position(pause_menu)
-	update_position(inventario)
+	
 
 func update_position(entidade):
 	# Calcula a sala baseada na posição do jogador
