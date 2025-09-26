@@ -1,7 +1,7 @@
 extends EnemyState
 
-@export var min_wander_time: float = 1.5
-@export var max_wander_time: float = 3.0
+@export var min_wander_time: float = 2.0
+@export var max_wander_time: float = 6.0
 @export var wander_speed: float = 50.0
 
 var wander_direction: Vector2

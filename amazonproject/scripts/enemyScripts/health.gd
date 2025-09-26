@@ -10,7 +10,7 @@ signal health_changed(health: float)
 @export var hitbox: Hitbox
 @export var animation_player: AnimationPlayer
 
-@export var max_health: float = 10.0
+@export var max_health: float = 50.0
 @onready var health: float = max_health
 
 @onready var enemy: Enemy = get_owner()
@@ -32,3 +32,4 @@ func on_damaged(attack: Attack):
 		enemy.isAlive = false
 		if animation_player:
 			animation_player.play("death")
+		enemy.queue_free()

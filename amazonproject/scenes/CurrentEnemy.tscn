@@ -44,7 +44,7 @@ offset_left = -38.0
 offset_top = -56.0
 offset_right = 41.0
 offset_bottom = -33.0
-text = "Health: 10"
+text = "Health: 50"
 script = ExtResource("4_7scqr")
 
 [node name="EnemyStateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
