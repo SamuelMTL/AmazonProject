@@ -4,7 +4,7 @@ extends EnemyState
 
 func physics_process_state(delta: float):
 	
-	var direction := player.global_position - enemy.global_position
+	var direction: Vector2 = player.global_position - enemy.global_position
 	
 	var distance = direction.length()
 	if distance > enemy.chase_radius:

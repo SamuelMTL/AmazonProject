@@ -52,10 +52,6 @@ func try_chase() -> bool:
 func get_distance_to_player() -> float:
 	return player.global_position.distance_to(enemy.global_position)
 
-# If you wanted to replace this functionality in a state you can either:
-# 1. Disconnect the signal by doing enemy.damaged.disconnect(on_damaged)
-# 2. Override the on_damaged() function to do nothing
-# 3. Override the _ready() function
-# This is the order I would recommend personally
+
 func on_damaged(attack: Attack):
 	transitioned.emit(self, "stun")

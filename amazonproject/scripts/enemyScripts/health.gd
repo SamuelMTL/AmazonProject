@@ -15,21 +15,20 @@ signal health_changed(health: float)
 
 @onready var enemy: Enemy = get_owner()
 
-
 func _ready():
 	if hitbox:
 		hitbox.damaged.connect(on_damaged)
 
-
 func on_damaged(attack: Attack):
-	if !enemy.alive:
+	if !enemy.isAlive:
 		return
 	
 	health -= attack.damage
 	health_changed.emit(health)
+	print(health)
 	
 	if health <= 0:
 		health = 0
-		enemy.alive = false
+		enemy.isAlive = false
 		if animation_player:
 			animation_player.play("death")

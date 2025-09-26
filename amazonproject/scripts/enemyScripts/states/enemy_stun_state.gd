@@ -11,7 +11,7 @@ func enter():
 	timer.autostart = true
 	timer.timeout.connect(on_timer_finished)
 	add_child(timer)
-	enemy.stunned = true
+	enemy.isStunned = true
 
 
 # Upon leaving this state, clear and free all
@@ -21,7 +21,7 @@ func exit():
 	timer.timeout.disconnect(on_timer_finished)
 	timer.queue_free()
 	timer = null
-	enemy.stunned = false
+	enemy.isStunned = false
 
 
 func on_timer_finished():

@@ -63,8 +63,9 @@ script = ExtResource("8_jkrf8")
 [node name="Stun" type="Node" parent="EnemyStateMachine"]
 script = ExtResource("9_xvts6")
 
-[node name="Health" type="Node" parent="."]
+[node name="Health" type="Node" parent="." node_paths=PackedStringArray("hitbox")]
 script = ExtResource("10_ma2ff")
+hitbox = NodePath("../HitboxArea2D")
 
 [connection signal="damaged" from="HitboxArea2D" to="." method="on_damaged"]
 [connection signal="health_changed" from="Health" to="HealthLabel" method="on_health_changed"]

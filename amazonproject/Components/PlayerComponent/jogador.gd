@@ -7,6 +7,8 @@ extends CharacterBody2D
 @export var speed: float = 150
 @export var attack_cooldown_time: float = 1.0
 
+@export var attack_damage: float = 5.0
+
 const DASH_SPEED = 900
 var dashing = false
 var can_dash = true

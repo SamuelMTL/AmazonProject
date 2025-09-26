@@ -5,3 +5,4 @@ signal damaged(attack: Attack)
 
 func damage(attack: Attack):
 	damaged.emit(attack)
+	

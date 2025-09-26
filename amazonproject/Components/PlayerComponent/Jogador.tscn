@@ -1,9 +1,10 @@
-[gd_scene load_steps=61 format=3 uid="uid://dcnpjpoqff5ms"]
+[gd_scene load_steps=62 format=3 uid="uid://dcnpjpoqff5ms"]
 
 [ext_resource type="Script" uid="uid://cleou08us5pwg" path="res://Components/PlayerComponent/jogador.gd" id="1_ivn2g"]
 [ext_resource type="Texture2D" uid="uid://cek0bdnfikeu5" path="res://assets/CaiporaSpriteSheetAttack.png" id="1_k8qog"]
 [ext_resource type="Texture2D" uid="uid://2xxnc471fxsi" path="res://assets/CaiporaSpriteSheetIdle.png" id="2_ivn2g"]
 [ext_resource type="Texture2D" uid="uid://b4j73yu74vjix" path="res://assets/CaiporaSpriteSheetWalking.png" id="3_yhkxk"]
+[ext_resource type="Script" uid="uid://bem0xd4uw1g6g" path="res://Components/PlayerComponent/melee_attack_area.gd" id="5_yhkxk"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rl5ka"]
 height = 32.0
@@ -461,9 +462,12 @@ wait_time = 0.16
 
 [node name="AttackCooldown" type="Timer" parent="."]
 
-[node name="MeleeAttackArea" type="Area2D" parent="."]
+[node name="MeleeAttackHurtbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("5_yhkxk")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="MeleeAttackArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MeleeAttackHurtbox"]
 shape = SubResource("CapsuleShape2D_ivn2g")
 
 [node name="LancaAttackArea" type="Area2D" parent="."]
@@ -474,7 +478,7 @@ shape = SubResource("CircleShape2D_ivn2g")
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
 [connection signal="timeout" from="DashCooldown" to="." method="_on_dash_cooldown_timeout"]
 [connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_timeout"]
-[connection signal="body_entered" from="MeleeAttackArea" to="." method="_on_melee_attack_area_body_entered"]
-[connection signal="body_exited" from="MeleeAttackArea" to="." method="_on_melee_attack_area_body_exited"]
+[connection signal="body_entered" from="MeleeAttackHurtbox" to="." method="_on_melee_attack_area_body_entered"]
+[connection signal="body_exited" from="MeleeAttackHurtbox" to="." method="_on_melee_attack_area_body_exited"]
 [connection signal="body_entered" from="LancaAttackArea" to="." method="_on_lanca_attack_area_body_entered"]
 [connection signal="body_exited" from="LancaAttackArea" to="." method="_on_lanca_attack_area_body_exited"]
