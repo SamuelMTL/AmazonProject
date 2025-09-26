@@ -8,7 +8,7 @@ signal damaged(attack: Attack)
 @export var detection_radius: float = 100.0
 @export var chase_radius: float = 200.0
 # This guy doesn't actually attack, he just tries to get close to the player
-@export var follow_radius: float = 25.0
+@export var follow_radius: float = 70.0 # stop distance from player
 
 var isAlive: bool = true
 var isStunned: bool = false
