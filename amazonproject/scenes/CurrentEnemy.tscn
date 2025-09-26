@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://ihiexao7aw8a"]
+[gd_scene load_steps=13 format=3 uid="uid://ihiexao7aw8a"]
 
 [ext_resource type="Texture2D" uid="uid://chgbt6u0kn6t" path="res://assets/mob.png" id="1_5t3pf"]
 [ext_resource type="Script" uid="uid://bdj5rjeprjgah" path="res://scripts/enemyScripts/EnemyClass.gd" id="1_onoei"]
@@ -9,13 +9,14 @@
 [ext_resource type="Script" uid="uid://by58kny2kqall" path="res://scripts/enemyScripts/states/enemy_wander_state.gd" id="7_ma2ff"]
 [ext_resource type="Script" uid="uid://dat7n0k8iklwk" path="res://scripts/enemyScripts/states/enemy_chase_state.gd" id="8_jkrf8"]
 [ext_resource type="Script" uid="uid://cebbbvwafwgbv" path="res://scripts/enemyScripts/states/enemy_stun_state.gd" id="9_xvts6"]
+[ext_resource type="Script" uid="uid://jy72nn04d320" path="res://scripts/enemyScripts/health.gd" id="10_ma2ff"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_onoei"]
-radius = 11.0
+radius = 36.0555
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ix6ic"]
-radius = 4.0
-height = 12.0
+radius = 9.0
+height = 42.0
 
 [node name="CurrentEnemy" type="CharacterBody2D"]
 script = ExtResource("1_onoei")
@@ -26,22 +27,24 @@ collision_mask = 0
 script = ExtResource("2_fj70u")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxArea2D"]
-position = Vector2(0, 2)
 shape = SubResource("CircleShape2D_onoei")
 
 [node name="FloorCollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 10)
+position = Vector2(-1, 31)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_ix6ic")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-1.90735e-06, -1.90735e-06)
-scale = Vector2(0.34375, 0.34375)
+position = Vector2(0, 3.8147e-06)
+scale = Vector2(1.07812, 1.07812)
 texture = ExtResource("1_5t3pf")
 
 [node name="HealthLabel" type="Label" parent="."]
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = -38.0
+offset_top = -56.0
+offset_right = 41.0
+offset_bottom = -33.0
+text = "Health: 10"
 script = ExtResource("4_7scqr")
 
 [node name="EnemyStateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
@@ -59,3 +62,9 @@ script = ExtResource("8_jkrf8")
 
 [node name="Stun" type="Node" parent="EnemyStateMachine"]
 script = ExtResource("9_xvts6")
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("10_ma2ff")
+
+[connection signal="damaged" from="HitboxArea2D" to="." method="on_damaged"]
+[connection signal="health_changed" from="Health" to="HealthLabel" method="on_health_changed"]
