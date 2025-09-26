@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://d2ynrtn7egk4q" path="res://Components/InventarioComponent/Inventory.tscn" id="6_jtawj"]
 [ext_resource type="PackedScene" uid="uid://h4w0awd207em" path="res://Components/InventarioComponent/item.tscn" id="7_rg1t3"]
 [ext_resource type="PackedScene" uid="uid://muf73awrfgm0" path="res://Components/MatintaShopComponent/MatintaShopInGame.tscn" id="8_jtawj"]
-[ext_resource type="PackedScene" path="res://scenes/Enemy.tscn" id="9_6vf28"]
+[ext_resource type="PackedScene" uid="uid://ihiexao7aw8a" path="res://scenes/CurrentEnemy.tscn" id="9_6vf28"]
 
 [node name="Aldeia" type="Node2D"]
 
@@ -35,7 +35,7 @@ process_mode = 3
 visible = false
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("6_4mrti")]
-position = Vector2(128, 0)
+position = Vector2(155, 0)
 
 [node name="Item" parent="." instance=ExtResource("7_rg1t3")]
 position = Vector2(64, 95)
@@ -48,5 +48,5 @@ item_name = "Cristais de Seiva"
 [node name="MatintaShopInGame" parent="." instance=ExtResource("8_jtawj")]
 position = Vector2(-448, 0)
 
-[node name="Enemy" parent="." instance=ExtResource("9_6vf28")]
-position = Vector2(260, 3)
+[node name="CurrentEnemy" parent="." instance=ExtResource("9_6vf28")]
+position = Vector2(195, 39)

@@ -1,0 +1,61 @@
+[gd_scene load_steps=12 format=3 uid="uid://ihiexao7aw8a"]
+
+[ext_resource type="Texture2D" uid="uid://chgbt6u0kn6t" path="res://assets/mob.png" id="1_5t3pf"]
+[ext_resource type="Script" uid="uid://bdj5rjeprjgah" path="res://scripts/enemyScripts/EnemyClass.gd" id="1_onoei"]
+[ext_resource type="Script" uid="uid://b6wotyow7647c" path="res://scripts/enemyScripts/hitBox.gd" id="2_fj70u"]
+[ext_resource type="Script" uid="uid://d2e1ki1dslyxv" path="res://scripts/enemyScripts/HealthLabel.gd" id="4_7scqr"]
+[ext_resource type="Script" uid="uid://cccjq0klkkge6" path="res://scripts/enemyScripts/states/enemy_state_machine.gd" id="5_7scqr"]
+[ext_resource type="Script" uid="uid://c784cd366cgni" path="res://scripts/enemyScripts/states/enemy_idle_state.gd" id="6_8j04u"]
+[ext_resource type="Script" uid="uid://by58kny2kqall" path="res://scripts/enemyScripts/states/enemy_wander_state.gd" id="7_ma2ff"]
+[ext_resource type="Script" uid="uid://dat7n0k8iklwk" path="res://scripts/enemyScripts/states/enemy_chase_state.gd" id="8_jkrf8"]
+[ext_resource type="Script" uid="uid://cebbbvwafwgbv" path="res://scripts/enemyScripts/states/enemy_stun_state.gd" id="9_xvts6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_onoei"]
+radius = 11.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ix6ic"]
+radius = 4.0
+height = 12.0
+
+[node name="CurrentEnemy" type="CharacterBody2D"]
+script = ExtResource("1_onoei")
+
+[node name="HitboxArea2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("2_fj70u")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxArea2D"]
+position = Vector2(0, 2)
+shape = SubResource("CircleShape2D_onoei")
+
+[node name="FloorCollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 10)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_ix6ic")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-1.90735e-06, -1.90735e-06)
+scale = Vector2(0.34375, 0.34375)
+texture = ExtResource("1_5t3pf")
+
+[node name="HealthLabel" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+script = ExtResource("4_7scqr")
+
+[node name="EnemyStateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("5_7scqr")
+initial_state = NodePath("Wander")
+
+[node name="Idle" type="Node" parent="EnemyStateMachine"]
+script = ExtResource("6_8j04u")
+
+[node name="Wander" type="Node" parent="EnemyStateMachine"]
+script = ExtResource("7_ma2ff")
+
+[node name="Chase" type="Node" parent="EnemyStateMachine"]
+script = ExtResource("8_jkrf8")
+
+[node name="Stun" type="Node" parent="EnemyStateMachine"]
+script = ExtResource("9_xvts6")

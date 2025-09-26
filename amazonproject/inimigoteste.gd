@@ -1,4 +1,4 @@
-class_name Enemy
+class_name Enemy2
 extends CharacterBody2D
 
 @export var max_health: int = 10
