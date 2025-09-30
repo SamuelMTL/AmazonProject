@@ -15,15 +15,16 @@
 texture = ExtResource("1_jtawj")
 
 [node name="NextScene" parent="." instance=ExtResource("2_id0fx")]
-position = Vector2(64, -160)
+position = Vector2(0, -256)
 
 [node name="MatintaShopInGame" parent="." instance=ExtResource("8_jtawj")]
-position = Vector2(-256, 32)
+position = Vector2(-384, 32)
 
 [node name="CucaShopInGame" parent="." instance=ExtResource("5_6vf28")]
-position = Vector2(256, 32)
+position = Vector2(352, 32)
 
 [node name="Jogador" parent="." instance=ExtResource("2_rcrhj")]
+position = Vector2(0, 32)
 
 [node name="PauseComponent" parent="Jogador" instance=ExtResource("2_tfw0m")]
 
