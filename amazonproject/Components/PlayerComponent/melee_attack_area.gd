@@ -5,15 +5,15 @@ signal hit_enemy
 
 @onready var player: Player = get_owner()
 
-func _ready() -> void:
-	area_entered.connect(on_area_entered)
+#func _ready() -> void:
+#	area_entered.connect(on_area_entered)
 
-func on_area_entered(area: Area2D):
-	if area is Hitbox:
-		var attack := Attack.new()
+#func on_area_entered(area: Area2D):
+#	if area is Hitbox:
+#		var attack := Attack.new()
 		
-		attack.damage = player.attack_damage
+#		attack.damage = player.attack_damage
 		
-		area.damage(attack)
+#		area.damage(attack)
 		
-		hit_enemy.emit()
+#		hit_enemy.emit()

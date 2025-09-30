@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://c5utbgu03vl7x"]
 
-[ext_resource type="Script" uid="uid://dte7g8yqgvkjm" path="res://scenes/Dungeons/MataDaTerraFirme/dungeon.gd" id="1_50j05"]
+[ext_resource type="Script" path="res://scenes/Dungeons/MataDaTerraFirme 2/dungeon.gd" id="1_50j05"]
 [ext_resource type="Script" uid="uid://c4tce8fso2qtw" path="res://scripts/new_dungeon_generator.gd" id="2_cufjj"]
 [ext_resource type="PackedScene" uid="uid://dcnpjpoqff5ms" path="res://Components/PlayerComponent/Jogador.tscn" id="3_vlvtx"]
 [ext_resource type="PackedScene" uid="uid://b10h4cuhgc3sd" path="res://Components/PauseComponent/PauseComponent.tscn" id="4_cufjj"]

@@ -2,7 +2,7 @@ class_name Enemy
 extends CharacterBody2D
 
 
-signal damaged(attack: Attack)
+#signal damaged(attack: Attack)
 
 @export_group("Vision Ranges")
 @export var detection_radius: float = 150.0
@@ -17,6 +17,6 @@ func _ready():
 	move_and_slide()
 	#sprite.texture = textures.pick_random()
 
-func on_damaged(attack: Attack) -> void:
-	damaged.emit(attack)
-	print("damaged emmited")
+#func on_damaged(attack: Attack) -> void:
+#	damaged.emit(attack)
+#	print("damaged emmited")
