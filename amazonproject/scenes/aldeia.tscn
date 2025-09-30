@@ -1,27 +1,30 @@
 [gd_scene load_steps=9 format=3 uid="uid://cgl27bwou6cx2"]
 
+[ext_resource type="Texture2D" uid="uid://butfsyq6ttwc2" path="res://assets/Aldeia 1.png" id="1_jtawj"]
 [ext_resource type="PackedScene" uid="uid://cfeddkm37oqp1" path="res://Components/next_scene.tscn" id="2_id0fx"]
 [ext_resource type="PackedScene" uid="uid://dcnpjpoqff5ms" path="res://Components/PlayerComponent/Jogador.tscn" id="2_rcrhj"]
 [ext_resource type="PackedScene" uid="uid://b10h4cuhgc3sd" path="res://Components/PauseComponent/PauseComponent.tscn" id="2_tfw0m"]
 [ext_resource type="PackedScene" uid="uid://2pc7376wjlng" path="res://scenes/HabilidadesScene/HabilidadesScene.tscn" id="4_4mrti"]
+[ext_resource type="PackedScene" uid="uid://16uj7j87vau6" path="res://Components/CucaShopComponent/cuca_shop_in_game.tscn" id="5_6vf28"]
 [ext_resource type="PackedScene" uid="uid://d2ynrtn7egk4q" path="res://Components/InventarioComponent/Inventory.tscn" id="6_jtawj"]
-[ext_resource type="PackedScene" uid="uid://h4w0awd207em" path="res://Components/InventarioComponent/item.tscn" id="7_rg1t3"]
 [ext_resource type="PackedScene" uid="uid://muf73awrfgm0" path="res://Components/MatintaShopComponent/MatintaShopInGame.tscn" id="8_jtawj"]
-[ext_resource type="PackedScene" path="res://scenes/CurrentEnemy.tscn" id="9_6vf28"]
 
 [node name="Aldeia" type="Node2D"]
 
-[node name="ColorRect" type="ColorRect" parent="."]
-offset_left = -295.0
-offset_top = -187.0
-offset_right = 895.0
-offset_bottom = 686.0
-color = Color(0.42705, 0.65, 0.3315, 1)
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_jtawj")
 
 [node name="NextScene" parent="." instance=ExtResource("2_id0fx")]
-position = Vector2(64, -160)
+position = Vector2(0, -256)
 
-[node name="Jogador" parent="." groups=["player"] instance=ExtResource("2_rcrhj")]
+[node name="MatintaShopInGame" parent="." instance=ExtResource("8_jtawj")]
+position = Vector2(-384, 32)
+
+[node name="CucaShopInGame" parent="." instance=ExtResource("5_6vf28")]
+position = Vector2(352, 32)
+
+[node name="Jogador" parent="." instance=ExtResource("2_rcrhj")]
+position = Vector2(0, 32)
 
 [node name="PauseComponent" parent="Jogador" instance=ExtResource("2_tfw0m")]
 
@@ -32,17 +35,3 @@ process_mode = 3
 
 [node name="Inventory" parent="Jogador" instance=ExtResource("6_jtawj")]
 visible = false
-
-[node name="Item" parent="." instance=ExtResource("7_rg1t3")]
-position = Vector2(64, 95)
-item_name = "Resina Ancestral"
-
-[node name="Item2" parent="." instance=ExtResource("7_rg1t3")]
-position = Vector2(-96, 64)
-item_name = "Cristais de Seiva"
-
-[node name="MatintaShopInGame" parent="." instance=ExtResource("8_jtawj")]
-position = Vector2(-448, 0)
-
-[node name="CurrentEnemy" parent="." instance=ExtResource("9_6vf28")]
-position = Vector2(195, 39)
