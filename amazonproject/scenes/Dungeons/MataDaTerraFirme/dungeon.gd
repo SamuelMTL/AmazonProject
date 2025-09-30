@@ -3,7 +3,7 @@ extends Node2D
 @onready var camera = $Camera2D
 @onready var pause_menu = $PauseComponent
 @onready var player = $Jogador
-@onready var inventario = $Inventory
+@onready var inventario = $Inventario
 
 var room_size = Vector2(640, 360)  # Ajuste para o tamanho real da sala
 
