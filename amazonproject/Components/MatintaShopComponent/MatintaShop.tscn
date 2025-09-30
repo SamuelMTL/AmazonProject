@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://tnrt1ewx2brk"]
+[gd_scene load_steps=7 format=3 uid="uid://tnrt1ewx2brk"]
 
 [ext_resource type="Script" uid="uid://0hlodg0afi5" path="res://Components/MatintaShopComponent/matinta_shop.gd" id="1_fdocv"]
-[ext_resource type="Texture2D" uid="uid://dx0cgmyk4i5fj" path="res://assets/Caipora01.png" id="2_srh1r"]
+[ext_resource type="Texture2D" path="res://assets/matintashop/MatintaShop.png" id="2_nka0k"]
+[ext_resource type="Texture2D" path="res://assets/matintashop/MatintaShop 4.png" id="3_hm31p"]
+[ext_resource type="Texture2D" path="res://assets/matintashop/MatintaShopMatinta.png" id="4_guv7w"]
+[ext_resource type="Texture2D" path="res://assets/matintashop/MatintaShopbutton1.png" id="5_ctlpb"]
+[ext_resource type="Texture2D" path="res://assets/matintashop/MatintaShopbutton2.png" id="6_65x4e"]
 
 [node name="MatintaShop" type="Control"]
 layout_mode = 3
@@ -12,51 +16,67 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_fdocv")
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_nka0k")
 
-[node name="PanelContainer" type="PanelContainer" parent="CenterContainer"]
+[node name="TextureRect" type="TextureRect" parent="TextureRect"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("3_hm31p")
+
+[node name="TextureRect" type="TextureRect" parent="TextureRect/TextureRect"]
+layout_mode = 0
+offset_left = 38.0
+offset_top = 118.0
+offset_right = 151.0
+offset_bottom = 295.0
+texture = ExtResource("4_guv7w")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect/TextureRect"]
+layout_mode = 2
+offset_left = 213.0
+offset_top = 128.0
+offset_right = 426.0
+offset_bottom = 231.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TextureRect/TextureRect/VBoxContainer"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer"]
-layout_mode = 2
-
-[node name="Voltar" type="Button" parent="CenterContainer/PanelContainer/VBoxContainer"]
-layout_mode = 2
-text = "Voltar"
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/PanelContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="CenterContainer/PanelContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-texture = ExtResource("2_srh1r")
-
-[node name="VenderButton" type="Button" parent="CenterContainer/PanelContainer/VBoxContainer/HBoxContainer"]
+[node name="VenderButton" type="Button" parent="TextureRect/TextureRect/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "Vender"
 
-[node name="ComprarButton" type="Button" parent="CenterContainer/PanelContainer/VBoxContainer/HBoxContainer"]
+[node name="ComprarButton" type="Button" parent="TextureRect/TextureRect/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "Comprar"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/VBoxContainer"]
+[node name="VenderButton2" type="TextureButton" parent="TextureRect/TextureRect/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("5_ctlpb")
+texture_pressed = ExtResource("6_65x4e")
+texture_hover = ExtResource("6_65x4e")
+
+[node name="ComprarButton3" type="TextureButton" parent="TextureRect/TextureRect/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("5_ctlpb")
+texture_pressed = ExtResource("6_65x4e")
+texture_hover = ExtResource("6_65x4e")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect/TextureRect/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="ScrollContainer" type="ScrollContainer" parent="CenterContainer/PanelContainer/VBoxContainer/VBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="TextureRect/TextureRect/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/VBoxContainer/VBoxContainer/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect/TextureRect/VBoxContainer/VBoxContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[connection signal="pressed" from="CenterContainer/PanelContainer/VBoxContainer/Voltar" to="." method="_on_voltar_pressed"]
-[connection signal="pressed" from="CenterContainer/PanelContainer/VBoxContainer/HBoxContainer/VenderButton" to="." method="_on_vender_button_pressed"]
-[connection signal="pressed" from="CenterContainer/PanelContainer/VBoxContainer/HBoxContainer/ComprarButton" to="." method="_on_comprar_button_pressed"]
+[connection signal="pressed" from="TextureRect/TextureRect/VBoxContainer/HBoxContainer/VenderButton" to="." method="_on_vender_button_pressed"]
+[connection signal="pressed" from="TextureRect/TextureRect/VBoxContainer/HBoxContainer/ComprarButton" to="." method="_on_comprar_button_pressed"]
