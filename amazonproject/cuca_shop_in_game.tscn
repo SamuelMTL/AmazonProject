@@ -1,7 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://b2a6noo0ft4ey"]
+[gd_scene load_steps=4 format=3 uid="uid://b8k3yd28xnp8a"]
 
-[ext_resource type="Script" path="res://Components/CucaShopComponent/cuca_shop_in_game.gd" id="1_mi1a8"]
-[ext_resource type="Texture2D" path="res://assets/Aldeia 3.png" id="2_ba47s"]
+[ext_resource type="Script" uid="uid://ws8r0dlfkgp3" path="res://Components/CucaShopComponent/cuca_shop_in_game.gd" id="1_mi1a8"]
+[ext_resource type="Texture2D" uid="uid://dh8mwsmx5tu1u" path="res://assets/Aldeia 3.png" id="2_ba47s"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_trlb2"]
 size = Vector2(160, 160)
