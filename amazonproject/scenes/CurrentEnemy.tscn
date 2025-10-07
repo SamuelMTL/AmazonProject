@@ -65,3 +65,6 @@ script = ExtResource("9_xvts6")
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("10_ma2ff")
+
+[connection signal="damaged" from="HitboxArea2D" to="." method="on_damaged"]
+[connection signal="health_changed" from="Health" to="HealthLabel" method="on_health_changed"]
