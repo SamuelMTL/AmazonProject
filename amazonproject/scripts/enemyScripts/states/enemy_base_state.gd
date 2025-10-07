@@ -1,7 +1,6 @@
 class_name EnemyState
 extends Node
 
-
 #####################################
 # This is the base enemy state
 # Each state will inherit from this
@@ -14,9 +13,9 @@ var player: Player
 
 
 func _ready():
-	player = get_tree().get_first_node_in_group("player")
+	player = get_tree().get_first_node_in_group("Player")
 	enemy.damaged.connect(on_damaged)
-
+	
 
 # This is called directly when transitioning to this state
 # Useful for setting up the state to be used

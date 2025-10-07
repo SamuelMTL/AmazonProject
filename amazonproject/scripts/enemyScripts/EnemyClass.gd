@@ -2,7 +2,7 @@ class_name Enemy
 extends CharacterBody2D
 
 
-#signal damaged(attack: Attack)
+signal damaged(attack: Attack)
 
 @export_group("Vision Ranges")
 @export var detection_radius: float = 150.0
