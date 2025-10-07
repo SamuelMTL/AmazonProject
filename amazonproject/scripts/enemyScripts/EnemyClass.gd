@@ -17,6 +17,6 @@ func _ready():
 	move_and_slide()
 	#sprite.texture = textures.pick_random()
 
-#func on_damaged(attack: Attack) -> void:
-#	damaged.emit(attack)
-#	print("damaged emmited")
+func on_damaged(attack: Attack) -> void:
+	damaged.emit(attack)
+	print("damaged emmited")
