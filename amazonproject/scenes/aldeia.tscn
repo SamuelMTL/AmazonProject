@@ -1,29 +1,30 @@
-[gd_scene load_steps=9 format=3 uid="uid://cgl27bwou6cx2"]
+[gd_scene load_steps=10 format=3 uid="uid://cgl27bwou6cx2"]
 
+[ext_resource type="Texture2D" uid="uid://ceww6448urox3" path="res://assets/Aldeia/GramadoAldeia.png" id="1_kg8is"]
 [ext_resource type="PackedScene" uid="uid://cfeddkm37oqp1" path="res://Components/next_scene.tscn" id="2_id0fx"]
 [ext_resource type="PackedScene" uid="uid://dcnpjpoqff5ms" path="res://Components/PlayerComponent/Jogador.tscn" id="2_rcrhj"]
 [ext_resource type="PackedScene" uid="uid://b10h4cuhgc3sd" path="res://Components/PauseComponent/PauseComponent.tscn" id="2_tfw0m"]
-[ext_resource type="PackedScene" uid="uid://2pc7376wjlng" path="res://scenes/HabilidadesScene/HabilidadesScene.tscn" id="4_4mrti"]
-[ext_resource type="PackedScene" uid="uid://b8k3yd28xnp8a" path="res://cuca_shop_in_game.tscn" id="5_6vf28"]
+[ext_resource type="PackedScene" uid="uid://2pc7376wjlng" path="res://Scenes/HabilidadesScene/HabilidadesScene.tscn" id="4_4mrti"]
+[ext_resource type="PackedScene" uid="uid://dsmunr4nn7fq8" path="res://Components/CucaShopComponents/cuca_shop_in_game.tscn" id="5_6vf28"]
 [ext_resource type="PackedScene" uid="uid://d2ynrtn7egk4q" path="res://Components/InventarioComponent/Inventory.tscn" id="6_jtawj"]
-[ext_resource type="PackedScene" uid="uid://ihiexao7aw8a" path="res://scenes/CurrentEnemy.tscn" id="8_6vf28"]
+[ext_resource type="PackedScene" uid="uid://ihiexao7aw8a" path="res://Scenes/CurrentEnemy.tscn" id="8_6vf28"]
 [ext_resource type="PackedScene" uid="uid://muf73awrfgm0" path="res://Components/MatintaShopComponent/MatintaShopInGame.tscn" id="8_jtawj"]
 
 [node name="Aldeia" type="Node2D"]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="GramadoFundo" type="Sprite2D" parent="."]
+texture = ExtResource("1_kg8is")
 
 [node name="NextScene" parent="." instance=ExtResource("2_id0fx")]
 position = Vector2(0, -256)
 
 [node name="MatintaShopInGame" parent="." instance=ExtResource("8_jtawj")]
-position = Vector2(-384, 32)
+position = Vector2(-319, 3)
 
 [node name="CucaShopInGame" parent="." instance=ExtResource("5_6vf28")]
 position = Vector2(352, 32)
 
 [node name="Jogador" parent="." instance=ExtResource("2_rcrhj")]
-position = Vector2(0, 32)
 
 [node name="PauseComponent" parent="Jogador" instance=ExtResource("2_tfw0m")]
 

@@ -1,4 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://b8k3yd28xnp8a"]
+[gd_scene load_steps=3 format=3 uid="uid://dsmunr4nn7fq8"]
+
+[ext_resource type="Texture2D" uid="uid://dfxctqt64s4tr" path="res://assets/Aldeia/CucaHut.png" id="1_asj38"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_trlb2"]
 size = Vector2(160, 160)
@@ -11,5 +13,6 @@ size = Vector2(160, 160)
 shape = SubResource("RectangleShape2D_trlb2")
 
 [node name="Sprite2D" type="Sprite2D" parent="Area2D"]
+texture = ExtResource("1_asj38")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
