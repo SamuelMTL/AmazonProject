@@ -12,4 +12,11 @@ script = ExtResource("1_u8two")
 position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_x73bb")
 
+[node name="Label" type="Label" parent="."]
+offset_left = -35.0
+offset_top = -10.0
+offset_right = 36.0
+offset_bottom = 13.0
+text = "Dungeon"
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
