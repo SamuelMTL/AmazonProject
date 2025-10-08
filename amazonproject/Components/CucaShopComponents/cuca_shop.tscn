@@ -1,18 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://ck8ariskkrufx"]
+[gd_scene load_steps=4 format=3 uid="uid://ck8ariskkrufx"]
 
-[ext_resource type="Script" uid="uid://cujbcanypuvnc" path="res://Components/CucaShopComponent/cuca_shop.gd" id="1_2par5"]
-[ext_resource type="Texture2D" uid="uid://uakh6oukhdi7" path="res://assets/cucashop/cucashopfundo.png" id="2_mwyl5"]
-[ext_resource type="Texture2D" uid="uid://bgoha324504qo" path="res://assets/ChamaDensa.png" id="3_tjrxq"]
-[ext_resource type="Texture2D" uid="uid://dp6wumls0uso7" path="res://assets/ExplosãoIgnea.png" id="4_2tyhx"]
-[ext_resource type="Texture2D" uid="uid://b8av1k2b0iyif" path="res://assets/FogoPurificador.png" id="5_x6363"]
-[ext_resource type="Texture2D" uid="uid://cp660o3l5j78y" path="res://assets/Maremoto.png" id="6_wux0m"]
-[ext_resource type="Texture2D" uid="uid://ba3lhogtntksy" path="res://assets/Redemoinho.png" id="7_xsahv"]
-[ext_resource type="Texture2D" uid="uid://c36di687w1veu" path="res://assets/AguasRevigorantes.png" id="8_3tsug"]
-[ext_resource type="Texture2D" uid="uid://mjfyhwuvuwfe" path="res://assets/Fachotriplo.png" id="9_yx033"]
-[ext_resource type="Texture2D" uid="uid://ck51vk6uren2n" path="res://assets/LuzCega.png" id="10_j8c18"]
-[ext_resource type="Texture2D" uid="uid://t7xnd5peb535" path="res://assets/ChamaEspiritual.png" id="11_n63mn"]
-[ext_resource type="Texture2D" uid="uid://crf4ww6rvi44h" path="res://assets/cucashop/cucashoptext.png" id="12_v6jim"]
-[ext_resource type="Texture2D" uid="uid://brwggcurbc4hx" path="res://assets/cucashop/cucashopcuca.png" id="13_lilxx"]
+[ext_resource type="Script" path="res://Components/CucaShopComponents/cuca_shop.gd" id="1_wu8yr"]
+[ext_resource type="Texture2D" uid="uid://dis84o1anhc3j" path="res://assets/CucaShop/Group 3.png" id="2_sfulu"]
+[ext_resource type="FontFile" uid="uid://bm1yrc41rrxlf" path="res://assets/fonts/VCR_OSD_MONO_1.001.ttf" id="3_ghpmu"]
 
 [node name="CucaShop" type="Control"]
 layout_mode = 3
@@ -21,102 +11,41 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_2par5")
+script = ExtResource("1_wu8yr")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
-texture = ExtResource("2_mwyl5")
+texture = ExtResource("2_sfulu")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 279.0
-offset_top = -1.0
-offset_right = -31.0
-offset_bottom = 2.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="TextureRect/VBoxContainer"]
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-
-[node name="TextureButton" type="TextureButton" parent="TextureRect/VBoxContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-texture_normal = ExtResource("3_tjrxq")
-
-[node name="TextureButton2" type="TextureButton" parent="TextureRect/VBoxContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-texture_normal = ExtResource("4_2tyhx")
-
-[node name="TextureButton3" type="TextureButton" parent="TextureRect/VBoxContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-texture_normal = ExtResource("5_x6363")
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="TextureRect/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-
-[node name="TextureButton" type="TextureButton" parent="TextureRect/VBoxContainer/HBoxContainer/VBoxContainer2"]
-layout_mode = 2
-texture_normal = ExtResource("6_wux0m")
-
-[node name="TextureButton2" type="TextureButton" parent="TextureRect/VBoxContainer/HBoxContainer/VBoxContainer2"]
-layout_mode = 2
-texture_normal = ExtResource("7_xsahv")
-
-[node name="TextureButton3" type="TextureButton" parent="TextureRect/VBoxContainer/HBoxContainer/VBoxContainer2"]
-layout_mode = 2
-texture_normal = ExtResource("8_3tsug")
-
-[node name="VBoxContainer3" type="VBoxContainer" parent="TextureRect/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-
-[node name="TextureButton" type="TextureButton" parent="TextureRect/VBoxContainer/HBoxContainer/VBoxContainer3"]
-layout_mode = 2
-texture_normal = ExtResource("9_yx033")
-
-[node name="TextureButton2" type="TextureButton" parent="TextureRect/VBoxContainer/HBoxContainer/VBoxContainer3"]
-layout_mode = 2
-texture_normal = ExtResource("10_j8c18")
-
-[node name="TextureButton3" type="TextureButton" parent="TextureRect/VBoxContainer/HBoxContainer/VBoxContainer3"]
-layout_mode = 2
-texture_normal = ExtResource("11_n63mn")
-
-[node name="TextureRect2" type="TextureRect" parent="."]
+[node name="Descricao" type="RichTextLabel" parent="."]
 layout_mode = 0
-offset_left = 38.0
-offset_top = 177.0
-offset_right = 221.0
-offset_bottom = 270.0
-texture = ExtResource("12_v6jim")
+offset_left = 45.0
+offset_top = 205.0
+offset_right = 212.0
+offset_bottom = 262.0
 
-[node name="TextureRect" type="TextureRect" parent="TextureRect2"]
+[node name="Dinheiro" type="RichTextLabel" parent="."]
 layout_mode = 0
-offset_left = 17.0
-offset_top = -91.0
-offset_right = 170.0
-offset_bottom = 37.0
-texture = ExtResource("13_lilxx")
+offset_left = 87.0
+offset_top = 37.0
+offset_right = 127.0
+offset_bottom = 46.0
+theme_override_fonts/normal_font = ExtResource("3_ghpmu")
+theme_override_font_sizes/normal_font_size = 10
+text = "00000
+"
 
-[node name="RichTextLabel" type="RichTextLabel" parent="TextureRect2"]
+[node name="Sair" type="Button" parent="."]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 9.0
-offset_top = 34.0
-offset_right = -7.0
-offset_bottom = -11.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/normal_font_size = 12
-text = "descricao da habilidade selecionada"
-fit_content = true
+anchors_preset = -1
+anchor_right = 0.038
+anchor_bottom = 0.075
+offset_left = 33.0
+offset_top = 33.0
+offset_right = 23.68
+offset_bottom = 21.0
+flat = true
+
+[connection signal="pressed" from="Sair" to="." method="_on_sair_pressed"]
