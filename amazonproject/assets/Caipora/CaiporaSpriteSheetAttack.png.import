@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cek0bdnfikeu5"
-path="res://.godot/imported/CaiporaSpriteSheetAttack.png-c8d9bdbbc47bbc64edea4a145c9b6f6b.ctex"
+path="res://.godot/imported/CaiporaSpriteSheetAttack.png-23b201dcea5d61c9077ad087e340e439.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/CaiporaSpriteSheetAttack.png"
-dest_files=["res://.godot/imported/CaiporaSpriteSheetAttack.png-c8d9bdbbc47bbc64edea4a145c9b6f6b.ctex"]
+source_file="res://assets/Caipora/CaiporaSpriteSheetAttack.png"
+dest_files=["res://.godot/imported/CaiporaSpriteSheetAttack.png-23b201dcea5d61c9077ad087e340e439.ctex"]
 
 [params]
 

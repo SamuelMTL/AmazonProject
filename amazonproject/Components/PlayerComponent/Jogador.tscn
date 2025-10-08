@@ -1,10 +1,10 @@
 [gd_scene load_steps=62 format=3 uid="uid://dcnpjpoqff5ms"]
 
-[ext_resource type="Script" uid="uid://cleou08us5pwg" path="res://Components/PlayerComponent/jogador.gd" id="1_ivn2g"]
-[ext_resource type="Texture2D" uid="uid://cek0bdnfikeu5" path="res://assets/CaiporaSpriteSheetAttack.png" id="1_k8qog"]
-[ext_resource type="Texture2D" uid="uid://2xxnc471fxsi" path="res://assets/CaiporaSpriteSheetIdle.png" id="2_ivn2g"]
-[ext_resource type="Texture2D" uid="uid://b4j73yu74vjix" path="res://assets/CaiporaSpriteSheetWalking.png" id="3_yhkxk"]
-[ext_resource type="Script" uid="uid://bem0xd4uw1g6g" path="res://Components/PlayerComponent/melee_attack_area.gd" id="5_yhkxk"]
+[ext_resource type="Script" path="res://Components/PlayerComponent/jogador.gd" id="1_ivn2g"]
+[ext_resource type="Texture2D" uid="uid://cek0bdnfikeu5" path="res://assets/Caipora/CaiporaSpriteSheetAttack.png" id="1_k8qog"]
+[ext_resource type="Texture2D" uid="uid://2xxnc471fxsi" path="res://assets/Caipora/CaiporaSpriteSheetIdle.png" id="2_ivn2g"]
+[ext_resource type="Texture2D" uid="uid://b4j73yu74vjix" path="res://assets/Caipora/CaiporaSpriteSheetWalking.png" id="3_yhkxk"]
+[ext_resource type="Script" path="res://Components/PlayerComponent/melee_attack_area.gd" id="5_yhkxk"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rl5ka"]
 height = 32.0

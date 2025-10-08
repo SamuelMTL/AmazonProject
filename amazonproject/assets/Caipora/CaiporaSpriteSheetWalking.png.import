@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b288f0opj8dkv"
-path="res://.godot/imported/fireAnimationSpriteSheet.png-88e252e2b0c7c7ce4ef859fb5296cb2a.ctex"
+uid="uid://b4j73yu74vjix"
+path="res://.godot/imported/CaiporaSpriteSheetWalking.png-871dbd8780966a8edd0907d06448d359.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/fireAnimationSpriteSheet.png"
-dest_files=["res://.godot/imported/fireAnimationSpriteSheet.png-88e252e2b0c7c7ce4ef859fb5296cb2a.ctex"]
+source_file="res://assets/Caipora/CaiporaSpriteSheetWalking.png"
+dest_files=["res://.godot/imported/CaiporaSpriteSheetWalking.png-871dbd8780966a8edd0907d06448d359.ctex"]
 
 [params]
 

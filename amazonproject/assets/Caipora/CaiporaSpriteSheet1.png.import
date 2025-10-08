@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c1ia6x2xmshet"
-path="res://.godot/imported/fireAnimationSpriteSheet3.png-b9c49db0b73d1cb9a0921bc9e6223b0f.ctex"
+uid="uid://b7d5bmpnfndx3"
+path="res://.godot/imported/CaiporaSpriteSheet1.png-789a33b3dbcb6afbf08a8715b7c80cfb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/fireAnimationSpriteSheet3.png"
-dest_files=["res://.godot/imported/fireAnimationSpriteSheet3.png-b9c49db0b73d1cb9a0921bc9e6223b0f.ctex"]
+source_file="res://assets/Caipora/CaiporaSpriteSheet1.png"
+dest_files=["res://.godot/imported/CaiporaSpriteSheet1.png-789a33b3dbcb6afbf08a8715b7c80cfb.ctex"]
 
 [params]
 
