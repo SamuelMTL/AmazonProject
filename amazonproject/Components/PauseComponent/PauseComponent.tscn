@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://b10h4cuhgc3sd"]
 
-[ext_resource type="Script" uid="uid://b2qpvsml7jeyn" path="res://Components/PauseComponent/pause_component.gd" id="1_8ftj5"]
+[ext_resource type="Script" path="res://Components/PauseComponent/pause_component.gd" id="1_8ftj5"]
 [ext_resource type="PackedScene" uid="uid://bj10xu5qc40iv" path="res://Components/PauseComponent/PauseComponentsButtons.tscn" id="2_olaim"]
 
 [node name="PauseComponent" type="Control"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://2pc7376wjlng"]
 
-[ext_resource type="Script" uid="uid://duoo5v4pbj0u0" path="res://scenes/HabilidadesScene/habilidades_scene.gd" id="1_mpevx"]
+[ext_resource type="Script" path="res://scenes/HabilidadesScene/habilidades_scene.gd" id="1_mpevx"]
 
 [node name="HabilidadesScene" type="Control"]
 visible = false

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bj10xu5qc40iv"]
 
-[ext_resource type="Script" uid="uid://cli0x8t0a1bhp" path="res://Components/PauseComponent/pause_components_buttons.gd" id="1_d752p"]
+[ext_resource type="Script" path="res://Components/PauseComponent/pause_components_buttons.gd" id="1_d752p"]
 
 [node name="PauseComponentsButtons" type="Button"]
 text = "texto"
