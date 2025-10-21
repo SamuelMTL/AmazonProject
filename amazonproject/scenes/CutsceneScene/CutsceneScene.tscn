@@ -20,6 +20,21 @@
 [ext_resource type="Texture2D" uid="uid://c1ope6y5hjjfw" path="res://assets/cutscene1/Cutscene1 16.png" id="16_ubwri"]
 [ext_resource type="Texture2D" uid="uid://jb3o7rtbb4xm" path="res://assets/cutscene1/Cutscene1 17.png" id="17_tkj7i"]
 
+[sub_resource type="Animation" id="Animation_pdjwh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_yrwfx")]
+}
+
 [sub_resource type="Animation" id="Animation_hvkol"]
 resource_name = "cutscene1"
 length = 17.0
@@ -34,21 +49,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [ExtResource("1_yrwfx"), ExtResource("2_dxkph"), ExtResource("3_letqr"), ExtResource("4_o4232"), ExtResource("5_y4np8"), ExtResource("6_eaacu"), ExtResource("7_bb8hw"), ExtResource("8_qerj8"), ExtResource("9_i5cea"), ExtResource("10_305qk"), ExtResource("11_qe626"), ExtResource("12_7igh3"), ExtResource("13_n70id"), ExtResource("14_wuwen"), ExtResource("15_uubhg"), ExtResource("16_ubwri"), ExtResource("17_tkj7i")]
-}
-
-[sub_resource type="Animation" id="Animation_pdjwh"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("1_yrwfx")]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7ato4"]
