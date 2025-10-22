@@ -161,6 +161,7 @@ func activate_iara_power():
 	var wave = water_wave_scene.instantiate()
 	wave.position = global_position
 	wave.direction = get_facing_direction()
+	wave.rotation = get_facing_angle()
 	get_parent().add_child(wave)
 	
 	await get_tree().create_timer(water_wave_cooldown).timeout

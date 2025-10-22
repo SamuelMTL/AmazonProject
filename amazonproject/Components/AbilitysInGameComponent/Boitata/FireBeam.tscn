@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://sri2uano4khh"]
 
-[ext_resource type="Script" uid="uid://h3sk7djpj36n" path="res://Components/AbilitysInGameComponent/Boitata/fire_beam.gd" id="1_0s7ov"]
+[ext_resource type="Script" path="res://Components/AbilitysInGameComponent/Boitata/fire_beam.gd" id="1_0s7ov"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ei8nl"]
 size = Vector2(341, 8)
