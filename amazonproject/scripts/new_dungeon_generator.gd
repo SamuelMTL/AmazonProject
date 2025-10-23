@@ -12,6 +12,10 @@ func _ready():
 	generate_dungeon()
 	build_dungeon()
 	
+func _process(delta: float) -> void:
+	if Global.enemy_counter == 0:
+		boss_room()
+	
 func generate_dungeon():
 	var size = 3
 	dungeon_layout = []  # Reinicializa a matriz
@@ -224,4 +228,7 @@ func spawn_enemy(room):
 	var enemy = inimigo.instantiate()
 	add_child(enemy)
 	enemy.position = room.position + Vector2(320, 180) # centro aproximado da sala
-	enemy_counter += 1
+	Global.enemy_counter += 1
+
+func boss_room():
+	get_tree().change_scene_to_file("res://Scenes/Dungeons/MataDaTerraFirme/BossRoom.tscn")
