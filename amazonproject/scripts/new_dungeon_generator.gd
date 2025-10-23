@@ -6,10 +6,15 @@ var max_rooms = 5
 
 #sala de 4 portas
 var room_scene = preload("res://scenes/Dungeons/MataDaTerraFirme/dungeon_room_MTF.tscn")
+var inimigo = preload("res://inimigoteste.tscn")
 
 func _ready():
 	generate_dungeon()
 	build_dungeon()
+	
+func _process(delta: float) -> void:
+	if Global.enemy_counter == 0:
+		boss_room()
 	
 func generate_dungeon():
 	var size = 3
@@ -86,6 +91,7 @@ func build_room(x, y, is_first_room=false):
 	# Define a posição da sala no mundo do jogo
 	room.position = Vector2(x * 640, y * 360)
 	
+	spawn_enemy(room)
 	# Configuração das colisões das portas e paredes
 	# Se há uma sala no topo, desativa a parede e ativa a porta, senão, mantém fechada
 	room.get_node("Top/CollisionShape2D").disabled = has_top
@@ -155,7 +161,6 @@ func get_room_by_connections(num_connections, has_top, has_bottom, has_left, has
 	connection_pattern += "L" if has_left else "F"
 	connection_pattern += "R" if has_right else "F"
 	
-	
 	# Comparamos esse padrão com diferentes possibilidades para escolher a sala correta
 	match connection_pattern:
 		"TFFF": 
@@ -219,4 +224,11 @@ func get_room_by_connections(num_connections, has_top, has_bottom, has_left, has
 			# Se nenhuma correspondência exata for encontrada, escolhemos aleatoriamente entre três salas padrão
 			return room_scene
 		
-		
+func spawn_enemy(room):
+	var enemy = inimigo.instantiate()
+	add_child(enemy)
+	enemy.position = room.position + Vector2(320, 180) # centro aproximado da sala
+	Global.enemy_counter += 1
+
+func boss_room():
+	get_tree().change_scene_to_file("res://Scenes/Dungeons/MataDaTerraFirme/BossRoom.tscn")

@@ -463,8 +463,6 @@ wait_time = 0.16
 [node name="AttackCooldown" type="Timer" parent="."]
 
 [node name="MeleeAttackHurtbox" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 4
 script = ExtResource("5_yhkxk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MeleeAttackHurtbox"]
@@ -478,7 +476,7 @@ shape = SubResource("CircleShape2D_ivn2g")
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
 [connection signal="timeout" from="DashCooldown" to="." method="_on_dash_cooldown_timeout"]
 [connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_timeout"]
-[connection signal="body_entered" from="MeleeAttackHurtbox" to="." method="_on_melee_attack_area_body_entered"]
+[connection signal="body_entered" from="MeleeAttackHurtbox" to="." method="_on_melee_attack_hurtbox_body_entered"]
 [connection signal="body_exited" from="MeleeAttackHurtbox" to="." method="_on_melee_attack_area_body_exited"]
 [connection signal="body_entered" from="LancaAttackArea" to="." method="_on_lanca_attack_area_body_entered"]
 [connection signal="body_exited" from="LancaAttackArea" to="." method="_on_lanca_attack_area_body_exited"]

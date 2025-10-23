@@ -24,3 +24,4 @@ func take_damage(amount: int):
 		
 func die():
 	queue_free()
+	Global.enemy_counter -= 1
