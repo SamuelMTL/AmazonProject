@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dmrg8ca1oxk27"]
+
+[ext_resource type="Script" path="res://Scenes/Dungeons/MataDaTerraFirme/boss_room.gd" id="1_5phhs"]
+[ext_resource type="PackedScene" uid="uid://dcnpjpoqff5ms" path="res://Components/PlayerComponent/Jogador.tscn" id="2_vafl1"]
+
+[node name="BossRoom" type="Node2D"]
+script = ExtResource("1_5phhs")
+
+[node name="Jogador" parent="." instance=ExtResource("2_vafl1")]
+z_index = 2
+position = Vector2(334, 411)
+
+[node name="Camera2D" type="Camera2D" parent="."]
