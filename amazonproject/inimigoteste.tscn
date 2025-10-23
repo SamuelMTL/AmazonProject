@@ -4,8 +4,8 @@
 [ext_resource type="Script" path="res://inimigoteste.gd" id="1_wogi4"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ij6vw"]
-radius = 12.0
-height = 44.0
+radius = 23.0
+height = 64.0
 
 [node name="CharacterBody2D" type="CharacterBody2D" groups=["enemies"]]
 script = ExtResource("1_wogi4")
