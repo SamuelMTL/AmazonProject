@@ -1,7 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://c383yg4oxbb15"]
+[gd_scene load_steps=4 format=3 uid="uid://co41wetd6rgg3"]
 
 [ext_resource type="Texture2D" uid="uid://chgbt6u0kn6t" path="res://assets/mob.png" id="1_o00ar"]
-[ext_resource type="Script" uid="uid://bjogavhtjsy14" path="res://inimigoteste.gd" id="1_wogi4"]
+[ext_resource type="Script" path="res://inimigoteste.gd" id="1_wogi4"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ij6vw"]
 radius = 12.0

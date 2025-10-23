@@ -31,3 +31,32 @@ func update_position(entidade):
 	
 	# Move a câmera suavemente para a nova posição da sala
 	entidade.position = target_position
+	
+func top_door_closed(tilemap: TileMapLayer):
+	tilemap.set_cell(Vector2i(11,1),0,Vector2i(6,0))
+	tilemap.set_cell(Vector2i(10,1),0,Vector2i(6,0))
+	tilemap.set_cell(Vector2i(9,1),0,Vector2i(6,0))
+	tilemap.set_cell(Vector2i(8,1),0,Vector2i(6,0))
+	
+	tilemap.set_cell(Vector2i(11,2),0,Vector2i(4,0))
+	tilemap.set_cell(Vector2i(10,2),0,Vector2i(4,0))
+	tilemap.set_cell(Vector2i(9,2),0,Vector2i(4,0))
+	tilemap.set_cell(Vector2i(8,2),0,Vector2i(4,0))
+	
+func right_door_closed(tilemap: TileMapLayer):
+	tilemap.set_cell(Vector2i(18,4),0,Vector2i(2,0))
+	tilemap.set_cell(Vector2i(18,5),0,Vector2i(2,0))
+	tilemap.set_cell(Vector2i(18,6),0,Vector2i(2,0))
+	
+	tilemap.set_cell(Vector2i(17,4),0,Vector2i(3,0))
+	tilemap.set_cell(Vector2i(17,5),0,Vector2i(3,0))
+	tilemap.set_cell(Vector2i(17,6),0,Vector2i(3,0))
+	
+func left_door_closed(tilemap: TileMapLayer):
+	tilemap.set_cell(Vector2i(1,4),0,Vector2i(8,0))
+	tilemap.set_cell(Vector2i(1,5),0,Vector2i(8,0))
+	tilemap.set_cell(Vector2i(1,6),0,Vector2i(8,0))
+	
+	tilemap.set_cell(Vector2i(2,4),0,Vector2i(7,3))
+	tilemap.set_cell(Vector2i(2,5),0,Vector2i(7,3))
+	tilemap.set_cell(Vector2i(2,6),0,Vector2i(7,3))
