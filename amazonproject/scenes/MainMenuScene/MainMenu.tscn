@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dqdu1p3vagmww"]
+[gd_scene load_steps=4 format=3 uid="uid://dqdu1p3vagmww"]
 
 [ext_resource type="Texture2D" uid="uid://br5v774ktbwjw" path="res://Scenes/MainMenuScene/assets/Frame 4.png" id="1_67sto"]
 [ext_resource type="PackedScene" uid="uid://c6yd2kl7pfr2f" path="res://Components/MainMenuButtonComponent/MainMenuButton.tscn" id="1_a8k1n"]
+[ext_resource type="AudioStream" uid="uid://ctyubcd3vqtp6" path="res://assets/sound/music/main_menu.mp3" id="3_80b44"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -50,3 +51,7 @@ next_scene = "res://scenes/CréditosScene/CréditosScene.tscn"
 [node name="Sair" parent="VBoxContainer" instance=ExtResource("1_a8k1n")]
 layout_mode = 2
 label_text = "Sair"
+
+[node name="Background Music" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_80b44")
+autoplay = true
