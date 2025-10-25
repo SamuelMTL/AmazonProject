@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://divgwu1mv5xx3"]
+[gd_scene load_steps=25 format=3 uid="uid://divgwu1mv5xx3"]
 
 [ext_resource type="PackedScene" uid="uid://c6yd2kl7pfr2f" path="res://Components/MainMenuButtonComponent/MainMenuButton.tscn" id="1_qhq73"]
 [ext_resource type="Script" path="res://Scenes/CutsceneScene/cutscene_scene.gd" id="1_tour7"]
@@ -19,6 +19,8 @@
 [ext_resource type="Texture2D" uid="uid://bkhkb87byrsk1" path="res://assets/cutscene1/Cutscene1 15.png" id="15_uubhg"]
 [ext_resource type="Texture2D" uid="uid://c1ope6y5hjjfw" path="res://assets/cutscene1/Cutscene1 16.png" id="16_ubwri"]
 [ext_resource type="Texture2D" uid="uid://jb3o7rtbb4xm" path="res://assets/cutscene1/Cutscene1 17.png" id="17_tkj7i"]
+[ext_resource type="AudioStream" uid="uid://cxvufqbee373i" path="res://assets/sound/music/cutscene1.mp3" id="20_qib4e"]
+[ext_resource type="Script" path="res://Scenes/CutsceneScene/cutscene_music.gd" id="21_6dp7w"]
 
 [sub_resource type="Animation" id="Animation_pdjwh"]
 length = 0.001
@@ -82,3 +84,7 @@ offset_right = 55.0
 offset_bottom = 23.0
 label_text = "Pular cutscene"
 next_scene = "res://scenes/aldeia.tscn"
+
+[node name="Cutscene Music" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("20_qib4e")
+script = ExtResource("21_6dp7w")
