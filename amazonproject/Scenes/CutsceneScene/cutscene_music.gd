@@ -30,7 +30,7 @@ func stop_with_fade_out(duration: float):
 	if current_tween:
 		current_tween.kill()
 	
-	# Criar novo Tween e animar (fade out) propriedade "volume_db" até silenciar
+	# Criar novo Tween e animar (fade out) propriedade "volume_db" até silenciar volume
 	current_tween = create_tween()
 	current_tween.tween_property(self, "volume_db", silent_volume, duration)
 	
