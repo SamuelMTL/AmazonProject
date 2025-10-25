@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://b10h4cuhgc3sd"]
+[gd_scene load_steps=5 format=3 uid="uid://b10h4cuhgc3sd"]
 
 [ext_resource type="Script" path="res://Components/PauseComponent/pause_component.gd" id="1_8ftj5"]
 [ext_resource type="PackedScene" uid="uid://bj10xu5qc40iv" path="res://Components/PauseComponent/PauseComponentsButtons.tscn" id="2_olaim"]
+[ext_resource type="AudioStream" uid="uid://6sfhl0ahhfxd" path="res://assets/sound/music/pause.mp3" id="3_1uyae"]
+[ext_resource type="Script" path="res://Components/PauseComponent/pause_music.gd" id="3_xau2n"]
 
 [node name="PauseComponent" type="Control"]
 process_mode = 3
@@ -41,6 +43,10 @@ label_text = "Ajustes"
 [node name="Sair" parent="CenterContainer/VBoxContainer" instance=ExtResource("2_olaim")]
 layout_mode = 2
 label_text = "Sair"
+
+[node name="Pause Music" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_1uyae")
+script = ExtResource("3_xau2n")
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Continuar" to="." method="_on_continuar_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Ajustes" to="." method="_on_ajustes_pressed"]
