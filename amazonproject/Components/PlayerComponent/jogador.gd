@@ -98,13 +98,17 @@ func update_animation():
 	if is_attacking:
 		match last_direction:
 			"right":
-				animations.play("RightAttacking")
+				if animations.animation != "RightAttacking":
+					animations.play("RightAttacking")
 			"left":
-				animations.play("LeftAttacking")
+				if animations.animation != "LeftAttacking":
+					animations.play("LeftAttacking")
 			"down":
-				animations.play("DownAttacking")
+				if animations.animation != "DownAttacking":
+					animations.play("DownAttacking")
 			"up":
-				animations.play("UpAttacking")
+				if animations.animation != "UpAttacking":
+					animations.play("UpAttacking")
 				
 	elif velocity == Vector2.ZERO:
 		
@@ -206,11 +210,15 @@ func tacape_attack():
 	for enemy in get_overlapping_bodies():
 		if enemy.is_in_group("enemies"):
 			enemy.take_damage(10)
+			var direction = enemy.global_position - global_position
+			var force = 200.0 # ajuste conforme necessário
+			enemy.apply_knockback(direction, force)
 
 func lanca_attack():
 	for enemy in get_overlapping_bodies():
 		if enemy.is_in_group("enemies"):
 			enemy.take_damage(20)
+			enemy.apply_knockback()
 
 func boleadeira_attack():
 	pass

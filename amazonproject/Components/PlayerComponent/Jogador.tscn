@@ -220,19 +220,19 @@ region = Rect2(192, 128, 64, 64)
 [sub_resource type="SpriteFrames" id="SpriteFrames_xqhm8"]
 animations = [{
 "frames": [{
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_7t6un")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_qwn2b")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_j4jjk")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_74nsc")
 }],
-"loop": true,
+"loop": false,
 "name": &"DownAttacking",
 "speed": 5.0
 }, {
@@ -274,19 +274,19 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_mn4uh")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_wutya")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_41ypr")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_km75w")
 }],
-"loop": true,
+"loop": false,
 "name": &"LeftAttacking",
 "speed": 5.0
 }, {
@@ -328,19 +328,19 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_pjy0h")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_u3hwb")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_1blic")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_twrd4")
 }],
-"loop": true,
+"loop": false,
 "name": &"RightAttacking",
 "speed": 5.0
 }, {
@@ -382,19 +382,19 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_be7jl")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_s2pyx")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_8lmmk")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_n6wt4")
 }],
-"loop": true,
+"loop": false,
 "name": &"UpAttacking",
 "speed": 5.0
 }, {
@@ -453,7 +453,7 @@ shape = SubResource("CapsuleShape2D_rl5ka")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_xqhm8")
-animation = &"RightWalking"
+animation = &"DownAttacking"
 
 [node name="DashTimer" type="Timer" parent="."]
 wait_time = 0.16
