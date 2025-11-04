@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://c5utbgu03vl7x"]
+[gd_scene load_steps=6 format=3 uid="uid://c5utbgu03vl7x"]
 
 [ext_resource type="Script" path="res://Scenes/Dungeons/MataDaTerraFirme/dungeon.gd" id="1_ddp7o"]
 [ext_resource type="Script" path="res://scripts/new_dungeon_generator.gd" id="2_cufjj"]
 [ext_resource type="PackedScene" uid="uid://dcnpjpoqff5ms" path="res://Components/PlayerComponent/Jogador.tscn" id="3_vlvtx"]
 [ext_resource type="PackedScene" uid="uid://b10h4cuhgc3sd" path="res://Components/PauseComponent/PauseComponent.tscn" id="4_cufjj"]
+[ext_resource type="PackedScene" uid="uid://d2ynrtn7egk4q" path="res://Components/InventarioComponent/Inventory.tscn" id="4_d3203"]
 
 [node name="Dungeon" type="Node2D"]
 script = ExtResource("1_ddp7o")
@@ -17,3 +18,11 @@ position = Vector2(963, 1030)
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="PauseComponent" parent="." instance=ExtResource("4_cufjj")]
+
+[node name="Inventory" parent="." instance=ExtResource("4_d3203")]
+visible = false
+z_index = 10
+offset_left = 963.0
+offset_top = 1030.0
+offset_right = 963.0
+offset_bottom = 1030.0

@@ -6,6 +6,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_4h782"]
 
 [node name="Item" type="Node2D"]
+z_index = 3
 script = ExtResource("1_d1y5t")
 
 [node name="Area2D" type="Area2D" parent="."]

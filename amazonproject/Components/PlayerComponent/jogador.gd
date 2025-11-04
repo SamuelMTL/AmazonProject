@@ -286,7 +286,6 @@ func _on_lanca_attack_area_body_exited(body: Node2D) -> void:
 
 
 func _on_melee_attack_hurtbox_body_entered(body: Node2D) -> void:
-	print("chegou aqui")
 	if body.is_in_group("enemies"):
 		enemies_in_melee_range.append(body)
 		print(enemies_in_melee_range)

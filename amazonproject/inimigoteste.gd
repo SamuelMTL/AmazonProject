@@ -41,12 +41,14 @@ var inimigos = {
 							"left": "EspantalhoMorrendoEsquerda"
 						}
 						
-					}
+					},
+				"drop": ""
 				}
 			}
 
 func _ready() -> void:
 	choose_sprite("espantalho")
+	print("Enemy ready: ", self)
 
 func _physics_process(delta: float) -> void:
 	if knockback_time > 0:
@@ -77,6 +79,13 @@ func take_damage(amount: int):
 	if current_health <= 0:
 		die()
 		
+		
+func drop_item(enemy: String):
+	var item = preload("res://Components/InventarioComponent/item.tscn")
+	var item_instance = item.instantiate()
+	print(item_instance)
+	add_child(item_instance)
+	
 func die():
 	queue_free()
 	Global.enemy_counter -= 1

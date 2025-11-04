@@ -229,6 +229,7 @@ func spawn_enemy(room):
 	add_child(enemy)
 	enemy.position = room.position + Vector2(320, 180) # centro aproximado da sala
 	Global.enemy_counter += 1
+	print("Inimigo spawnado em: ", enemy.position, " | total inimigos: ", Global.enemy_counter)
 
 func boss_room():
 	get_tree().change_scene_to_file("res://Scenes/Dungeons/MataDaTerraFirme/BossRoom.tscn")
