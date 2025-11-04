@@ -45,6 +45,7 @@ rendering_quadrant_size = 32
 
 [node name="TopLeftCorner1" type="StaticBody2D" parent="."]
 position = Vector2(0, 32)
+disable_mode = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TopLeftCorner1"]
 position = Vector2(133, 1.5)
@@ -52,6 +53,7 @@ shape = SubResource("RectangleShape2D_aq28n")
 
 [node name="TopLeftCorner2" type="StaticBody2D" parent="."]
 position = Vector2(0, 33)
+disable_mode = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TopLeftCorner2"]
 position = Vector2(34, 31.5)
@@ -59,6 +61,7 @@ shape = SubResource("RectangleShape2D_tdys4")
 
 [node name="DownLeftCorner1" type="StaticBody2D" parent="."]
 position = Vector2(0, 229)
+disable_mode = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DownLeftCorner1"]
 position = Vector2(34, 60)
@@ -66,6 +69,7 @@ shape = SubResource("RectangleShape2D_wxe1o")
 
 [node name="DownLeftCorner2" type="StaticBody2D" parent="."]
 position = Vector2(75, 342)
+disable_mode = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DownLeftCorner2"]
 position = Vector2(59.375, -21.75)
@@ -73,6 +77,7 @@ shape = SubResource("RectangleShape2D_smyf8")
 
 [node name="TopRightCorner1" type="StaticBody2D" parent="."]
 position = Vector2(486, 33)
+disable_mode = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TopRightCorner1"]
 position = Vector2(22.5, 2.5)
@@ -80,6 +85,7 @@ shape = SubResource("RectangleShape2D_ee22d")
 
 [node name="TopRightCorner2" type="StaticBody2D" parent="."]
 position = Vector2(603, 33)
+disable_mode = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TopRightCorner2"]
 position = Vector2(2.5, 32)
@@ -87,6 +93,7 @@ shape = SubResource("RectangleShape2D_c6dye")
 
 [node name="DownRightCorner1" type="StaticBody2D" parent="."]
 position = Vector2(616, 264)
+disable_mode = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DownRightCorner1"]
 position = Vector2(-9, 19.5)
@@ -94,6 +101,7 @@ shape = SubResource("RectangleShape2D_sa03t")
 
 [node name="DownRightCorner2" type="StaticBody2D" parent="."]
 position = Vector2(508, 319)
+disable_mode = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DownRightCorner2"]
 position = Vector2(1.75, 0.5)
@@ -101,6 +109,7 @@ shape = SubResource("RectangleShape2D_5rlp6")
 
 [node name="Top" type="StaticBody2D" parent="."]
 position = Vector2(321, 33)
+disable_mode = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Top"]
 position = Vector2(0, 1)
@@ -109,6 +118,7 @@ disabled = true
 
 [node name="Left" type="StaticBody2D" parent="."]
 position = Vector2(39, 180)
+disable_mode = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Left"]
 position = Vector2(-4.75, -2)
@@ -117,6 +127,7 @@ disabled = true
 
 [node name="Right" type="StaticBody2D" parent="."]
 position = Vector2(610, 180)
+disable_mode = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Right"]
 position = Vector2(-4.75, -2)
@@ -125,6 +136,7 @@ disabled = true
 
 [node name="Bottom" type="StaticBody2D" parent="."]
 position = Vector2(321, 318)
+disable_mode = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bottom"]
 position = Vector2(0, 1)

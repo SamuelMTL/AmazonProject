@@ -15,6 +15,10 @@ var knockback_time: float = 0.0
 @onready var sprites = $Sprite2D
 @onready var player = get_tree().get_first_node_in_group("Player")
 
+@export var chase_radius: float = 250.0
+# This guy doesn't actually attack, he just tries to get close to the player
+@export var follow_radius: float = 70.0 # stop distance from player
+
 var inimigos = { 
 		"espantalho": {
 			"dano": 10, 
@@ -50,16 +54,18 @@ func _physics_process(delta: float) -> void:
 		knockback_time -= delta
 		return
 		
-	if player and is_instance_valid(player):
-		var distance = position.distance_to(player.position)
-		
-		if distance <= detection_radius and distance > stop_distance:
-			var direction = (player.position - position).normalized()
-			velocity = direction * move_speed
-		else:
-			velocity = Vector2.ZERO
-			
-		move_and_slide()
+	var direction: Vector2 = player.global_position - global_position
+	
+	var distance = direction.length()
+	#if distance > chase_radius:
+		#transitioned.emit(self, "wander")
+		#return
+	velocity = direction.normalized()* move_speed
+	
+	if distance <= follow_radius:
+		velocity = Vector2.ZERO
+	
+	move_and_slide()
 
 func apply_knockback(direction: Vector2, force: float):
 	knockback_velocity = direction.normalized() * force
