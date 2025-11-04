@@ -21,7 +21,6 @@ position = Vector2(963, 1030)
 
 [node name="Inventory" parent="." instance=ExtResource("4_d3203")]
 visible = false
-z_index = 10
 offset_left = 963.0
 offset_top = 1030.0
 offset_right = 963.0
