@@ -47,6 +47,7 @@ var inimigos = {
 			}
 
 func _ready() -> void:
+	z_index = 10
 	choose_sprite("espantalho")
 	print("Enemy ready: ", self)
 
