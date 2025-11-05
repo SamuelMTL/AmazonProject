@@ -83,10 +83,11 @@ func take_damage(amount: int):
 func drop_item(enemy: String):
 	var item = preload("res://Components/InventarioComponent/item.tscn")
 	var item_instance = item.instantiate()
-	print(item_instance)
-	add_child(item_instance)
+	item_instance.position = global_position
+	get_parent().add_child(item_instance)
 	
 func die():
+	drop_item("espantalho")
 	queue_free()
 	Global.enemy_counter -= 1
 	
