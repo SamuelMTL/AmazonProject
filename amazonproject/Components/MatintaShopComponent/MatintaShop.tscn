@@ -183,6 +183,7 @@ offset_left = 30.0
 offset_top = 51.0
 offset_right = 24.24
 offset_bottom = 25.96
+flat = true
 
 [connection signal="pressed" from="TextureRect/VBoxContainer/HBoxContainer/VBoxContainer/VenderButton" to="." method="_on_vender_button_pressed"]
 [connection signal="pressed" from="TextureRect/VBoxContainer/HBoxContainer/VBoxContainer2/ComprarButton" to="." method="_on_comprar_button_pressed"]
