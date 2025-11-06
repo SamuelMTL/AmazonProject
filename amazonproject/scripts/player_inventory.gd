@@ -42,7 +42,9 @@ func remove_coins(amount: int) -> bool:
 func add_weapon(weapon_name: String):
 	if weapon_name not in weapons:
 		weapons.append(weapon_name)
+		print("armas no inventario: " + str(weapons))
 		
 func add_armor(armor_name: String):
 	if armor_name not in armors:
 		armors.append(armor_name)
+		print("armaduras no inventario: " + str(armors))

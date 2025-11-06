@@ -20,9 +20,20 @@ func setup(nome: String, preco: int, tipo: String):
 	
 	item_name_label.text = nome
 	item_price_label.text = "$ " + str(preco)
+	
+	match item_type:
+		"weapon":
+			if PlayerInventory.weapons.has(item_name):
+				desativar_item()
+		"armor":
+			if PlayerInventory.armors.has(item_name):
+				desativar_item()
 
-
+	
 func _on_texture_button_pressed() -> void:
+	if shop_manager == null:
+		return  
+		
 	var sucesso = false
 
 	if item_type == "weapon":
@@ -31,9 +42,11 @@ func _on_texture_button_pressed() -> void:
 		sucesso = shop_manager.buy_armor(item_name)
 	
 	if sucesso:
-		# Desabilita o botão e reduz opacidade do item
-		buy_button.disabled = true
-		modulate.a = 0.5
+		desativar_item()
 	else:
 		# Aqui você pode tocar um som de erro ou exibir uma mensagem
 		print("Compra falhou: moedas insuficientes ou item inválido.")
+
+func desativar_item():
+	buy_button.disabled = true
+	modulate.a = 0.5

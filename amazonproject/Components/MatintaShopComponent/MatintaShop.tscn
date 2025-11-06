@@ -174,7 +174,18 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 40
 
+[node name="Voltar" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.034
+anchor_bottom = 0.114
+offset_left = 30.0
+offset_top = 51.0
+offset_right = 24.24
+offset_bottom = 25.96
+
 [connection signal="pressed" from="TextureRect/VBoxContainer/HBoxContainer/VBoxContainer/VenderButton" to="." method="_on_vender_button_pressed"]
 [connection signal="pressed" from="TextureRect/VBoxContainer/HBoxContainer/VBoxContainer2/ComprarButton" to="." method="_on_comprar_button_pressed"]
 [connection signal="pressed" from="TextureRect/VBoxContainer/ComprarContainer/HBoxContainer/ArmadurasButton" to="." method="_on_armaduras_button_pressed"]
 [connection signal="pressed" from="TextureRect/VBoxContainer/ComprarContainer/HBoxContainer/ArmasButton" to="." method="_on_armas_button_pressed"]
+[connection signal="pressed" from="Voltar" to="." method="_on_voltar_pressed"]
