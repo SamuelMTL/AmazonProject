@@ -99,7 +99,7 @@ size_flags_vertical = 3
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect/VBoxContainer/VenderContainer/ScrollContainer"]
+[node name="VenderVBoxContainer" type="VBoxContainer" parent="TextureRect/VBoxContainer/VenderContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 

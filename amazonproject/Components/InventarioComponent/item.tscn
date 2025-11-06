@@ -8,6 +8,7 @@
 [node name="Item" type="Node2D"]
 z_index = 3
 script = ExtResource("1_d1y5t")
+item_name = "item teste"
 
 [node name="Area2D" type="Area2D" parent="."]
 

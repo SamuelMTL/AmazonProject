@@ -36,10 +36,13 @@ func _on_texture_button_pressed() -> void:
 		
 	var sucesso = false
 
-	if item_type == "weapon":
-		sucesso = shop_manager.buy_weapon(item_name)
-	elif item_type == "armor":
-		sucesso = shop_manager.buy_armor(item_name)
+	match item_type:
+		"weapon":
+			sucesso = shop_manager.buy_weapon(item_name)
+		"armor":
+			sucesso = shop_manager.buy_armor(item_name)
+		"sell_collectible":
+			sucesso = shop_manager.sell_collectible(item_name, 1)
 	
 	if sucesso:
 		desativar_item()

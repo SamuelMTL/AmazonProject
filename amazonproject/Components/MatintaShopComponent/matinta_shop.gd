@@ -7,6 +7,7 @@ extends Control
 
 @onready var vender_container = $TextureRect/VBoxContainer/VenderContainer
 @onready var comprar_container = $TextureRect/VBoxContainer/ComprarContainer
+@onready var vender_vbox = $TextureRect/VBoxContainer/VenderContainer/ScrollContainer/VenderVBoxContainer
 
 @onready var armaduras_container = $TextureRect/VBoxContainer/ComprarContainer/ArmadurasScrollContainer
 @onready var armas_container = $TextureRect/VBoxContainer/ComprarContainer/ArmasScrollContainer
@@ -48,6 +49,7 @@ var armors_prices = {
 func _ready() -> void:
 	gerar_itens_loja(weapons_prices, armas_vbox, "weapon")
 	gerar_itens_loja(armors_prices, armaduras_vbox, "armor")
+	gerar_itens_venda()
 	mostrar_itens_correspondentes()
 	
 func gerar_itens_loja(itens: Dictionary, container: VBoxContainer, tipo: String):
@@ -59,6 +61,18 @@ func gerar_itens_loja(itens: Dictionary, container: VBoxContainer, tipo: String)
 		item_instance.shop_manager = self
 		item_instance.setup(nome, preco, tipo)
 
+func gerar_itens_venda():
+	
+	for nome in PlayerInventory.collectibles.keys():
+		var quantidade = PlayerInventory.collectibles[nome]
+		var preco_unitario = collectibles_prices.get(nome, 1)
+		var preco_total = preco_unitario * quantidade
+
+		var item_instance = shop_item_scene.instantiate()
+		vender_vbox.add_child(item_instance)
+		item_instance.shop_manager = self
+		item_instance.setup("%s (x%d)" % [nome, quantidade], preco_total, "sell_collectible")
+		item_instance.item_name = nome  # salva o nome real do item
 
 func sell_collectible(item_name: String, amount: int):
 	if not PlayerInventory.collectibles.has(item_name):
@@ -72,7 +86,9 @@ func sell_collectible(item_name: String, amount: int):
 	
 	PlayerInventory.remove_collectible(item_name, amount)
 	PlayerInventory.add_coins(total_price)
+	gerar_itens_venda()
 	return true
+
 	
 func buy_weapon(weapon_name: String):
 	var price = weapons_prices.get(weapon_name, -1)
