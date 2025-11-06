@@ -1,5 +1,13 @@
 extends Control
 
+@onready var vender_button = $TextureRect/VBoxContainer/HBoxContainer/VBoxContainer/VenderButton
+@onready var comprar_button = $TextureRect/VBoxContainer/HBoxContainer/VBoxContainer2/ComprarButton
+@onready var armas_button = $TextureRect/VBoxContainer/ComprarContainer/HBoxContainer/ArmasButton
+@onready var armaduras_button = $TextureRect/VBoxContainer/ComprarContainer/HBoxContainer/ArmadurasButton
+
+@onready var vender_container = $TextureRect/VBoxContainer/VenderContainer
+@onready var comprar_container = $TextureRect/VBoxContainer/ComprarContainer
+
 var collectibles_prices = {
 	"Resina Ancestral": 2,
 	"Fragmentos de Cipó-Sagrado": 3,
@@ -66,12 +74,30 @@ func buy_armor(armor_name: String):
 
 
 func _on_vender_button_pressed() -> void:
-	pass # Replace with function body.
+	vender_button.button_pressed = true
+	comprar_button.button_pressed = false
+	mostrar_itens_correspondentes()
 
 
 func _on_comprar_button_pressed() -> void:
-	pass # Replace with function body.
+	vender_button.button_pressed = false
+	comprar_button.button_pressed= true
+	mostrar_itens_correspondentes()
 
 
 func _on_voltar_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/aldeia.tscn")
+	
+func mostrar_itens_correspondentes():
+	if vender_button.button_pressed == true and comprar_button.button_pressed == false:
+		vender_container.visible = true
+		comprar_container.visible = false
+	elif vender_button.button_pressed == false and comprar_button.button_pressed == true:
+		vender_container.visible = false
+		comprar_container.visible = true
+	else:
+		corrigir_botoes() 
+		
+func corrigir_botoes():
+	vender_button.button_pressed = true
+	comprar_button.button_pressed = false
