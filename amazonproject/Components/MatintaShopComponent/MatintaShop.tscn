@@ -113,6 +113,7 @@ layout_mode = 2
 [node name="ArmadurasButton" type="TextureButton" parent="TextureRect/VBoxContainer/ComprarContainer/HBoxContainer"]
 layout_mode = 2
 toggle_mode = true
+button_pressed = true
 texture_normal = ExtResource("3_bn3um")
 texture_pressed = ExtResource("4_b6s0f")
 
@@ -154,13 +155,24 @@ grow_vertical = 2
 mouse_filter = 1
 text = "Armas"
 
-[node name="ScrollContainer" type="ScrollContainer" parent="TextureRect/VBoxContainer/ComprarContainer"]
+[node name="ArmadurasScrollContainer" type="ScrollContainer" parent="TextureRect/VBoxContainer/ComprarContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect/VBoxContainer/ComprarContainer/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect/VBoxContainer/ComprarContainer/ArmadurasScrollContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ArmasScrollContainer" type="ScrollContainer" parent="TextureRect/VBoxContainer/ComprarContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect/VBoxContainer/ComprarContainer/ArmasScrollContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
 [connection signal="pressed" from="TextureRect/VBoxContainer/HBoxContainer/VBoxContainer/VenderButton" to="." method="_on_vender_button_pressed"]
 [connection signal="pressed" from="TextureRect/VBoxContainer/HBoxContainer/VBoxContainer2/ComprarButton" to="." method="_on_comprar_button_pressed"]
+[connection signal="pressed" from="TextureRect/VBoxContainer/ComprarContainer/HBoxContainer/ArmadurasButton" to="." method="_on_armaduras_button_pressed"]
+[connection signal="pressed" from="TextureRect/VBoxContainer/ComprarContainer/HBoxContainer/ArmasButton" to="." method="_on_armas_button_pressed"]

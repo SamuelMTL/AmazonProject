@@ -8,6 +8,9 @@ extends Control
 @onready var vender_container = $TextureRect/VBoxContainer/VenderContainer
 @onready var comprar_container = $TextureRect/VBoxContainer/ComprarContainer
 
+@onready var armaduras_container = $TextureRect/VBoxContainer/ComprarContainer/ArmadurasScrollContainer
+@onready var armas_container = $TextureRect/VBoxContainer/ComprarContainer/ArmasScrollContainer
+
 var collectibles_prices = {
 	"Resina Ancestral": 2,
 	"Fragmentos de Cipó-Sagrado": 3,
@@ -95,9 +98,28 @@ func mostrar_itens_correspondentes():
 	elif vender_button.button_pressed == false and comprar_button.button_pressed == true:
 		vender_container.visible = false
 		comprar_container.visible = true
+		
+		if armaduras_button.button_pressed == true and armas_button.button_pressed == false:
+			armaduras_container.visible = true
+			armas_container.visible = false
+		elif armaduras_button.button_pressed == false and armas_button.button_pressed == true:
+			armaduras_container.visible = false
+			armas_container.visible = true
+		else:
+			corrigir_botoes()
 	else:
 		corrigir_botoes() 
 		
 func corrigir_botoes():
 	vender_button.button_pressed = true
 	comprar_button.button_pressed = false
+
+
+func _on_armaduras_button_pressed() -> void:
+	armaduras_button.button_pressed = true
+	armas_button.button_pressed = false
+
+
+func _on_armas_button_pressed() -> void:
+	armaduras_button.button_pressed = false
+	armas_button.button_pressed = true
