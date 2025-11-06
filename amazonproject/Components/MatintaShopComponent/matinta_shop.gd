@@ -10,6 +10,10 @@ extends Control
 
 @onready var armaduras_container = $TextureRect/VBoxContainer/ComprarContainer/ArmadurasScrollContainer
 @onready var armas_container = $TextureRect/VBoxContainer/ComprarContainer/ArmasScrollContainer
+@onready var armaduras_vbox = $TextureRect/VBoxContainer/ComprarContainer/ArmadurasScrollContainer/ArmadurasVBoxContainer
+@onready var armas_vbox = $TextureRect/VBoxContainer/ComprarContainer/ArmasScrollContainer/ArmasVBoxContainer
+
+@onready var shop_item_scene = preload("res://Components/MatintaShopComponent/ShopItemComponent.tscn")
 
 var collectibles_prices = {
 	"Resina Ancestral": 2,
@@ -40,6 +44,28 @@ var armors_prices = {
 	"Peitoral de Casca de Samaúma": 30,
 	"Botas de Borracha Natural": 20
 }
+
+func _ready() -> void:
+	gerar_itens_loja(weapons_prices, armas_vbox, "weapon")
+	gerar_itens_loja(armors_prices, armaduras_vbox, "armor")
+	mostrar_itens_correspondentes()
+	
+func gerar_itens_loja(itens: Dictionary, container: VBoxContainer, tipo: String):
+	for nome in itens.keys():
+		var preco = itens[nome]
+		var item_instance = shop_item_scene.instantiate()
+		
+		# Obtém os nós de texto corretamente
+		var item_name_node = item_instance.get_node("HBoxContainer/TextureRect/ItemName")
+		var item_price_node = item_instance.get_node("HBoxContainer/TextureButton/ItemPrice")
+		
+		if item_name_node:
+			item_name_node.text = nome
+		if item_price_node:
+			item_price_node.text = "$ " + str(preco)
+				
+		container.add_child(item_instance)
+
 
 func sell_collectible(item_name: String, amount: int):
 	if not PlayerInventory.collectibles.has(item_name):
@@ -118,8 +144,10 @@ func corrigir_botoes():
 func _on_armaduras_button_pressed() -> void:
 	armaduras_button.button_pressed = true
 	armas_button.button_pressed = false
+	mostrar_itens_correspondentes()
 
 
 func _on_armas_button_pressed() -> void:
 	armaduras_button.button_pressed = false
 	armas_button.button_pressed = true
+	mostrar_itens_correspondentes()
