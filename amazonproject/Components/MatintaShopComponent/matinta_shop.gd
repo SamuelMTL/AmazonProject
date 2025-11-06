@@ -55,16 +55,9 @@ func gerar_itens_loja(itens: Dictionary, container: VBoxContainer, tipo: String)
 		var preco = itens[nome]
 		var item_instance = shop_item_scene.instantiate()
 		
-		# Obtém os nós de texto corretamente
-		var item_name_node = item_instance.get_node("HBoxContainer/TextureRect/ItemName")
-		var item_price_node = item_instance.get_node("HBoxContainer/TextureButton/ItemPrice")
-		
-		if item_name_node:
-			item_name_node.text = nome
-		if item_price_node:
-			item_price_node.text = "$ " + str(preco)
-				
 		container.add_child(item_instance)
+		item_instance.shop_manager = self
+		item_instance.setup(nome, preco, tipo)
 
 
 func sell_collectible(item_name: String, amount: int):

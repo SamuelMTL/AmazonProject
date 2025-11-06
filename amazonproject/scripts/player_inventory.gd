@@ -1,6 +1,6 @@
 extends Node
 
-var coins: int = 0
+var coins: int = 100
 var collectibles: Dictionary = {}
 var weapons: Array = []
 var armors: Array = []
