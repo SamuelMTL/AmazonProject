@@ -1,17 +1,20 @@
 extends Control
-	
+
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("pause"):
 		get_tree().paused = true
 		visible = true
 
 func _on_continuar_pressed() -> void:
+	await get_tree().create_timer(0.3).timeout # Delay pro som do botão
 	visible = false
 	get_tree().paused = false
 
 func _on_ajustes_pressed() -> void:
+	await get_tree().create_timer(0.3).timeout
 	get_tree().change_scene_to_file("res://scenes/AjustesScene/AjustesScene.tscn")
 	get_tree().paused = false
 
 func _on_sair_pressed() -> void:
+	await get_tree().create_timer(0.3).timeout
 	get_tree().quit()
