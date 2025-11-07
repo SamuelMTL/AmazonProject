@@ -102,6 +102,7 @@ size_flags_vertical = 3
 [node name="VenderVBoxContainer" type="VBoxContainer" parent="TextureRect/VBoxContainer/VenderContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_constants/separation = 40
 
 [node name="ComprarContainer" type="VBoxContainer" parent="TextureRect/VBoxContainer"]
 layout_mode = 2
@@ -184,6 +185,14 @@ offset_top = 51.0
 offset_right = 24.24
 offset_bottom = 25.96
 flat = true
+
+[node name="Carteira" type="Label" parent="."]
+layout_mode = 0
+offset_left = 90.0
+offset_top = 75.0
+offset_right = 130.0
+offset_bottom = 98.0
+text = "000"
 
 [connection signal="pressed" from="TextureRect/VBoxContainer/HBoxContainer/VBoxContainer/VenderButton" to="." method="_on_vender_button_pressed"]
 [connection signal="pressed" from="TextureRect/VBoxContainer/HBoxContainer/VBoxContainer2/ComprarButton" to="." method="_on_comprar_button_pressed"]

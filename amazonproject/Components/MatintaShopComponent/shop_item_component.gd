@@ -13,8 +13,8 @@ var shop_manager
 func _ready() -> void:
 	buy_button.pressed.connect(_on_texture_button_pressed)
 	
-func setup(nome: String, preco: int, tipo: String):
-	item_name = nome
+func setup(nome: String, preco: int, tipo: String, real_name: String = ""):
+	item_name = real_name if real_name != "" else nome
 	item_price = preco
 	item_type = tipo
 	
@@ -28,8 +28,10 @@ func setup(nome: String, preco: int, tipo: String):
 		"armor":
 			if PlayerInventory.armors.has(item_name):
 				desativar_item()
+		"sell_collectible":
+			if not PlayerInventory.collectibles.has(item_name) or PlayerInventory.collectibles[item_name]["quantidade"] <= 0:
+				desativar_item()
 
-	
 func _on_texture_button_pressed() -> void:
 	if shop_manager == null:
 		return  
@@ -45,10 +47,19 @@ func _on_texture_button_pressed() -> void:
 			sucesso = shop_manager.sell_collectible(item_name, 1)
 	
 	if sucesso:
-		desativar_item()
+		# Atualiza o texto do nome e preço (caso ainda exista o item)
+		if item_type == "sell_collectible" and PlayerInventory.collectibles.has(item_name):
+			var dados = PlayerInventory.collectibles[item_name]
+			var nova_qtd = dados["quantidade"]
+			if nova_qtd > 0:
+				item_name_label.text = "%s (x%d)" % [item_name, nova_qtd]
+				item_price_label.text = "$ " + str(dados["preco"] * nova_qtd)
+			else:
+				desativar_item()
+		else:
+			desativar_item()
 	else:
-		# Aqui você pode tocar um som de erro ou exibir uma mensagem
-		print("Compra falhou: moedas insuficientes ou item inválido.")
+		print("Compra/Venda falhou: moedas insuficientes ou item inválido.")
 
 func desativar_item():
 	buy_button.disabled = true

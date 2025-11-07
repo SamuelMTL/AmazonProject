@@ -16,6 +16,8 @@ extends Control
 
 @onready var shop_item_scene = preload("res://Components/MatintaShopComponent/ShopItemComponent.tscn")
 
+@onready var carteira = $Carteira
+
 var collectibles_prices = {
 	"Resina Ancestral": 2,
 	"Fragmentos de Cipó-Sagrado": 3,
@@ -51,6 +53,7 @@ func _ready() -> void:
 	gerar_itens_loja(armors_prices, armaduras_vbox, "armor")
 	gerar_itens_venda()
 	mostrar_itens_correspondentes()
+	atualizar_carteira()
 	
 func gerar_itens_loja(itens: Dictionary, container: VBoxContainer, tipo: String):
 	for nome in itens.keys():
@@ -62,31 +65,46 @@ func gerar_itens_loja(itens: Dictionary, container: VBoxContainer, tipo: String)
 		item_instance.setup(nome, preco, tipo)
 
 func gerar_itens_venda():
-	
+	# Limpa a lista antiga
+	for child in vender_vbox.get_children():
+		child.queue_free()
+
+	# Gera novamente com base no inventário atual
 	for nome in PlayerInventory.collectibles.keys():
-		var quantidade = PlayerInventory.collectibles[nome]
-		var preco_unitario = collectibles_prices.get(nome, 1)
+		var dados = PlayerInventory.collectibles[nome]
+		var quantidade = dados["quantidade"]
+		var preco_unitario = dados["preco"]
 		var preco_total = preco_unitario * quantidade
 
 		var item_instance = shop_item_scene.instantiate()
 		vender_vbox.add_child(item_instance)
 		item_instance.shop_manager = self
-		item_instance.setup("%s (x%d)" % [nome, quantidade], preco_total, "sell_collectible")
-		item_instance.item_name = nome  # salva o nome real do item
+
+		# Exibe nome + quantidade
+		item_instance.setup("%s (x%d)" % [nome, quantidade], preco_unitario, "sell_collectible", nome)
+		item_instance.item_name = nome
+
+		# Se o jogador não tiver mais quantidade, desativa
+		if quantidade <= 0:
+			item_instance.desativar_item()
 
 func sell_collectible(item_name: String, amount: int):
 	if not PlayerInventory.collectibles.has(item_name):
 		return false
-	
-	if PlayerInventory.collectibles[item_name] < amount:
+
+	var dados = PlayerInventory.collectibles[item_name]
+	if dados["quantidade"] < amount:
 		return false
-	
-	# Calcula preço
-	var total_price = collectibles_prices.get(item_name, 0) * amount
-	
+
+	var preco_unitario = collectibles_prices.get(item_name, dados["preco"])
+	var total_price = preco_unitario * amount
+
 	PlayerInventory.remove_collectible(item_name, amount)
-	PlayerInventory.add_coins(total_price)
+	PlayerInventory.add_coins(preco_unitario)
+
+	# Atualiza visualmente os itens de venda
 	gerar_itens_venda()
+	atualizar_carteira()
 	return true
 
 	
@@ -97,6 +115,7 @@ func buy_weapon(weapon_name: String):
 	
 	if PlayerInventory.remove_coins(price):
 		PlayerInventory.add_weapon(weapon_name)
+		atualizar_carteira()
 		return true
 	return false
 	
@@ -107,6 +126,7 @@ func buy_armor(armor_name: String):
 	
 	if PlayerInventory.remove_coins(price):
 		PlayerInventory.add_armor(armor_name)
+		atualizar_carteira()
 		return true
 	return false
 
@@ -160,3 +180,6 @@ func _on_armas_button_pressed() -> void:
 	armaduras_button.button_pressed = false
 	armas_button.button_pressed = true
 	mostrar_itens_correspondentes()
+	
+func atualizar_carteira():
+	carteira.text = str(PlayerInventory.coins)
