@@ -25,6 +25,7 @@ offset_left = 45.0
 offset_top = 205.0
 offset_right = 212.0
 offset_bottom = 262.0
+theme_override_font_sizes/normal_font_size = 8
 
 [node name="Dinheiro" type="RichTextLabel" parent="."]
 layout_mode = 0
@@ -121,6 +122,14 @@ size_flags_vertical = 3
 theme_override_font_sizes/font_size = 12
 text = "Chama Espiritual"
 
+[node name="Comprar" type="Button" parent="."]
+layout_mode = 0
+offset_left = 90.0
+offset_top = 266.0
+offset_right = 167.0
+offset_bottom = 297.0
+text = "Comprar"
+
 [connection signal="pressed" from="Sair" to="." method="_on_sair_pressed"]
 [connection signal="pressed" from="HBoxContainer/CurupiraVBox/ChamaDensaButton" to="." method="_on_chama_densa_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/CurupiraVBox/ExplosaoIgneaButton" to="." method="_on_explosao_ignea_button_pressed"]
@@ -131,3 +140,4 @@ text = "Chama Espiritual"
 [connection signal="pressed" from="HBoxContainer/BoitataVBox/FachoTriploButton" to="." method="_on_facho_triplo_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/BoitataVBox/LuzCegaButton" to="." method="_on_luz_cega_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/BoitataVBox/ChamaEspiritualButton" to="." method="_on_chama_espiritual_button_pressed"]
+[connection signal="pressed" from="Comprar" to="." method="_on_comprar_pressed"]
