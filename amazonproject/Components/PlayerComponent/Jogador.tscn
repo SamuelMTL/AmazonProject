@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://dcnpjpoqff5ms"]
+[gd_scene load_steps=65 format=3 uid="uid://dcnpjpoqff5ms"]
 
 [ext_resource type="Script" path="res://Components/PlayerComponent/jogador.gd" id="1_ivn2g"]
 [ext_resource type="Texture2D" uid="uid://cek0bdnfikeu5" path="res://assets/Caipora/CaiporaSpriteSheetAttack.png" id="1_k8qog"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://Components/PlayerComponent/melee_attack_area.gd" id="5_yhkxk"]
 [ext_resource type="AudioStream" uid="uid://0wksp8qwr5i5" path="res://assets/sound/sfx/walking_2.wav" id="6_pujxu"]
 [ext_resource type="Script" path="res://Components/PlayerComponent/walking_sound.gd" id="7_qqatb"]
+[ext_resource type="AudioStream" uid="uid://cxpdhuduy83aq" path="res://assets/sound/sfx/attack.mp3" id="8_kkor3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7t6un"]
 atlas = ExtResource("1_k8qog")
@@ -478,8 +479,12 @@ shape = SubResource("CapsuleShape2D_rl5ka")
 
 [node name="WalkingSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_pujxu")
-bus = &"Acelerado"
 script = ExtResource("7_qqatb")
+
+[node name="AttackSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_kkor3")
+volume_db = -5.0
+bus = &"Attack"
 
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
 [connection signal="timeout" from="DashCooldown" to="." method="_on_dash_cooldown_timeout"]

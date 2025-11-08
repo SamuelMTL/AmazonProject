@@ -4,6 +4,7 @@ extends CharacterBody2D
 @onready var animations = $AnimatedSprite2D
 @onready var attack_timer : Timer = $AttackCooldown
 @onready var walking_sound = $WalkingSound # Som dos passos
+@onready var attack_sound = $AttackSound # Som de ataque (como só tem o "tacape", por enquanto, então não especifiquei "de qual arma")
 
 @export var speed: float = 150
 @export var attack_cooldown_time: float = 1.0
@@ -213,6 +214,7 @@ func attack():
 			print("No weapon equipped")
 			
 func tacape_attack():
+	attack_sound.play(0.1) # Tocar som de ATAQUE
 	for enemy in get_overlapping_bodies():
 		if enemy.is_in_group("enemies"):
 			enemy.take_damage(10)
