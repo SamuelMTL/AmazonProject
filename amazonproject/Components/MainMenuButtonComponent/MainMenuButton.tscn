@@ -12,9 +12,11 @@ script = ExtResource("1_2v82r")
 
 [node name="Click Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_b2kwt")
+bus = &"SFX"
 
 [node name="Hover Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_bi4t5")
+bus = &"SFX"
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="pressed" from="." to="." method="_on_pressed"]

@@ -43,6 +43,7 @@ position = Vector2(179, -73)
 
 [node name="Aldeia Music" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("10_0b8ec")
+bus = &"Music"
 script = ExtResource("11_cndyc")
 
 [connection signal="finished" from="Aldeia Music" to="Aldeia Music" method="_on_finished"]

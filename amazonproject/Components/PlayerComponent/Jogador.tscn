@@ -479,12 +479,13 @@ shape = SubResource("CapsuleShape2D_rl5ka")
 
 [node name="WalkingSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_pujxu")
+bus = &"SFX"
 script = ExtResource("7_qqatb")
 
 [node name="AttackSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_kkor3")
 volume_db = -5.0
-bus = &"Attack"
+bus = &"SFX"
 
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
 [connection signal="timeout" from="DashCooldown" to="." method="_on_dash_cooldown_timeout"]

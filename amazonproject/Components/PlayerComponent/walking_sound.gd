@@ -4,7 +4,7 @@ extends AudioStreamPlayer
 @onready var prev_is_walking: bool = false
 
 func _ready() -> void:
-	volume_db = -17.0
+	volume_db = -12.0
 	pitch_scale = 2.35
 
 func _process(delta: float) -> void:

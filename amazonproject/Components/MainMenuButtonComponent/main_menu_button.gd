@@ -2,7 +2,7 @@ extends Button
 
 @export var label_text: String
 @export var next_scene: String
-@onready var click_sound = $"Click Sound" 
+@onready var click_sound = $"Click Sound"
 @onready var hover_sound = $"Hover Sound"
 
 func _ready() -> void:
