@@ -1,0 +1,25 @@
+[gd_resource type="AnimationNodeBlendSpace2D" load_steps=5 format=3 uid="uid://jwgv8egywjbs"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_j3xv7"]
+animation = &"UpWalking"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bv2df"]
+animation = &"DownWalking"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_p41k5"]
+animation = &"RightWalking"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_k63so"]
+animation = &"LeftWalking"
+
+[resource]
+blend_point_0/node = SubResource("AnimationNodeAnimation_j3xv7")
+blend_point_0/pos = Vector2(0, -1)
+blend_point_1/node = SubResource("AnimationNodeAnimation_bv2df")
+blend_point_1/pos = Vector2(0, 1)
+blend_point_2/node = SubResource("AnimationNodeAnimation_p41k5")
+blend_point_2/pos = Vector2(-1, 0)
+blend_point_3/node = SubResource("AnimationNodeAnimation_k63so")
+blend_point_3/pos = Vector2(1, 0)
+max_space = Vector2(1, 1.11)
+blend_mode = 2

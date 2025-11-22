@@ -1,7 +1,7 @@
 class_name Player
 extends CharacterBody2D
 
-@onready var animations = $AnimatedSprite2D
+
 @onready var attack_timer : Timer = $AttackCooldown
 
 @export var speed: float = 150
@@ -43,7 +43,6 @@ var can_use_fire_beam = true
 
 func _physics_process(delta):
 	handle_input()
-	update_animation()
 	move_and_slide()
 	
 	if fire_trail_active and velocity != Vector2.ZERO:
@@ -93,48 +92,6 @@ func handle_input():
 		
 func player_dash(direction: Vector2):
 	velocity = direction.normalized() * DASH_SPEED
-
-func update_animation():
-	if is_attacking:
-		match last_direction:
-			"right":
-				if animations.animation != "RightAttacking":
-					animations.play("RightAttacking")
-			"left":
-				if animations.animation != "LeftAttacking":
-					animations.play("LeftAttacking")
-			"down":
-				if animations.animation != "DownAttacking":
-					animations.play("DownAttacking")
-			"up":
-				if animations.animation != "UpAttacking":
-					animations.play("UpAttacking")
-				
-	elif velocity == Vector2.ZERO:
-		
-		match last_direction:
-			"right":
-				animations.play("RightIdle")
-			"left":
-				animations.play("LeftIdle")
-			"down":
-				animations.play("DownIdle")
-			"up":
-				animations.play("UpIdle")
-			
-	else:
-		if velocity.x > 0:
-			animations.play("LeftWalking")
-			last_direction = "right"
-		elif velocity.x < 0:
-			animations.play("RightWalking")
-			last_direction = "left"
-		elif velocity.y > 0:
-			animations.play("DownWalking")
-			last_direction = "down"
-		else:
-			animations.play("UpWalking")
-			last_direction = "up"
 
 func activate_curupira_power():
 	if not can_use_fire_trail:
