@@ -13,7 +13,7 @@ func _ready() -> void:
 func _on_pressed() -> void:	
 	click_sound.play()
 	await get_tree().create_timer(0.5).timeout
-	
+
 	if label_text == "Sair":
 		get_tree().quit()
 	else:
