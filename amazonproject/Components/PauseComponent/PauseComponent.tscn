@@ -48,13 +48,16 @@ label_text = "Sair"
 
 [node name="Pause Music" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_1uyae")
+bus = &"Music"
 script = ExtResource("3_xau2n")
 
 [node name="Click Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_chdb5")
+bus = &"SFX"
 
 [node name="Hover Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_flw5u")
+bus = &"SFX"
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Continuar" to="." method="_on_continuar_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Ajustes" to="." method="_on_ajustes_pressed"]
