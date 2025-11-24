@@ -5,3 +5,6 @@
 [node name="PauseComponentsButtons" type="Button"]
 text = "texto"
 script = ExtResource("1_d752p")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="pressed" from="." to="." method="_on_pressed"]

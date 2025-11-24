@@ -3,6 +3,8 @@ extends CharacterBody2D
 
 @onready var animations = $AnimatedSprite2D
 @onready var attack_timer : Timer = $AttackCooldown
+@onready var walking_sound = $WalkingSound # Som dos passos
+@onready var attack_sound = $AttackSound # Som de ataque (como só tem o "tacape", por enquanto, então não especifiquei "de qual arma")
 
 @export var speed: float = 150
 @export var attack_cooldown_time: float = 1.0
@@ -52,6 +54,11 @@ func _physics_process(delta):
 func move_entity(direction: Vector2):
 	velocity = direction.normalized() * speed
 	move_and_slide()
+	# Som dos passos se estiver andando (velocity):
+	if velocity:
+		walking_sound.is_walking = true
+	else:
+		walking_sound.is_walking = false
 
 func handle_input():
 	var move_direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
@@ -207,6 +214,7 @@ func attack():
 			print("No weapon equipped")
 			
 func tacape_attack():
+	attack_sound.play(0.1) # Tocar som de ATAQUE
 	for enemy in get_overlapping_bodies():
 		if enemy.is_in_group("enemies"):
 			enemy.take_damage(10)

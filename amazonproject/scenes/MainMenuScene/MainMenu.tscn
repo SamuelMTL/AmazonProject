@@ -13,7 +13,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="Background" type="TextureRect" parent="."]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -55,4 +55,5 @@ label_text = "Sair"
 
 [node name="Background Music" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_80b44")
+bus = &"Music"
 script = ExtResource("4_q5s47")

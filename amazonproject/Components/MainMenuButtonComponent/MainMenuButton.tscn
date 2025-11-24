@@ -1,11 +1,22 @@
-[gd_scene load_steps=3 format=3 uid="uid://c6yd2kl7pfr2f"]
+[gd_scene load_steps=5 format=3 uid="uid://c6yd2kl7pfr2f"]
 
-[ext_resource type="Script" uid="uid://bgtquv2jobd53" path="res://Components/MainMenuButtonComponent/main_menu_button.gd" id="1_2v82r"]
+[ext_resource type="Script" path="res://Components/MainMenuButtonComponent/main_menu_button.gd" id="1_2v82r"]
 [ext_resource type="FontFile" uid="uid://bm1yrc41rrxlf" path="res://assets/fonts/VCR_OSD_MONO_1.001.ttf" id="1_we2ol"]
+[ext_resource type="AudioStream" uid="uid://cjrockamstgr7" path="res://assets/sound/sfx/buttom-click.mp3" id="3_b2kwt"]
+[ext_resource type="AudioStream" uid="uid://d0alea6l7h606" path="res://assets/sound/sfx/buttom-hover.mp3" id="4_bi4t5"]
 
 [node name="MainMenuButton" type="Button"]
 theme_override_fonts/font = ExtResource("1_we2ol")
 text = "texto"
 script = ExtResource("1_2v82r")
 
+[node name="Click Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_b2kwt")
+bus = &"SFX"
+
+[node name="Hover Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_bi4t5")
+bus = &"SFX"
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="pressed" from="." to="." method="_on_pressed"]
