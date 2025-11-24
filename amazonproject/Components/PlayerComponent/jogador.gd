@@ -50,6 +50,7 @@ func _physics_process(delta):
 	
 	if fire_trail_active and velocity != Vector2.ZERO:
 		spawn_fire_trail()
+		
 	
 func move_entity(direction: Vector2):
 	velocity = direction.normalized() * speed
@@ -96,8 +97,7 @@ func handle_input():
 		activate_iara_power()
 	elif Input.is_action_just_pressed("BoitataPower"):
 		activate_boitata_power()
-		
-		
+			
 func player_dash(direction: Vector2):
 	velocity = direction.normalized() * DASH_SPEED
 
@@ -297,3 +297,12 @@ func _on_melee_attack_hurtbox_body_entered(body: Node2D) -> void:
 	if body.is_in_group("enemies"):
 		enemies_in_melee_range.append(body)
 		print(enemies_in_melee_range)
+
+func take_damage(amount: int):
+	Global.player_health -= amount
+	print(Global.player_health)
+	if Global.player_health <= 0:
+		die()
+		
+func die():
+	get_tree().change_scene_to_file("res://Scenes/GameOver/GameOverScene.tscn")

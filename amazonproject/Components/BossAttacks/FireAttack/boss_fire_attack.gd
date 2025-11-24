@@ -9,3 +9,7 @@ func _ready():
 	await animation_player.animation_finished
 
 	queue_free()
+
+func _on_rigid_body_2d_body_entered(body: Node2D) -> void:
+	if body.is_in_group("Player"):
+		body.take_damage(10)
