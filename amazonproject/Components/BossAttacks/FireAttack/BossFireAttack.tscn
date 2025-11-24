@@ -1,6 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://bja3ald42xx0m"]
+[gd_scene load_steps=15 format=3 uid="uid://bja3ald42xx0m"]
 
 [ext_resource type="Texture2D" uid="uid://dmi0ddjp56pqc" path="res://assets/CurupiraAbility/firespritesheet.png" id="1_24y28"]
+[ext_resource type="Script" path="res://Components/BossAttacks/FireAttack/boss_fire_attack.gd" id="1_wnmll"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gp15a"]
 atlas = ExtResource("1_24y28")
@@ -147,6 +148,7 @@ _data = {
 }
 
 [node name="BossFireAttack" type="Node2D"]
+script = ExtResource("1_wnmll")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 modulate = Color(1, 1, 1, 0)
@@ -172,3 +174,4 @@ color = Color(0, 0, 0, 1)
 libraries = {
 "": SubResource("AnimationLibrary_kr8dg")
 }
+autoplay = "new_animation"
