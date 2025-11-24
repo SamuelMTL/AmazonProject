@@ -55,5 +55,4 @@ label_text = "Sair"
 
 [node name="Background Music" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_80b44")
-bus = &"Music"
 script = ExtResource("4_q5s47")
