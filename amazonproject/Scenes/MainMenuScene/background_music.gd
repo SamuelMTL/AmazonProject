@@ -7,6 +7,7 @@ var loop_start_time: float = 10.0 # Instante inicial do loop (segundos)
 var loop_end_time: float = 100.0 # Instante final do loop (segundos)
 var loop_enabled: bool = false
 
+# Fade-in
 var target_volume: float = 5.0 # Volume normal
 var silent_volume: float = -80.0 # Volume silenciado
 var current_tween: Tween # Objeto que fará fade-in da música
@@ -25,7 +26,7 @@ func play_loop_with_fade_in(duration: float, from_pos: float):
 	
 	loop_enabled = true	
 	volume_db = silent_volume
-	play(loop_start_time) # Tocar música, a partir da posição desejada
+	play(from_pos) # Tocar música, a partir da posição desejada
 	
 	# Criar Tween e animar propriedade "volume_db" (fade in) até o volume desejado
 	current_tween = create_tween()
