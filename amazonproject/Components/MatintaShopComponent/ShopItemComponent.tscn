@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://clxryy3qcs2o5"]
+[gd_scene load_steps=5 format=3 uid="uid://dhs615wey3yo1"]
 
 [ext_resource type="Texture2D" uid="uid://de70vadiainsm" path="res://assets/MatintaShop/MatintaShopittem.png" id="1_2yhkr"]
 [ext_resource type="Script" path="res://Components/MatintaShopComponent/shop_item_component.gd" id="1_sipqw"]
