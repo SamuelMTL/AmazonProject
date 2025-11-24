@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://cic6ar1nixany"]
+
+[ext_resource type="Texture2D" uid="uid://cx5qriwqdoabb" path="res://assets/lança.png" id="1_5ahki"]
+[ext_resource type="Script" uid="uid://cf0k5itqdpt61" path="res://Components/WeaponsComponent/ProjectileComponent/projectile.gd" id="1_7skfw"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7skfw"]
+radius = 7.0
+height = 90.0
+
+[node name="Projectile" type="Area2D"]
+script = ExtResource("1_7skfw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+shape = SubResource("CapsuleShape2D_7skfw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = -0.807359
+texture = ExtResource("1_5ahki")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

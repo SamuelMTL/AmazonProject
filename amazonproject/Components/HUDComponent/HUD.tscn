@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=3 uid="uid://drxwf2u32nb7r"]
+
+[ext_resource type="PackedScene" uid="uid://bp27aec33vy5v" path="res://Components/HUDComponent/LifeBarComponent/LifeBarComponent.tscn" id="1_dkjt7"]
+[ext_resource type="PackedScene" uid="uid://cib6vecytccgh" path="res://Components/HUDComponent/MoneyCounterComponent/MoneyCounterComponent.tscn" id="2_j8t7p"]
+[ext_resource type="PackedScene" uid="uid://csh1o7ctd60hd" path="res://Components/HUDComponent/PowerComponent/PowerComponent.tscn" id="3_po3np"]
+
+[node name="Hud" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MoneyCounterComponent" parent="." instance=ExtResource("2_j8t7p")]
+layout_mode = 1
+offset_left = 32.0
+offset_top = 64.0
+offset_right = -544.0
+offset_bottom = -264.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 5.0
+offset_right = 236.0
+offset_bottom = 40.0
+alignment = 1
+
+[node name="PowerComponent" parent="HBoxContainer" instance=ExtResource("3_po3np")]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+
+[node name="LifeBarComponent" parent="HBoxContainer" instance=ExtResource("1_dkjt7")]
+layout_mode = 2
+size_flags_horizontal = 3

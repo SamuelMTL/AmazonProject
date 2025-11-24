@@ -1,0 +1,201 @@
+[gd_scene load_steps=5 format=3 uid="uid://tnrt1ewx2brk"]
+
+[ext_resource type="Script" path="res://Components/MatintaShopComponent/matinta_shop.gd" id="1_fdocv"]
+[ext_resource type="Texture2D" uid="uid://cviupvstmji03" path="res://assets/MatintaShop/Group 4.png" id="2_vmuq4"]
+[ext_resource type="Texture2D" uid="uid://b1hgblookf5j6" path="res://assets/MatintaShop/MatintaShopbutton1.png" id="3_bn3um"]
+[ext_resource type="Texture2D" uid="uid://ch4yn16ukvbce" path="res://assets/MatintaShop/MatintaShopbutton2.png" id="4_b6s0f"]
+
+[node name="MatintaShop" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fdocv")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -160.0
+offset_right = 320.0
+offset_bottom = 160.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_vmuq4")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect"]
+layout_mode = 2
+offset_left = 185.0
+offset_top = 33.0
+offset_right = 609.0
+offset_bottom = 289.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TextureRect/VBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="VenderButton" type="TextureButton" parent="TextureRect/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+toggle_mode = true
+texture_normal = ExtResource("3_bn3um")
+texture_pressed = ExtResource("4_b6s0f")
+
+[node name="VenderLabel" type="Label" parent="TextureRect/VBoxContainer/HBoxContainer/VBoxContainer/VenderButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -28.0
+offset_top = -11.5
+offset_right = 28.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+text = "Vender"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="TextureRect/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="ComprarButton" type="TextureButton" parent="TextureRect/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+toggle_mode = true
+button_pressed = true
+texture_normal = ExtResource("3_bn3um")
+texture_pressed = ExtResource("4_b6s0f")
+
+[node name="ComprarLabel" type="Label" parent="TextureRect/VBoxContainer/HBoxContainer/VBoxContainer2/ComprarButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -34.5
+offset_top = -11.5
+offset_right = 34.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+text = "Comprar"
+
+[node name="VenderContainer" type="VBoxContainer" parent="TextureRect/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TextureRect/VBoxContainer/VenderContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VenderVBoxContainer" type="VBoxContainer" parent="TextureRect/VBoxContainer/VenderContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 40
+
+[node name="ComprarContainer" type="VBoxContainer" parent="TextureRect/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TextureRect/VBoxContainer/ComprarContainer"]
+layout_mode = 2
+
+[node name="ArmadurasButton" type="TextureButton" parent="TextureRect/VBoxContainer/ComprarContainer/HBoxContainer"]
+layout_mode = 2
+toggle_mode = true
+button_pressed = true
+texture_normal = ExtResource("3_bn3um")
+texture_pressed = ExtResource("4_b6s0f")
+
+[node name="ArmadurasLabel" type="Label" parent="TextureRect/VBoxContainer/ComprarContainer/HBoxContainer/ArmadurasButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -43.5
+offset_top = -11.5
+offset_right = 43.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+text = "Armaduras"
+
+[node name="ArmasButton" type="TextureButton" parent="TextureRect/VBoxContainer/ComprarContainer/HBoxContainer"]
+layout_mode = 2
+toggle_mode = true
+texture_normal = ExtResource("3_bn3um")
+texture_pressed = ExtResource("4_b6s0f")
+
+[node name="ArmasLabel" type="Label" parent="TextureRect/VBoxContainer/ComprarContainer/HBoxContainer/ArmasButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = -11.5
+offset_right = 25.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+text = "Armas"
+
+[node name="ArmadurasScrollContainer" type="ScrollContainer" parent="TextureRect/VBoxContainer/ComprarContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ArmadurasVBoxContainer" type="VBoxContainer" parent="TextureRect/VBoxContainer/ComprarContainer/ArmadurasScrollContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 40
+
+[node name="ArmasScrollContainer" type="ScrollContainer" parent="TextureRect/VBoxContainer/ComprarContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ArmasVBoxContainer" type="VBoxContainer" parent="TextureRect/VBoxContainer/ComprarContainer/ArmasScrollContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 40
+
+[node name="Voltar" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.034
+anchor_bottom = 0.114
+offset_left = 30.0
+offset_top = 51.0
+offset_right = 24.24
+offset_bottom = 25.96
+flat = true
+
+[node name="Carteira" type="Label" parent="."]
+layout_mode = 0
+offset_left = 90.0
+offset_top = 75.0
+offset_right = 130.0
+offset_bottom = 98.0
+text = "000"
+
+[connection signal="pressed" from="TextureRect/VBoxContainer/HBoxContainer/VBoxContainer/VenderButton" to="." method="_on_vender_button_pressed"]
+[connection signal="pressed" from="TextureRect/VBoxContainer/HBoxContainer/VBoxContainer2/ComprarButton" to="." method="_on_comprar_button_pressed"]
+[connection signal="pressed" from="TextureRect/VBoxContainer/ComprarContainer/HBoxContainer/ArmadurasButton" to="." method="_on_armaduras_button_pressed"]
+[connection signal="pressed" from="TextureRect/VBoxContainer/ComprarContainer/HBoxContainer/ArmasButton" to="." method="_on_armas_button_pressed"]
+[connection signal="pressed" from="Voltar" to="." method="_on_voltar_pressed"]

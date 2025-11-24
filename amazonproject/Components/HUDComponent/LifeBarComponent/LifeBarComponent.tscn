@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://bp27aec33vy5v"]
+
+[ext_resource type="Texture2D" uid="uid://jafo7wt4u583" path="res://Components/HUDComponent/LifeBarComponent/assets/coração 3.png" id="1_5mj2y"]
+[ext_resource type="Texture2D" uid="uid://bni72ega0at6" path="res://Components/HUDComponent/LifeBarComponent/assets/barra_de 4.png" id="2_i5d8b"]
+
+[node name="LifeBarComponent" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -430.0
+offset_bottom = -341.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 209.0
+offset_bottom = 20.0
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_5mj2y")
+stretch_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_i5d8b")
+stretch_mode = 2

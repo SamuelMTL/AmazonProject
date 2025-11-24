@@ -1,0 +1,143 @@
+[gd_scene load_steps=4 format=3 uid="uid://ck8ariskkrufx"]
+
+[ext_resource type="Script" path="res://Components/CucaShopComponents/cuca_shop.gd" id="1_wu8yr"]
+[ext_resource type="Texture2D" uid="uid://dis84o1anhc3j" path="res://assets/CucaShop/Group 3.png" id="2_sfulu"]
+[ext_resource type="FontFile" uid="uid://bm1yrc41rrxlf" path="res://assets/fonts/VCR_OSD_MONO_1.001.ttf" id="3_ghpmu"]
+
+[node name="CucaShop" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wu8yr")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_sfulu")
+
+[node name="Descricao" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 45.0
+offset_top = 205.0
+offset_right = 212.0
+offset_bottom = 262.0
+theme_override_font_sizes/normal_font_size = 8
+
+[node name="Dinheiro" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 87.0
+offset_top = 37.0
+offset_right = 127.0
+offset_bottom = 46.0
+theme_override_fonts/normal_font = ExtResource("3_ghpmu")
+theme_override_font_sizes/normal_font_size = 10
+text = "00000
+"
+
+[node name="Sair" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.038
+anchor_bottom = 0.075
+offset_left = 33.0
+offset_top = 33.0
+offset_right = 23.68
+offset_bottom = 21.0
+flat = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+offset_left = 271.0
+offset_top = 60.0
+offset_right = 611.0
+offset_bottom = 240.0
+
+[node name="CurupiraVBox" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="ChamaDensaButton" type="Button" parent="HBoxContainer/CurupiraVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 12
+text = "Chama Densa"
+
+[node name="ExplosaoIgneaButton" type="Button" parent="HBoxContainer/CurupiraVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 12
+text = "Explosão Ígnea"
+
+[node name="FogoPurificadorButton" type="Button" parent="HBoxContainer/CurupiraVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 12
+text = "Fogo Purificador"
+
+[node name="IaraVBox" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="MaremotoButton" type="Button" parent="HBoxContainer/IaraVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 12
+text = "Maremoto"
+
+[node name="RedemoinhoButton" type="Button" parent="HBoxContainer/IaraVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 12
+text = "Redemoinho"
+
+[node name="AguasRevigorantesButton" type="Button" parent="HBoxContainer/IaraVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 12
+text = "Águas Revigorantes"
+
+[node name="BoitataVBox" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="FachoTriploButton" type="Button" parent="HBoxContainer/BoitataVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 12
+text = "Facho Triplo"
+
+[node name="LuzCegaButton" type="Button" parent="HBoxContainer/BoitataVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 12
+text = "Luz Cega"
+
+[node name="ChamaEspiritualButton" type="Button" parent="HBoxContainer/BoitataVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 12
+text = "Chama Espiritual"
+
+[node name="Comprar" type="Button" parent="."]
+layout_mode = 0
+offset_left = 90.0
+offset_top = 266.0
+offset_right = 167.0
+offset_bottom = 297.0
+text = "Comprar"
+
+[connection signal="pressed" from="Sair" to="." method="_on_sair_pressed"]
+[connection signal="pressed" from="HBoxContainer/CurupiraVBox/ChamaDensaButton" to="." method="_on_chama_densa_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/CurupiraVBox/ExplosaoIgneaButton" to="." method="_on_explosao_ignea_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/CurupiraVBox/FogoPurificadorButton" to="." method="_on_fogo_purificador_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/IaraVBox/MaremotoButton" to="." method="_on_maremoto_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/IaraVBox/RedemoinhoButton" to="." method="_on_redemoinho_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/IaraVBox/AguasRevigorantesButton" to="." method="_on_aguas_revigorantes_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/BoitataVBox/FachoTriploButton" to="." method="_on_facho_triplo_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/BoitataVBox/LuzCegaButton" to="." method="_on_luz_cega_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/BoitataVBox/ChamaEspiritualButton" to="." method="_on_chama_espiritual_button_pressed"]
+[connection signal="pressed" from="Comprar" to="." method="_on_comprar_pressed"]

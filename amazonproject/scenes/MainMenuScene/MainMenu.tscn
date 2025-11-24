@@ -1,0 +1,58 @@
+[gd_scene load_steps=5 format=3 uid="uid://dqdu1p3vagmww"]
+
+[ext_resource type="Texture2D" uid="uid://br5v774ktbwjw" path="res://Scenes/MainMenuScene/assets/Frame 4.png" id="1_67sto"]
+[ext_resource type="PackedScene" uid="uid://c6yd2kl7pfr2f" path="res://Components/MainMenuButtonComponent/MainMenuButton.tscn" id="1_a8k1n"]
+[ext_resource type="AudioStream" uid="uid://ctyubcd3vqtp6" path="res://assets/sound/music/main_menu.mp3" id="3_80b44"]
+[ext_resource type="Script" path="res://Scenes/MainMenuScene/background_music.gd" id="4_q5s47"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_67sto")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -24.0
+offset_top = -1.0
+offset_right = 25.0
+offset_bottom = 135.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Jogar" parent="VBoxContainer" instance=ExtResource("1_a8k1n")]
+layout_mode = 2
+label_text = "Play"
+next_scene = "res://scenes/CutsceneScene/CutsceneScene.tscn"
+
+[node name="Opcoes" parent="VBoxContainer" instance=ExtResource("1_a8k1n")]
+layout_mode = 2
+label_text = "Ajustes"
+next_scene = "res://scenes/AjustesScene/AjustesScene.tscn"
+
+[node name="Créditos" parent="VBoxContainer" instance=ExtResource("1_a8k1n")]
+layout_mode = 2
+label_text = "Créditos"
+next_scene = "res://scenes/CréditosScene/CréditosScene.tscn"
+
+[node name="Sair" parent="VBoxContainer" instance=ExtResource("1_a8k1n")]
+layout_mode = 2
+label_text = "Sair"
+
+[node name="Background Music" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_80b44")
+script = ExtResource("4_q5s47")

@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bj10xu5qc40iv"]
+
+[ext_resource type="Script" path="res://Components/PauseComponent/pause_components_buttons.gd" id="1_d752p"]
+
+[node name="PauseComponentsButtons" type="Button"]
+text = "texto"
+script = ExtResource("1_d752p")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="pressed" from="." to="." method="_on_pressed"]

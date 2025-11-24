@@ -1,0 +1,91 @@
+[gd_scene load_steps=25 format=3 uid="uid://divgwu1mv5xx3"]
+
+[ext_resource type="PackedScene" uid="uid://c6yd2kl7pfr2f" path="res://Components/MainMenuButtonComponent/MainMenuButton.tscn" id="1_qhq73"]
+[ext_resource type="Script" path="res://Scenes/CutsceneScene/cutscene_scene.gd" id="1_tour7"]
+[ext_resource type="Texture2D" uid="uid://1ip1w8wqerex" path="res://assets/cutscene1/Cutscene1.png" id="1_yrwfx"]
+[ext_resource type="Texture2D" uid="uid://dwphpnkdscqan" path="res://assets/cutscene1/Cutscene1 2.png" id="2_dxkph"]
+[ext_resource type="Texture2D" uid="uid://dcoixf0pn6mra" path="res://assets/cutscene1/Cutscene1 3.png" id="3_letqr"]
+[ext_resource type="Texture2D" uid="uid://kxc1d38i3bvn" path="res://assets/cutscene1/Cutscene1 4.png" id="4_o4232"]
+[ext_resource type="Texture2D" uid="uid://cx25mxjnlbuu8" path="res://assets/cutscene1/Cutscene1 5.png" id="5_y4np8"]
+[ext_resource type="Texture2D" uid="uid://cu170e4wrfnlt" path="res://assets/cutscene1/Cutscene1 6.png" id="6_eaacu"]
+[ext_resource type="Texture2D" uid="uid://chpcqausa246m" path="res://assets/cutscene1/Cutscene1 7.png" id="7_bb8hw"]
+[ext_resource type="Texture2D" uid="uid://dxl5asajeb8qx" path="res://assets/cutscene1/Cutscene1 8.png" id="8_qerj8"]
+[ext_resource type="Texture2D" uid="uid://cyuntbtgm2w8v" path="res://assets/cutscene1/Cutscene1 9.png" id="9_i5cea"]
+[ext_resource type="Texture2D" uid="uid://i2vt3sya0dk5" path="res://assets/cutscene1/Cutscene1 10.png" id="10_305qk"]
+[ext_resource type="Texture2D" uid="uid://jgpmo083degc" path="res://assets/cutscene1/Cutscene1 11.png" id="11_qe626"]
+[ext_resource type="Texture2D" uid="uid://cgp5eq12oeq5e" path="res://assets/cutscene1/Cutscene1 12.png" id="12_7igh3"]
+[ext_resource type="Texture2D" uid="uid://jrfd7tp7bbmd" path="res://assets/cutscene1/Cutscene1 13.png" id="13_n70id"]
+[ext_resource type="Texture2D" uid="uid://yrn0f20ng0xa" path="res://assets/cutscene1/Cutscene1 14.png" id="14_wuwen"]
+[ext_resource type="Texture2D" uid="uid://bkhkb87byrsk1" path="res://assets/cutscene1/Cutscene1 15.png" id="15_uubhg"]
+[ext_resource type="Texture2D" uid="uid://c1ope6y5hjjfw" path="res://assets/cutscene1/Cutscene1 16.png" id="16_ubwri"]
+[ext_resource type="Texture2D" uid="uid://jb3o7rtbb4xm" path="res://assets/cutscene1/Cutscene1 17.png" id="17_tkj7i"]
+[ext_resource type="AudioStream" uid="uid://cxvufqbee373i" path="res://assets/sound/music/cutscene1.mp3" id="20_qib4e"]
+[ext_resource type="Script" path="res://Scenes/CutsceneScene/cutscene_music.gd" id="21_6dp7w"]
+
+[sub_resource type="Animation" id="Animation_pdjwh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_yrwfx")]
+}
+
+[sub_resource type="Animation" id="Animation_hvkol"]
+resource_name = "cutscene1"
+length = 17.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14.0333, 15, 16),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("1_yrwfx"), ExtResource("2_dxkph"), ExtResource("3_letqr"), ExtResource("4_o4232"), ExtResource("5_y4np8"), ExtResource("6_eaacu"), ExtResource("7_bb8hw"), ExtResource("8_qerj8"), ExtResource("9_i5cea"), ExtResource("10_305qk"), ExtResource("11_qe626"), ExtResource("12_7igh3"), ExtResource("13_n70id"), ExtResource("14_wuwen"), ExtResource("15_uubhg"), ExtResource("16_ubwri"), ExtResource("17_tkj7i")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7ato4"]
+_data = {
+"RESET": SubResource("Animation_pdjwh"),
+"cutscene1": SubResource("Animation_hvkol")
+}
+
+[node name="CutsceneScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tour7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_7ato4")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(320, 180)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_yrwfx")
+
+[node name="MainMenuButton" parent="." instance=ExtResource("1_qhq73")]
+layout_mode = 0
+offset_right = 55.0
+offset_bottom = 23.0
+label_text = "Pular cutscene"
+next_scene = "res://scenes/aldeia.tscn"
+
+[node name="Cutscene Music" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("20_qib4e")
+bus = &"Music"
+script = ExtResource("21_6dp7w")

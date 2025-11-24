@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://cib6vecytccgh"]
+
+[ext_resource type="Texture2D" uid="uid://duasbb3rut4xy" path="res://Components/HUDComponent/MoneyCounterComponent/assets/folhamoeda 1.png" id="1_nodi6"]
+[ext_resource type="FontFile" uid="uid://bm1yrc41rrxlf" path="res://assets/fonts/VCR_OSD_MONO_1.001.ttf" id="2_s3j8m"]
+
+[node name="MoneyCounterComponent" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -576.0
+offset_bottom = -328.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 57.0
+offset_bottom = 15.0
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_nodi6")
+expand_mode = 2
+stretch_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_s3j8m")
+theme_override_font_sizes/font_size = 16
+text = "0000"
