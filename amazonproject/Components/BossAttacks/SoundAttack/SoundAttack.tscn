@@ -1,3 +1,29 @@
-[gd_scene format=3 uid="uid://1vkvwcg8jf03"]
+[gd_scene load_steps=3 format=3 uid="uid://1vkvwcg8jf03"]
+
+[ext_resource type="Script" path="res://Components/BossAttacks/SoundAttack/sound_attack.gd" id="1_gio7h"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6ulfu"]
+size = Vector2(639, 17.5)
 
 [node name="SoundAttack" type="Node2D"]
+script = ExtResource("1_gio7h")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -319.5
+offset_top = -8.5
+offset_right = 319.5
+offset_bottom = 8.5
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Area2D" type="Area2D" parent="ColorRect"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ColorRect/Area2D"]
+position = Vector2(321, 8.25)
+shape = SubResource("RectangleShape2D_6ulfu")
