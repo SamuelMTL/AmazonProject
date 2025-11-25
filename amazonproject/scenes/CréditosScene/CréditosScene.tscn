@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://bpxb4ylh2dv1l"]
+[gd_scene load_steps=4 format=3 uid="uid://bpxb4ylh2dv1l"]
 
 [ext_resource type="PackedScene" uid="uid://c6yd2kl7pfr2f" path="res://Components/MainMenuButtonComponent/MainMenuButton.tscn" id="1_346ns"]
+[ext_resource type="Texture2D" uid="uid://br5v774ktbwjw" path="res://Scenes/MainMenuScene/assets/Frame 4.png" id="1_mnew7"]
+[ext_resource type="FontFile" uid="uid://bm1yrc41rrxlf" path="res://assets/fonts/VCR_OSD_MONO_1.001.ttf" id="2_mv1mg"]
 
 [node name="CréditosScene" type="Control"]
 layout_mode = 3
@@ -10,20 +12,63 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="."]
+[node name="Background" type="TextureRect" parent="."]
+modulate = Color(0.333333, 0.333333, 0.333333, 1)
+offset_right = 640.0
+offset_bottom = 360.0
+texture = ExtResource("1_mnew7")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+z_index = 1
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -32.5
-offset_top = -11.5
-offset_right = 32.5
-offset_bottom = 11.5
+offset_left = -99.0
+offset_top = -43.5
+offset_right = 99.0
+offset_bottom = 43.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="Credits" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_mv1mg")
+theme_override_font_sizes/font_size = 21
 text = "Créditos"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="_spacing" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="Names" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_mv1mg")
+theme_override_font_sizes/font_size = 14
+text = "DESENVOLVEDORES
+
+Samuel Mendonça
+(Game Designer)
+
+Efraim Costa
+(Programador)
+
+Gabriel Eirado
+(Programador)
+
+João Vítor
+(Designer de Som)
+
+Renan Dias
+(Artista)"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="MainMenuButton" parent="." instance=ExtResource("1_346ns")]
 layout_mode = 0
