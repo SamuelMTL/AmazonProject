@@ -57,8 +57,12 @@ func use_fire_attack():
 	
 func use_sound_attack():
 	var attack = sound_attack_component.instantiate()
-	
 	get_tree().current_scene.add_child(attack)
 	attack.position = position
+	
+	# tremer câmera
+	var camera = get_tree().get_first_node_in_group("Cameras") # adicione a câmera ao grupo "Camera"
+	if camera:
+		camera.shake(8.0, 0.4) # força, duração
 	
 	
