@@ -65,7 +65,7 @@ func handle_input():
 	var move_direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	
 	if Input.is_action_just_pressed("dash") and can_dash:
-		dashing = true
+		player_dash(move_direction)
 		can_dash = false
 		$DashTimer.start()
 		$DashCooldown.start() 
@@ -99,6 +99,8 @@ func handle_input():
 		activate_boitata_power()
 			
 func player_dash(direction: Vector2):
+	dashing = true
+	can_dash = false
 	velocity = direction.normalized() * DASH_SPEED
 
 func update_animation():
@@ -299,10 +301,11 @@ func _on_melee_attack_hurtbox_body_entered(body: Node2D) -> void:
 		print(enemies_in_melee_range)
 
 func take_damage(amount: int):
-	Global.player_health -= amount
-	print(Global.player_health)
-	if Global.player_health <= 0:
-		die()
+	if not dashing:
+		Global.player_health -= amount
+		print(Global.player_health)
+		if Global.player_health <= 0:
+			die()
 		
 func die():
 	get_tree().change_scene_to_file("res://Scenes/GameOver/GameOverScene.tscn")

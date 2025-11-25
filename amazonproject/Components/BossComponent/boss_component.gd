@@ -2,11 +2,41 @@ extends CharacterBody2D
 
 var player: Node2D
 var fire_attack_component = preload("res://Components/BossAttacks/FireAttack/BossFireAttack.tscn")
+var sound_attack_component = preload("res://Components/BossAttacks/SoundAttack/SoundAttack.tscn")
+
+var attack_interval := 6.0  # tempo entre ataques
+var attack_index := 0
+var attacks = []  # lista de funções
 
 func _ready():
 	player = get_tree().get_first_node_in_group("Player")
+	
+	attacks = [
+		Callable(self, "use_fire_attack"),
+		Callable(self, "use_sound_attack"),
+	]
 
-func use_fire_attack(player: Node2D):
+	start_attack_cycle()
+	
+func attack_cycle() -> void:
+	while true:
+		# pega o ataque atual
+		var attack_func = attacks[attack_index]
+
+		# executa
+		attack_func.call()
+
+		# avança para o próximo ataque
+		attack_index = (attack_index + 1) % attacks.size()
+
+		# espera antes do próximo
+		await get_tree().create_timer(attack_interval).timeout
+		
+func start_attack_cycle() -> void:
+	attack_cycle()
+	
+
+func use_fire_attack():
 	var amount = 5
 	var radius = 120
 	
@@ -25,5 +55,14 @@ func use_fire_attack(player: Node2D):
 		get_tree().current_scene.add_child(fire)
 	
 	
-func _on_fire_attack_timeout() -> void:
-	use_fire_attack(player)
+func use_sound_attack():
+	var attack = sound_attack_component.instantiate()
+	get_tree().current_scene.add_child(attack)
+	attack.position = position
+	
+	# tremer câmera
+	var camera = get_tree().get_first_node_in_group("Cameras") # adicione a câmera ao grupo "Camera"
+	if camera:
+		camera.shake(8.0, 0.4) # força, duração
+	
+	
