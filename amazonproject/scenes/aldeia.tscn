@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cgl27bwou6cx2"]
+[gd_scene load_steps=16 format=3 uid="uid://cgl27bwou6cx2"]
 
 [ext_resource type="Texture2D" uid="uid://ceww6448urox3" path="res://assets/Aldeia/GramadoAldeia.png" id="1_kg8is"]
 [ext_resource type="PackedScene" uid="uid://cfeddkm37oqp1" path="res://Components/next_scene.tscn" id="2_id0fx"]
@@ -12,7 +12,26 @@
 [ext_resource type="AudioStream" uid="uid://cj6cowyhn4kfd" path="res://assets/sound/music/aldeia.mp3" id="10_0b8ec"]
 [ext_resource type="Script" path="res://Scenes/aldeia_music.gd" id="11_cndyc"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1xqag"]
+size = Vector2(1274, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4s1o8"]
+size = Vector2(1278, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f1y3t"]
+size = Vector2(20, 683)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m7x2n"]
+size = Vector2(22, 681)
+
 [node name="Aldeia" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -1144.0
+offset_top = -711.0
+offset_right = 1147.0
+offset_bottom = 703.0
+color = Color(0, 0, 0, 1)
 
 [node name="GramadoFundo" type="Sprite2D" parent="."]
 texture = ExtResource("1_kg8is")
@@ -45,5 +64,33 @@ position = Vector2(179, -73)
 stream = ExtResource("10_0b8ec")
 bus = &"Music"
 script = ExtResource("11_cndyc")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(0, -333)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(2, 3)
+shape = SubResource("RectangleShape2D_1xqag")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2(0, 330)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(-1, 0)
+shape = SubResource("RectangleShape2D_4s1o8")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+position = Vector2(-650, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_f1y3t")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="."]
+position = Vector2(651, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
+position = Vector2(-1, -1)
+shape = SubResource("RectangleShape2D_m7x2n")
 
 [connection signal="finished" from="Aldeia Music" to="Aldeia Music" method="_on_finished"]
