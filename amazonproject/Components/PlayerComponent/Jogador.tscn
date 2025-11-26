@@ -573,7 +573,7 @@ animations = [{
 "duration": 0.7,
 "texture": SubResource("AtlasTexture_4tsxk")
 }],
-"loop": true,
+"loop": false,
 "name": &"LeftDying",
 "speed": 5.0
 }, {
@@ -866,7 +866,7 @@ bus = &"SFX"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_xqhm8")
-animation = &"RightDamage"
+animation = &"RightDying"
 
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
 [connection signal="timeout" from="DashCooldown" to="." method="_on_dash_cooldown_timeout"]

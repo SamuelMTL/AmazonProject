@@ -15,6 +15,7 @@ const DASH_SPEED = 900
 var dashing = false
 var can_dash = true
 var taking_damage = false
+var dying = false
 
 var is_attacking = false
 var is_alive = true
@@ -119,7 +120,25 @@ func update_animation():
 			"up":
 				if animations.animation != "UpAttacking":
 					animations.play("UpAttacking")
-				
+	elif dying:
+		match last_direction:
+			"right":
+				animations.play("LeftDying")
+				await animations.animation_finished
+				die()
+			"left":
+				animations.play("LeftDying")
+				await animations.animation_finished
+				die()
+			"down":
+				animations.play("LeftDying")
+				await animations.animation_finished
+				die()
+			"up":
+				animations.play("LeftDying")
+				await animations.animation_finished
+				die()
+			
 	elif taking_damage:
 		match last_direction:
 			"right":
@@ -138,7 +157,6 @@ func update_animation():
 				animations.play("UpDamage")
 				await animations.animation_finished
 				taking_damage = false
-				print("chegou aqui")
 				
 	elif velocity == Vector2.ZERO:
 		
@@ -328,7 +346,8 @@ func take_damage(amount: int):
 		Global.player_health -= amount
 		print(Global.player_health)
 		if Global.player_health <= 0:
-			die()
+			dying = true
 		
 func die():
-	get_tree().change_scene_to_file("res://Scenes/GameOver/GameOverScene.tscn")
+	if is_inside_tree():
+		get_tree().change_scene_to_file("res://Scenes/GameOver/GameOverScene.tscn")
