@@ -223,6 +223,8 @@ func tacape_attack():
 			var direction = enemy.global_position - global_position
 			var force = 200.0 # ajuste conforme necessário
 			enemy.apply_knockback(direction, force)
+		elif enemy.is_in_group("Boss"):
+			enemy.take_damage(10)
 
 func lanca_attack():
 	for enemy in get_overlapping_bodies():
@@ -281,22 +283,22 @@ func get_overlapping_bodies():
 
 
 func _on_melee_attack_area_body_exited(body: Node2D) -> void:
-	if body.is_in_group("enemies"):
+	if body.is_in_group("enemies") or body.is_in_group("Boss"):
 		enemies_in_melee_range.erase(body)
 
 
 func _on_lanca_attack_area_body_entered(body: Node2D) -> void:
-	if body.is_in_group("enemies"):
+	if body.is_in_group("enemies") or body.is_in_group("Boss"):
 		enemies_in_lanca_range.append(body)
 
 
 func _on_lanca_attack_area_body_exited(body: Node2D) -> void:
-	if body.is_in_group("enemies"):
+	if body.is_in_group("enemies") or body.is_in_group("Boss"):
 		enemies_in_lanca_range.erase(body)
 
 
 func _on_melee_attack_hurtbox_body_entered(body: Node2D) -> void:
-	if body.is_in_group("enemies"):
+	if body.is_in_group("enemies") or body.is_in_group("Boss"):
 		enemies_in_melee_range.append(body)
 		print(enemies_in_melee_range)
 

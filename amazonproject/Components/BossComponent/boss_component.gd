@@ -13,6 +13,8 @@ var attacks = []  # lista de funções
 var lanca_attack_timer := 2
 var boss_body = boss_body_lanca_attack.instantiate()
 
+var boss_health = 100
+
 func _ready():
 	player = get_tree().get_first_node_in_group("Player")
 	
@@ -45,6 +47,15 @@ func attack_cycle() -> void:
 func start_attack_cycle() -> void:
 	attack_cycle()
 	
+func take_damage(amount: int):
+	boss_health -= amount
+	print("boss hit")
+	if boss_health <= 0:
+		die()
+		
+func die():
+	#colocar a animacao do boss morrendo
+	get_tree().change_scene_to_file("res://Scenes/CutsceneScene/CutsceneScene2.tscn")
 
 func use_fire_attack():
 	var amount = 5
