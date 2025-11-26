@@ -38,6 +38,22 @@ func _ready() -> void:
 	
 	# Conecta o botão de compra
 	botao_comprar.pressed.connect(_on_comprar_pressed)
+	
+	if not PlayerInventory.powerups.has("Curupira"):
+		for poder_name in ["chama_densa", "explosao_ignea", "fogo_purificador"]:
+			var button = botoes[poder_name]
+			desativar_button(button)
+	
+	if not PlayerInventory.powerups.has("Iara"):
+		for poder_name in ["maremoto", "redemoinho", "aguas_revigorantes"]:
+			var button = botoes[poder_name]
+			desativar_button(button)
+			
+	if not PlayerInventory.powerups.has("Boitata"):
+		for poder_name in ["facho_triplo", "luz_cega", "chama_espiritual"]:
+			var button = botoes[poder_name]
+			desativar_button(button)
+	
 		
 func atualizar_carteira():
 	carteira.text = str(PlayerInventory.coins)
