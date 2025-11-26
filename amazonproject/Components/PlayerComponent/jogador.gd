@@ -223,6 +223,8 @@ func tacape_attack():
 			var direction = enemy.global_position - global_position
 			var force = 200.0 # ajuste conforme necessário
 			enemy.apply_knockback(direction, force)
+		elif enemy.is_in_group("Boss"):
+			enemy.take_damage(10)
 
 func lanca_attack():
 	for enemy in get_overlapping_bodies():
