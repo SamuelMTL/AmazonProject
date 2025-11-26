@@ -6,7 +6,7 @@ extends CharacterBody2D
 @onready var walking_sound = $WalkingSound # Som dos passos
 @onready var attack_sound = $AttackSound # Som de ataque (como só tem o "tacape", por enquanto, então não especifiquei "de qual arma")
 
-@export var speed: float = 150
+
 @export var attack_cooldown_time: float = 1.0
 
 @export var attack_damage: float = 5.0
@@ -55,7 +55,7 @@ func _physics_process(delta):
 		
 	
 func move_entity(direction: Vector2):
-	velocity = direction.normalized() * speed
+	velocity = direction.normalized() * Global.player_speed
 	move_and_slide()
 	# Som dos passos se estiver andando (velocity):
 	if velocity:
@@ -84,14 +84,23 @@ func handle_input():
 		weapon_equiped = "tacape"
 		print("tacape equipado")
 	elif Input.is_action_just_pressed("equip_lanca"):
-		weapon_equiped = "lanca"
-		print("lanca_equipada")
+		if PlayerInventory.weapons.has("Lança de Madeira Petrificada"):
+			weapon_equiped = "lanca"
+			print("lanca_equipada")
+		else:
+			print("O player nao tem a lanca")
 	elif Input.is_action_just_pressed("equip_boleadeira"):
-		weapon_equiped = "boleadeira"
-		print("boleadeira equipada")
+		if PlayerInventory.weapons.has("Boleadeira de Cipó"):
+			weapon_equiped = "boleadeira"
+			print("boleadeira equipada")
+		else:
+			print("O player nao tem a boleadeira")
 	elif Input.is_action_just_pressed("equip_zarabatana"):
-		weapon_equiped = "zarabatana"
-		print("zarabatana equipada")
+		if PlayerInventory.weapons.has("Zarabatana Espiritual"):
+			weapon_equiped = "zarabatana"
+			print("zarabatana equipada")
+		else:
+			print("O player nao tem a zarabatana")
 		
 	if Input.is_action_just_pressed("CurupiraPower"):
 		activate_curupira_power()
