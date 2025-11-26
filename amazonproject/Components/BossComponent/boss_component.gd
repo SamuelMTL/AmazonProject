@@ -4,11 +4,13 @@ var player: Node2D
 var fire_attack_component = preload("res://Components/BossAttacks/FireAttack/BossFireAttack.tscn")
 var sound_attack_component = preload("res://Components/BossAttacks/SoundAttack/SoundAttack.tscn")
 var boss_body_lanca_attack = preload("res://Components/BossAttacks/LancaAttack/BossBodyLancaAttack.tscn")
+var boss_lanca_component = preload("res://Components/BossAttacks/LancaAttack/BossLanca.tscn")
 
 var attack_interval := 6.0  # tempo entre ataques
 var attack_index := 0
 var attacks = []  # lista de funções
 
+var lanca_attack_timer := 2
 var boss_body = boss_body_lanca_attack.instantiate()
 
 func _ready():
@@ -75,11 +77,17 @@ func use_sound_attack():
 	
 	
 func use_lanca_attack():
-
 	get_tree().current_scene.add_child(boss_body)
 	boss_body.position = position
 	
+	await get_tree().create_timer(lanca_attack_timer).timeout
+	shoot_lanca()
 	
+func shoot_lanca():
+	var lanca = boss_lanca_component.instantiate()
+	get_tree().current_scene.add_child(lanca)
+	lanca.position = boss_body.global_position
+	lanca.direction = Vector2.UP.rotated(boss_body.global_rotation)
 	
 	
 	

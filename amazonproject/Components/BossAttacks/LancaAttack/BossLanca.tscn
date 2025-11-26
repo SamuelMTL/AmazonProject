@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://dqmudepmcw1np"]
+
+[ext_resource type="Texture2D" uid="uid://cx5qriwqdoabb" path="res://assets/lança.png" id="1_b0k3o"]
+[ext_resource type="Script" path="res://Components/BossAttacks/LancaAttack/boss_lanca.gd" id="1_edaf4"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ekxjn"]
+radius = 4.0
+height = 136.0
+
+[node name="BossLanca" type="Node2D"]
+script = ExtResource("1_edaf4")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CapsuleShape2D_ekxjn")
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
+rotation = -0.785398
+scale = Vector2(1.60157, 1.59228)
+texture = ExtResource("1_b0k3o")
