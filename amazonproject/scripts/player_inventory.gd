@@ -47,3 +47,4 @@ func add_armor(armor_name: String):
 	if armor_name not in armors:
 		armors.append(armor_name)
 		print("armaduras no inventario: " + str(armors))
+		Global.update_stats()
