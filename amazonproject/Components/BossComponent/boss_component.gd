@@ -52,7 +52,6 @@ func use_fire_attack():
 	
 	for i in amount: 
 		var fire = fire_attack_component.instantiate()
-		
 		var offset = Vector2(
 			randf_range(-radius, radius),
 			randf_range(-radius, radius)
