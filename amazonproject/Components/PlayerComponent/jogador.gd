@@ -14,6 +14,8 @@ extends CharacterBody2D
 const DASH_SPEED = 900
 var dashing = false
 var can_dash = true
+var taking_damage = false
+var dying = false
 
 var is_attacking = false
 var is_alive = true
@@ -118,6 +120,43 @@ func update_animation():
 			"up":
 				if animations.animation != "UpAttacking":
 					animations.play("UpAttacking")
+	elif dying:
+		match last_direction:
+			"right":
+				animations.play("LeftDying")
+				await animations.animation_finished
+				die()
+			"left":
+				animations.play("LeftDying")
+				await animations.animation_finished
+				die()
+			"down":
+				animations.play("LeftDying")
+				await animations.animation_finished
+				die()
+			"up":
+				animations.play("LeftDying")
+				await animations.animation_finished
+				die()
+			
+	elif taking_damage:
+		match last_direction:
+			"right":
+				animations.play("RightDamage")
+				await animations.animation_finished
+				taking_damage = false
+			"left":
+				animations.play("LeftDamage")
+				await animations.animation_finished
+				taking_damage = false
+			"down":
+				animations.play("DownDamage")
+				await animations.animation_finished
+				taking_damage = false
+			"up":
+				animations.play("UpDamage")
+				await animations.animation_finished
+				taking_damage = false
 				
 	elif velocity == Vector2.ZERO:
 		
@@ -130,7 +169,6 @@ func update_animation():
 				animations.play("DownIdle")
 			"up":
 				animations.play("UpIdle")
-			
 	else:
 		if velocity.x > 0:
 			animations.play("LeftWalking")
@@ -304,10 +342,12 @@ func _on_melee_attack_hurtbox_body_entered(body: Node2D) -> void:
 
 func take_damage(amount: int):
 	if not dashing:
+		taking_damage = true
 		Global.player_health -= amount
 		print(Global.player_health)
 		if Global.player_health <= 0:
-			die()
+			dying = true
 		
 func die():
-	get_tree().change_scene_to_file("res://Scenes/GameOver/GameOverScene.tscn")
+	if is_inside_tree():
+		get_tree().change_scene_to_file("res://Scenes/GameOver/GameOverScene.tscn")
