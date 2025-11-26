@@ -86,8 +86,8 @@ func use_lanca_attack():
 func shoot_lanca():
 	var lanca = boss_lanca_component.instantiate()
 	get_tree().current_scene.add_child(lanca)
-	lanca.position = boss_body.global_position
-	lanca.direction = Vector2.UP.rotated(boss_body.global_rotation)
+	lanca.global_position = boss_body.global_position
+	lanca.direction = (player.global_position - boss_body.global_position).normalized()
 	
 	
 	
