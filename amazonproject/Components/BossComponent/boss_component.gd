@@ -54,7 +54,8 @@ func take_damage(amount: int):
 		die()
 		
 func die():
-	print("boss died")
+	#colocar a animacao do boss morrendo
+	get_tree().change_scene_to_file("res://Scenes/CutsceneScene/CutsceneScene2.tscn")
 
 func use_fire_attack():
 	var amount = 5
