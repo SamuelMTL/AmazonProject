@@ -8,6 +8,10 @@ var max_rooms = 5
 var room_scene = preload("res://Scenes/Dungeons/MataDaTerraFirme/DungeonRoomMTF.tscn")
 var inimigo = preload("res://inimigoteste.tscn")
 
+var enemies_room = {} 
+var room_num = 0
+var rooms = {}  # salva cada sala instanciada
+
 func _ready():
 	generate_dungeon()
 	build_dungeon()
@@ -16,6 +20,8 @@ func _ready():
 func _process(delta: float) -> void:
 	if Global.enemy_counter == 0:
 		boss_room()
+		
+	
 	
 func generate_dungeon():
 	var size = 3
@@ -96,24 +102,31 @@ func build_room(x, y, is_first_room=false):
 	var left_animations = room.get_node("LeftDoor")
 	var right_animations = room.get_node("RightDoor")
 	
+	room_num += 1
+	enemies_room[room_num] = 1  # sala começa com 1 inimigo
+	room.room_id = room_num 
+	
 	spawn_enemy(room)
+	
+	room.dungeon_controller = self
+	rooms[room_num] = room
 	# Configuração das colisões das portas e paredes
 	# Se há uma sala no topo, desativa a parede e ativa a porta, senão, mantém fechada
-	room.get_node("Top/CollisionShape2D").disabled = has_top
+	room.get_node("Top/CollisionShape2D").disabled = false
 	
 	# Configuração para a parede e porta da esquerda
-	room.get_node("Left/CollisionShape2D").disabled = has_left
+	room.get_node("Left/CollisionShape2D").disabled = false
 	
 	# Configuração para a parede e porta da direita
-	room.get_node("Right/CollisionShape2D").disabled = has_right
+	room.get_node("Right/CollisionShape2D").disabled = false
 
 	# Tratamento especial para a primeira sala
 	if is_first_room:
-		
-		room.get_node("Top/CollisionShape2D").disabled = has_top
-		room.get_node("Left/CollisionShape2D").disabled = has_left
-		room.get_node("Right/CollisionShape2D").disabled = has_right
-		room.get_node("Bottom/CollisionShape2D").disabled = true
+		room.get_node("Area2D/CollisionShape2D").disabled = true
+		room.get_node("Top/CollisionShape2D").disabled = false
+		room.get_node("Left/CollisionShape2D").disabled = false
+		room.get_node("Right/CollisionShape2D").disabled = false
+		room.get_node("Bottom/CollisionShape2D").disabled = false
 		bottom_animations.play("bottomDoor")
 		left_animations.play("leftDoor")
 		right_animations.play("rightDoor")
@@ -188,8 +201,50 @@ func spawn_enemy(room):
 	var enemy = inimigo.instantiate()
 	add_child(enemy)
 	enemy.position = room.position + Vector2(320, 180) # centro aproximado da sala
+	enemy.room_id = room.room_id  
 	Global.enemy_counter += 1
+	enemy.connect("died", Callable(self, "enemy_died"))
 	print("Inimigo spawnado em: ", enemy.position, " | total inimigos: ", Global.enemy_counter)
 
 func boss_room():
 	get_tree().change_scene_to_file("res://Scenes/Dungeons/MataDaTerraFirme/BossRoom.tscn")
+
+func enemy_died(room_id):
+	print("Enemy died in room:", room_id)
+	print("enemies_room keys:", enemies_room.keys())
+
+	enemies_room[room_id] -= 1
+
+	if enemies_room[room_id] <= 0:
+		open_doors_of_room(room_id)
+		
+func open_doors_of_room(room_id):
+	var room = rooms[room_id]
+
+	room.get_node("Top/CollisionShape2D").disabled = true
+	room.get_node("Bottom/CollisionShape2D").disabled = true
+	room.get_node("Left/CollisionShape2D").disabled = true
+	room.get_node("Right/CollisionShape2D").disabled = true
+
+	#room.get_node("TopDoorAnimation").play("open")
+	room.get_node("BottomDoor").play("open")
+	room.get_node("LeftDoor").play("open")
+	room.get_node("RightDoor").play("open")
+	
+func close_doors_of_room(room_id):
+	var room = rooms[room_id]
+
+	# Fechar colisões
+	room.get_node("Top/CollisionShape2D").disabled = false
+	room.get_node("Bottom/CollisionShape2D").disabled = false
+	room.get_node("Left/CollisionShape2D").disabled = false
+	room.get_node("Right/CollisionShape2D").disabled = false
+
+	# Animar fechamento (se tiver animação)
+	#room.get_node("TopDoor").play("close")
+	room.get_node("BottomDoor").play("close")
+	room.get_node("LeftDoor").play("close")
+	room.get_node("RightDoor").play("close")
+	
+func player_entered_room(room_id):
+	close_doors_of_room(room_id)

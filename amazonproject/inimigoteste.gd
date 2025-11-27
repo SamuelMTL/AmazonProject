@@ -11,6 +11,9 @@ var current_health: int = max_health
 
 var knockback_velocity: Vector2 = Vector2.ZERO
 var knockback_time: float = 0.0
+var room_id = 0
+
+signal died(room_id)
 
 @onready var sprites = $Sprite2D
 @onready var player = get_tree().get_first_node_in_group("Player")
@@ -89,6 +92,7 @@ func drop_item(enemy: String):
 	
 func die():
 	drop_item("espantalho")
+	emit_signal("died", room_id)
 	queue_free()
 	Global.enemy_counter -= 1
 	

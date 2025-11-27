@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://ch6f2cdviwd7t"]
+[gd_scene load_steps=49 format=3 uid="uid://bfbal2x38dhik"]
 
 [ext_resource type="Texture2D" uid="uid://c02thxopc3ysg" path="res://assets/dungeon/Dungeon.png" id="1_7k1yu"]
 [ext_resource type="Script" path="res://Scenes/Dungeons/MataDaTerraFirme/dungeon_room_mtf.gd" id="1_45ccn"]
@@ -51,6 +51,26 @@ region = Rect2(640, 0, 640, 64)
 atlas = ExtResource("3_ju5qh")
 region = Rect2(0, 0, 640, 64)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_qfgow"]
+atlas = ExtResource("3_ju5qh")
+region = Rect2(0, 0, 640, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lfhn1"]
+atlas = ExtResource("3_ju5qh")
+region = Rect2(640, 0, 640, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3aywm"]
+atlas = ExtResource("3_ju5qh")
+region = Rect2(1280, 0, 640, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ffygr"]
+atlas = ExtResource("3_ju5qh")
+region = Rect2(1920, 0, 640, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eer0o"]
+atlas = ExtResource("3_ju5qh")
+region = Rect2(2560, 0, 640, 64)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_ukau3"]
 animations = [{
 "frames": [{
@@ -70,7 +90,27 @@ animations = [{
 "texture": SubResource("AtlasTexture_5tbc7")
 }],
 "loop": false,
-"name": &"bottomDoor",
+"name": &"close",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qfgow")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lfhn1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3aywm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ffygr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eer0o")
+}],
+"loop": false,
+"name": &"open",
 "speed": 5.0
 }]
 
@@ -94,6 +134,26 @@ region = Rect2(64, 0, 64, 320)
 atlas = ExtResource("4_dx2im")
 region = Rect2(0, 0, 64, 320)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_jl863"]
+atlas = ExtResource("4_dx2im")
+region = Rect2(0, 0, 64, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2elm6"]
+atlas = ExtResource("4_dx2im")
+region = Rect2(64, 0, 64, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yiiup"]
+atlas = ExtResource("4_dx2im")
+region = Rect2(128, 0, 64, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g43rm"]
+atlas = ExtResource("4_dx2im")
+region = Rect2(192, 0, 64, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ojvje"]
+atlas = ExtResource("4_dx2im")
+region = Rect2(256, 0, 64, 320)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_fkc7x"]
 animations = [{
 "frames": [{
@@ -113,7 +173,27 @@ animations = [{
 "texture": SubResource("AtlasTexture_2l5yg")
 }],
 "loop": false,
-"name": &"leftDoor",
+"name": &"close",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jl863")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2elm6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yiiup")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g43rm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ojvje")
+}],
+"loop": false,
+"name": &"open",
 "speed": 5.0
 }]
 
@@ -137,6 +217,26 @@ region = Rect2(64, 0, 64, 320)
 atlas = ExtResource("5_qvjs7")
 region = Rect2(0, 0, 64, 320)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_4t4p8"]
+atlas = ExtResource("5_qvjs7")
+region = Rect2(0, 0, 64, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6r8y5"]
+atlas = ExtResource("5_qvjs7")
+region = Rect2(64, 0, 64, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kqaa8"]
+atlas = ExtResource("5_qvjs7")
+region = Rect2(128, 0, 64, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wgeru"]
+atlas = ExtResource("5_qvjs7")
+region = Rect2(192, 0, 64, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w6ie6"]
+atlas = ExtResource("5_qvjs7")
+region = Rect2(256, 0, 64, 320)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_gklcn"]
 animations = [{
 "frames": [{
@@ -156,9 +256,32 @@ animations = [{
 "texture": SubResource("AtlasTexture_u5u3a")
 }],
 "loop": false,
-"name": &"rightDoor",
+"name": &"close",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4t4p8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6r8y5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kqaa8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wgeru")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w6ie6")
+}],
+"loop": true,
+"name": &"open",
 "speed": 5.0
 }]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x4q77"]
+size = Vector2(639, 359)
 
 [node name="DungeonRoomMtf" type="Node2D"]
 script = ExtResource("1_45ccn")
@@ -266,18 +389,22 @@ disabled = true
 position = Vector2(321, 323)
 scale = Vector2(1.00312, 1.125)
 sprite_frames = SubResource("SpriteFrames_ukau3")
-animation = &"bottomDoor"
+animation = &"open"
 
 [node name="LeftDoor" type="AnimatedSprite2D" parent="."]
 position = Vector2(32.5, 180)
 scale = Vector2(0.984375, 1.125)
 sprite_frames = SubResource("SpriteFrames_fkc7x")
-animation = &"leftDoor"
-frame = 4
-frame_progress = 1.0
+animation = &"open"
 
 [node name="RightDoor" type="AnimatedSprite2D" parent="."]
 position = Vector2(609, 181)
 scale = Vector2(1, 1.12188)
 sprite_frames = SubResource("SpriteFrames_gklcn")
-animation = &"rightDoor"
+animation = &"open"
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(320.5, 180.5)
+shape = SubResource("RectangleShape2D_x4q77")
