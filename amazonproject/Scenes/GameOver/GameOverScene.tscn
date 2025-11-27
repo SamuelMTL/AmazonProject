@@ -40,3 +40,4 @@ next_scene = "res://Scenes/MainMenuScene/MainMenu.tscn"
 [node name="GameOverSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_vknfh")
 autoplay = true
+bus = &"SFX"
