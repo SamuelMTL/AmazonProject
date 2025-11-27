@@ -3,9 +3,11 @@ extends CharacterBody2D
 
 @onready var animations = $AnimatedSprite2D
 @onready var attack_timer : Timer = $AttackCooldown
+
 @onready var walking_sound = $WalkingSound # Som dos passos
 @onready var attack_sound = $AttackSound # Som de ataque (como só tem o "tacape", por enquanto, então não especifiquei "de qual arma")
 @onready var fire_trail_sound = $"FireTrailSound" # Som da 1ª habilidade, "rastro de fogo"
+@onready var taking_damage_sound = $"TakingDamageSound"
 
 @export var speed: float = 150
 @export var attack_cooldown_time: float = 1.0
@@ -308,6 +310,7 @@ func _on_melee_attack_hurtbox_body_entered(body: Node2D) -> void:
 
 func take_damage(amount: int):
 	if not dashing:
+		taking_damage_sound.play()
 		Global.player_health -= amount
 		print(Global.player_health)
 		if Global.player_health <= 0:
