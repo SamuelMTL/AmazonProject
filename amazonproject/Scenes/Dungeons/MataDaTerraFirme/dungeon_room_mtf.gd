@@ -2,6 +2,7 @@ extends Node2D
 
 var room_id = 0
 var dungeon_controller = null
+var already_entered = false
 
 var has_top: bool = false
 var has_bottom: bool = false

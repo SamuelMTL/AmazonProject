@@ -104,6 +104,7 @@ func build_room(x, y, is_first_room=false):
 	room.has_left = has_left
 	room.has_right = has_right
 	
+	
 	var bottom_animations = room.get_node("BottomDoor")
 	var left_animations = room.get_node("LeftDoor")
 	var right_animations = room.get_node("RightDoor")
@@ -116,14 +117,11 @@ func build_room(x, y, is_first_room=false):
 	
 	room.dungeon_controller = self
 	rooms[room_num] = room
-	# Configuração das colisões das portas e paredes
-	# Se há uma sala no topo, desativa a parede e ativa a porta, senão, mantém fechada
+	
 	room.get_node("Top/CollisionShape2D").disabled = true
 	
-	# Configuração para a parede e porta da esquerda
 	room.get_node("Left/CollisionShape2D").disabled = true
 	
-	# Configuração para a parede e porta da direita
 	room.get_node("Right/CollisionShape2D").disabled = true
 
 	# Tratamento especial para a primeira sala
@@ -246,7 +244,7 @@ func open_doors_of_room(room_id):
 	
 func close_doors_of_room(room_id):
 	var room = rooms[room_id]
-
+	
 	# Fechar colisões
 	room.get_node("Top/CollisionShape2D").disabled = false
 	room.get_node("Bottom/CollisionShape2D").disabled = false
@@ -260,7 +258,11 @@ func close_doors_of_room(room_id):
 	room.get_node("RightDoor").play("close")
 	
 func player_entered_room(room_id):
-	close_doors_of_room(room_id)
 	var room = rooms[room_id]
-	room.get_node("Area2D/CollisionShape2D").disabled = true
+
+	if room.already_entered:
+		return  # evita repetir animações / lógica
+		
+	room.already_entered = true  # marca como visitada
 	
+	close_doors_of_room(room_id)
