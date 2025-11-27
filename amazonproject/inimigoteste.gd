@@ -1,7 +1,7 @@
 class_name Enemy2
 extends CharacterBody2D
 
-@export var max_health: int = 100
+@export var max_health: int = 10
 var current_health: int = max_health
 
 @export var move_speed: float = 50.0

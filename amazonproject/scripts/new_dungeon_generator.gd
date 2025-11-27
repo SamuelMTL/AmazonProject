@@ -83,6 +83,7 @@ func build_room(x, y, is_first_room=false):
 	var has_left = x > 0 and dungeon_layout[y][x - 1] > 0
 	var has_right = x < dungeon_size.x - 1 and dungeon_layout[y][x + 1] > 0
 	
+	
 	# Conta quantas conexões essa sala possui
 	var num_connections = int(has_top) + int(has_bottom) + int(has_left) + int(has_right)
 	
@@ -98,6 +99,11 @@ func build_room(x, y, is_first_room=false):
 	# Define a posição da sala no mundo do jogo
 	room.position = Vector2(x * 640, y * 360)
 	
+	room.has_top = has_top
+	room.has_bottom = has_bottom
+	room.has_left = has_left
+	room.has_right = has_right
+	
 	var bottom_animations = room.get_node("BottomDoor")
 	var left_animations = room.get_node("LeftDoor")
 	var right_animations = room.get_node("RightDoor")
@@ -112,13 +118,13 @@ func build_room(x, y, is_first_room=false):
 	rooms[room_num] = room
 	# Configuração das colisões das portas e paredes
 	# Se há uma sala no topo, desativa a parede e ativa a porta, senão, mantém fechada
-	room.get_node("Top/CollisionShape2D").disabled = false
+	room.get_node("Top/CollisionShape2D").disabled = true
 	
 	# Configuração para a parede e porta da esquerda
-	room.get_node("Left/CollisionShape2D").disabled = false
+	room.get_node("Left/CollisionShape2D").disabled = true
 	
 	# Configuração para a parede e porta da direita
-	room.get_node("Right/CollisionShape2D").disabled = false
+	room.get_node("Right/CollisionShape2D").disabled = true
 
 	# Tratamento especial para a primeira sala
 	if is_first_room:
@@ -221,15 +227,22 @@ func enemy_died(room_id):
 func open_doors_of_room(room_id):
 	var room = rooms[room_id]
 
-	room.get_node("Top/CollisionShape2D").disabled = true
-	room.get_node("Bottom/CollisionShape2D").disabled = true
-	room.get_node("Left/CollisionShape2D").disabled = true
-	room.get_node("Right/CollisionShape2D").disabled = true
+	# só abre portas que realmente existem!
+	if room.has_top:
+		room.get_node("Top/CollisionShape2D").disabled = true
+		#room.get_node("TopDoor").play("open")
 
-	#room.get_node("TopDoorAnimation").play("open")
-	room.get_node("BottomDoor").play("open")
-	room.get_node("LeftDoor").play("open")
-	room.get_node("RightDoor").play("open")
+	if room.has_bottom:
+		room.get_node("Bottom/CollisionShape2D").disabled = true
+		room.get_node("BottomDoor").play("open")
+
+	if room.has_left:
+		room.get_node("Left/CollisionShape2D").disabled = true
+		room.get_node("LeftDoor").play("open")
+
+	if room.has_right:
+		room.get_node("Right/CollisionShape2D").disabled = true
+		room.get_node("RightDoor").play("open")
 	
 func close_doors_of_room(room_id):
 	var room = rooms[room_id]
@@ -248,3 +261,6 @@ func close_doors_of_room(room_id):
 	
 func player_entered_room(room_id):
 	close_doors_of_room(room_id)
+	var room = rooms[room_id]
+	room.get_node("Area2D/CollisionShape2D").disabled = true
+	
