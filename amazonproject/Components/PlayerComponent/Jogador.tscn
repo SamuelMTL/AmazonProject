@@ -1,4 +1,4 @@
-[gd_scene load_steps=117 format=3 uid="uid://dcnpjpoqff5ms"]
+[gd_scene load_steps=121 format=3 uid="uid://dcnpjpoqff5ms"]
 
 [ext_resource type="Script" path="res://Components/PlayerComponent/jogador.gd" id="1_ivn2g"]
 [ext_resource type="Texture2D" uid="uid://cek0bdnfikeu5" path="res://assets/Caipora/CaiporaSpriteSheetAttack.png" id="1_k8qog"]
@@ -7,13 +7,13 @@
 [ext_resource type="Texture2D" uid="uid://nrutl6r0pbfu" path="res://assets/Caipora/Spritesheet da Caipora sofrendo.png" id="7_p8n6e"]
 [ext_resource type="Script" path="res://Components/PlayerComponent/walking_sound.gd" id="7_qqatb"]
 [ext_resource type="AudioStream" uid="uid://cxpdhuduy83aq" path="res://assets/sound/sfx/attack.mp3" id="8_kkor3"]
-[ext_resource type="AudioStream" uid="uid://bgxuxxrvexhhb" path="res://assets/sound/sfx/fire_trail.wav" id="9_5acfq"]
-[ext_resource type="Script" path="res://Components/PlayerComponent/fire_trail_sound.gd" id="10_25hja"]
-[ext_resource type="AudioStream" uid="uid://dpvhddvnhqv16" path="res://assets/sound/sfx/taking_damage.wav" id="11_semlk"]
-[ext_resource type="AudioStream" uid="uid://dgosvbt5ql5y0" path="res://assets/sound/sfx/die.wav" id="12_e3t08"]
 [ext_resource type="Texture2D" uid="uid://c620myhev1v27" path="res://assets/Caipora/Spritesheet da Caipora em repouso.png" id="8_s8lfw"]
 [ext_resource type="Texture2D" uid="uid://bws5351w3c5tb" path="res://assets/Caipora/Spritesheet da Caipora andando.png" id="9_2be0e"]
+[ext_resource type="AudioStream" uid="uid://bgxuxxrvexhhb" path="res://assets/sound/sfx/fire_trail.wav" id="9_5acfq"]
+[ext_resource type="Script" path="res://Components/PlayerComponent/fire_trail_sound.gd" id="10_25hja"]
 [ext_resource type="Texture2D" uid="uid://cjiv8ihcm3vpt" path="res://assets/Caipora/Spritesheet da Caipora morrendo.png" id="10_cefbf"]
+[ext_resource type="AudioStream" uid="uid://dpvhddvnhqv16" path="res://assets/sound/sfx/taking_damage.wav" id="11_semlk"]
+[ext_resource type="AudioStream" uid="uid://dgosvbt5ql5y0" path="res://assets/sound/sfx/die.wav" id="12_e3t08"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ivn2g"]
 radius = 27.0
@@ -880,6 +880,7 @@ bus = &"SFX"
 [node name="DieSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("12_e3t08")
 bus = &"SFX"
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_xqhm8")
 animation = &"RightDying"

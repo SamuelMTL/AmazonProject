@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cdatni4mexxhs"]
+[gd_scene load_steps=3 format=3 uid="uid://cdatni4mexxhs"]
 
 [ext_resource type="PackedScene" uid="uid://c6yd2kl7pfr2f" path="res://Components/MainMenuButtonComponent/MainMenuButton.tscn" id="1_lvtnd"]
+[ext_resource type="AudioStream" uid="uid://d3sggopyo5thn" path="res://assets/sound/sfx/game_over.wav" id="2_vknfh"]
 
 [node name="GameOverScene" type="Control"]
 layout_mode = 3
@@ -35,3 +36,7 @@ next_scene = "res://Scenes/aldeia.tscn"
 layout_mode = 2
 label_text = "Menu Principal"
 next_scene = "res://Scenes/MainMenuScene/MainMenu.tscn"
+
+[node name="GameOverSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_vknfh")
+autoplay = true
