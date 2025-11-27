@@ -498,9 +498,11 @@ script = ExtResource("10_25hja")
 
 [node name="TakingDamageSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_semlk")
+bus = &"SFX"
 
 [node name="DieSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("12_e3t08")
+bus = &"SFX"
 
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
 [connection signal="timeout" from="DashCooldown" to="." method="_on_dash_cooldown_timeout"]

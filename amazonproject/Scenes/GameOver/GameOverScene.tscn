@@ -1,4 +1,7 @@
-[gd_scene format=3 uid="uid://cdatni4mexxhs"]
+[gd_scene load_steps=3 format=3 uid="uid://cdatni4mexxhs"]
+
+[ext_resource type="Script" path="res://Scenes/GameOver/game_over_scene.gd" id="1_k122f"]
+[ext_resource type="AudioStream" uid="uid://d3sggopyo5thn" path="res://assets/sound/sfx/game_over.wav" id="2_oay0p"]
 
 [node name="GameOverScene" type="Control"]
 layout_mode = 3
@@ -7,3 +10,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_k122f")
+
+[node name="GameOverSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_oay0p")
+bus = &"SFX"
