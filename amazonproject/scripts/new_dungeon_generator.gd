@@ -12,6 +12,7 @@ func _ready():
 	generate_dungeon()
 	build_dungeon()
 	
+	
 func _process(delta: float) -> void:
 	if Global.enemy_counter == 0:
 		boss_room()
@@ -91,6 +92,10 @@ func build_room(x, y, is_first_room=false):
 	# Define a posição da sala no mundo do jogo
 	room.position = Vector2(x * 640, y * 360)
 	
+	var bottom_animations = room.get_node("BottomDoor")
+	var left_animations = room.get_node("LeftDoor")
+	var right_animations = room.get_node("RightDoor")
+	
 	spawn_enemy(room)
 	# Configuração das colisões das portas e paredes
 	# Se há uma sala no topo, desativa a parede e ativa a porta, senão, mantém fechada
@@ -104,8 +109,15 @@ func build_room(x, y, is_first_room=false):
 
 	# Tratamento especial para a primeira sala
 	if is_first_room:
-		# A primeira sala sempre tem a saída aberta na parte de baixo
+		
+		room.get_node("Top/CollisionShape2D").disabled = has_top
+		room.get_node("Left/CollisionShape2D").disabled = has_left
+		room.get_node("Right/CollisionShape2D").disabled = has_right
 		room.get_node("Bottom/CollisionShape2D").disabled = true
+		bottom_animations.play("bottomDoor")
+		left_animations.play("leftDoor")
+		right_animations.play("rightDoor")
+		
 
 	else:
 		# Para as demais salas, ativamos ou desativamos portas e paredes conforme a necessidade

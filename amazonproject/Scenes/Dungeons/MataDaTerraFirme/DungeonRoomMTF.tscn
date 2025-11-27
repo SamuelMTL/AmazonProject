@@ -1,7 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://ch6f2cdviwd7t"]
+[gd_scene load_steps=33 format=3 uid="uid://ch6f2cdviwd7t"]
 
 [ext_resource type="Texture2D" uid="uid://c02thxopc3ysg" path="res://assets/dungeon/Dungeon.png" id="1_7k1yu"]
+[ext_resource type="Script" path="res://Scenes/Dungeons/MataDaTerraFirme/dungeon_room_mtf.gd" id="1_45ccn"]
 [ext_resource type="Texture2D" uid="uid://bu3kb2sn1vosl" path="res://assets/dungeon/DungeonTopo.png" id="2_na5pi"]
+[ext_resource type="Texture2D" uid="uid://cpfqemgkq6wwc" path="res://assets/dungeon/dungeonSpriteSheets/Dungeon-Sheet-Bottom-door-Sheet.png" id="3_ju5qh"]
+[ext_resource type="Texture2D" uid="uid://dgjyfiwwa342n" path="res://assets/dungeon/dungeonSpriteSheets/Dungeon_sheet_left-door-Sheet.png" id="4_dx2im"]
+[ext_resource type="Texture2D" uid="uid://dijp4r3ysl0u7" path="res://assets/dungeon/dungeonSpriteSheets/Dungeon_sheet_right-door-Sheet.png" id="5_qvjs7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bsgqi"]
 size = Vector2(293, 36)
@@ -27,7 +31,137 @@ size = Vector2(107, 35)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m5fh7"]
 size = Vector2(24.5, 82)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ngbtd"]
+atlas = ExtResource("3_ju5qh")
+region = Rect2(2560, 0, 640, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lgi1g"]
+atlas = ExtResource("3_ju5qh")
+region = Rect2(1920, 0, 640, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p2mkn"]
+atlas = ExtResource("3_ju5qh")
+region = Rect2(1280, 0, 640, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_optwy"]
+atlas = ExtResource("3_ju5qh")
+region = Rect2(640, 0, 640, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5tbc7"]
+atlas = ExtResource("3_ju5qh")
+region = Rect2(0, 0, 640, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ukau3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ngbtd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lgi1g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p2mkn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_optwy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5tbc7")
+}],
+"loop": false,
+"name": &"bottomDoor",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d17pd"]
+atlas = ExtResource("4_dx2im")
+region = Rect2(256, 0, 64, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fe878"]
+atlas = ExtResource("4_dx2im")
+region = Rect2(192, 0, 64, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_svwak"]
+atlas = ExtResource("4_dx2im")
+region = Rect2(128, 0, 64, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nn38k"]
+atlas = ExtResource("4_dx2im")
+region = Rect2(64, 0, 64, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2l5yg"]
+atlas = ExtResource("4_dx2im")
+region = Rect2(0, 0, 64, 320)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fkc7x"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d17pd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fe878")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_svwak")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nn38k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2l5yg")
+}],
+"loop": false,
+"name": &"leftDoor",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ly5q0"]
+atlas = ExtResource("5_qvjs7")
+region = Rect2(256, 0, 64, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4cmee"]
+atlas = ExtResource("5_qvjs7")
+region = Rect2(192, 0, 64, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8vmd4"]
+atlas = ExtResource("5_qvjs7")
+region = Rect2(128, 0, 64, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ka1ud"]
+atlas = ExtResource("5_qvjs7")
+region = Rect2(64, 0, 64, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u5u3a"]
+atlas = ExtResource("5_qvjs7")
+region = Rect2(0, 0, 64, 320)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gklcn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ly5q0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4cmee")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8vmd4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ka1ud")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u5u3a")
+}],
+"loop": false,
+"name": &"rightDoor",
+"speed": 5.0
+}]
+
 [node name="DungeonRoomMtf" type="Node2D"]
+script = ExtResource("1_45ccn")
 
 [node name="Base" type="Sprite2D" parent="."]
 position = Vector2(321, 180)
@@ -127,3 +261,23 @@ position = Vector2(616, 0)
 position = Vector2(11.75, 180)
 shape = SubResource("RectangleShape2D_m5fh7")
 disabled = true
+
+[node name="BottomDoor" type="AnimatedSprite2D" parent="."]
+position = Vector2(321, 323)
+scale = Vector2(1.00312, 1.125)
+sprite_frames = SubResource("SpriteFrames_ukau3")
+animation = &"bottomDoor"
+
+[node name="LeftDoor" type="AnimatedSprite2D" parent="."]
+position = Vector2(32.5, 180)
+scale = Vector2(0.984375, 1.125)
+sprite_frames = SubResource("SpriteFrames_fkc7x")
+animation = &"leftDoor"
+frame = 4
+frame_progress = 1.0
+
+[node name="RightDoor" type="AnimatedSprite2D" parent="."]
+position = Vector2(609, 181)
+scale = Vector2(1, 1.12188)
+sprite_frames = SubResource("SpriteFrames_gklcn")
+animation = &"rightDoor"
