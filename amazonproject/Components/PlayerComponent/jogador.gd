@@ -103,12 +103,20 @@ func handle_input():
 			print("O player nao tem a zarabatana")
 		
 	if Input.is_action_just_pressed("CurupiraPower"):
-		activate_curupira_power()
+		if PlayerInventory.powerups.has("Curupira"):
+			activate_curupira_power()
+		else: 
+			print("O player nao tem esse poder ainda")
 	elif Input.is_action_just_pressed("IaraPower"):
-		activate_iara_power()
+		if PlayerInventory.powerups.has("Iara"):
+			activate_iara_power()
+		else:
+			print("O player nao tem esse poder ainda")
 	elif Input.is_action_just_pressed("BoitataPower"):
-		activate_boitata_power()
-			
+		if PlayerInventory.powerups.has("Boitata"):
+			activate_boitata_power()
+		else:
+			print("O player nao tem esse poder ainda")
 func player_dash(direction: Vector2):
 	dashing = true
 	can_dash = false
