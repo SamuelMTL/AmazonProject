@@ -8,6 +8,7 @@ extends CharacterBody2D
 @onready var attack_sound = $AttackSound # Som de ataque (como só tem o "tacape", por enquanto, então não especifiquei "de qual arma")
 @onready var fire_trail_sound = $"FireTrailSound" # Som da 1ª habilidade, "rastro de fogo"
 @onready var taking_damage_sound = $"TakingDamageSound"
+@onready var die_sound = $"DieSound"
 
 @export var speed: float = 150
 @export var attack_cooldown_time: float = 1.0
@@ -317,4 +318,6 @@ func take_damage(amount: int):
 			die()
 		
 func die():
+	die_sound.play()
+	await get_tree().create_timer(0.5).timeout
 	get_tree().change_scene_to_file("res://Scenes/GameOver/GameOverScene.tscn")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=3 uid="uid://dcnpjpoqff5ms"]
+[gd_scene load_steps=69 format=3 uid="uid://dcnpjpoqff5ms"]
 
 [ext_resource type="Script" path="res://Components/PlayerComponent/jogador.gd" id="1_ivn2g"]
 [ext_resource type="Texture2D" uid="uid://cek0bdnfikeu5" path="res://assets/Caipora/CaiporaSpriteSheetAttack.png" id="1_k8qog"]
@@ -11,6 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://bgxuxxrvexhhb" path="res://assets/sound/sfx/fire_trail.wav" id="9_5acfq"]
 [ext_resource type="Script" path="res://Components/PlayerComponent/fire_trail_sound.gd" id="10_25hja"]
 [ext_resource type="AudioStream" uid="uid://dpvhddvnhqv16" path="res://assets/sound/sfx/taking_damage.wav" id="11_semlk"]
+[ext_resource type="AudioStream" uid="uid://dgosvbt5ql5y0" path="res://assets/sound/sfx/die.wav" id="12_e3t08"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7t6un"]
 atlas = ExtResource("1_k8qog")
@@ -497,6 +498,9 @@ script = ExtResource("10_25hja")
 
 [node name="TakingDamageSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_semlk")
+
+[node name="DieSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_e3t08")
 
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
 [connection signal="timeout" from="DashCooldown" to="." method="_on_dash_cooldown_timeout"]
