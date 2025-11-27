@@ -11,7 +11,7 @@ func _ready() -> void:
 	
 	_on_coins_changed(PlayerInventory.coins)
 	for item_name in PlayerInventory.collectibles.keys():
-		_on_collectible_added(item_name, PlayerInventory.collectibles[item_name])
+		_on_collectible_added(item_name, PlayerInventory.collectibles[item_name]["quantidade"])
 		
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("inventario"):

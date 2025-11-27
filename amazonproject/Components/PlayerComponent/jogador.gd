@@ -10,7 +10,7 @@ extends CharacterBody2D
 @onready var taking_damage_sound = $"TakingDamageSound"
 @onready var die_sound = $"DieSound"
 
-@export var speed: float = 150
+
 @export var attack_cooldown_time: float = 1.0
 
 @export var attack_damage: float = 5.0
@@ -18,6 +18,8 @@ extends CharacterBody2D
 const DASH_SPEED = 900
 var dashing = false
 var can_dash = true
+var taking_damage = false
+var dying = false
 
 var is_attacking = false
 var is_alive = true
@@ -57,7 +59,7 @@ func _physics_process(delta):
 		
 	
 func move_entity(direction: Vector2):
-	velocity = direction.normalized() * speed
+	velocity = direction.normalized() * Global.player_speed
 	move_and_slide()
 	# Som dos passos se estiver andando (velocity):
 	if velocity:
@@ -86,22 +88,39 @@ func handle_input():
 		weapon_equiped = "tacape"
 		print("tacape equipado")
 	elif Input.is_action_just_pressed("equip_lanca"):
-		weapon_equiped = "lanca"
-		print("lanca_equipada")
+		if PlayerInventory.weapons.has("Lança de Madeira Petrificada"):
+			weapon_equiped = "lanca"
+			print("lanca_equipada")
+		else:
+			print("O player nao tem a lanca")
 	elif Input.is_action_just_pressed("equip_boleadeira"):
-		weapon_equiped = "boleadeira"
-		print("boleadeira equipada")
+		if PlayerInventory.weapons.has("Boleadeira de Cipó"):
+			weapon_equiped = "boleadeira"
+			print("boleadeira equipada")
+		else:
+			print("O player nao tem a boleadeira")
 	elif Input.is_action_just_pressed("equip_zarabatana"):
-		weapon_equiped = "zarabatana"
-		print("zarabatana equipada")
+		if PlayerInventory.weapons.has("Zarabatana Espiritual"):
+			weapon_equiped = "zarabatana"
+			print("zarabatana equipada")
+		else:
+			print("O player nao tem a zarabatana")
 		
 	if Input.is_action_just_pressed("CurupiraPower"):
-		activate_curupira_power()
+		if PlayerInventory.powerups.has("Curupira"):
+			activate_curupira_power()
+		else: 
+			print("O player nao tem esse poder ainda")
 	elif Input.is_action_just_pressed("IaraPower"):
-		activate_iara_power()
+		if PlayerInventory.powerups.has("Iara"):
+			activate_iara_power()
+		else:
+			print("O player nao tem esse poder ainda")
 	elif Input.is_action_just_pressed("BoitataPower"):
-		activate_boitata_power()
-			
+		if PlayerInventory.powerups.has("Boitata"):
+			activate_boitata_power()
+		else:
+			print("O player nao tem esse poder ainda")
 func player_dash(direction: Vector2):
 	dashing = true
 	can_dash = false
@@ -122,6 +141,43 @@ func update_animation():
 			"up":
 				if animations.animation != "UpAttacking":
 					animations.play("UpAttacking")
+	elif dying:
+		match last_direction:
+			"right":
+				animations.play("LeftDying")
+				await animations.animation_finished
+				die()
+			"left":
+				animations.play("LeftDying")
+				await animations.animation_finished
+				die()
+			"down":
+				animations.play("LeftDying")
+				await animations.animation_finished
+				die()
+			"up":
+				animations.play("LeftDying")
+				await animations.animation_finished
+				die()
+			
+	elif taking_damage:
+		match last_direction:
+			"right":
+				animations.play("RightDamage")
+				await animations.animation_finished
+				taking_damage = false
+			"left":
+				animations.play("LeftDamage")
+				await animations.animation_finished
+				taking_damage = false
+			"down":
+				animations.play("DownDamage")
+				await animations.animation_finished
+				taking_damage = false
+			"up":
+				animations.play("UpDamage")
+				await animations.animation_finished
+				taking_damage = false
 				
 	elif velocity == Vector2.ZERO:
 		
@@ -134,7 +190,6 @@ func update_animation():
 				animations.play("DownIdle")
 			"up":
 				animations.play("UpIdle")
-			
 	else:
 		if velocity.x > 0:
 			animations.play("LeftWalking")
@@ -312,12 +367,14 @@ func _on_melee_attack_hurtbox_body_entered(body: Node2D) -> void:
 func take_damage(amount: int):
 	if not dashing:
 		taking_damage_sound.play()
+		taking_damage = true
 		Global.player_health -= amount
 		print(Global.player_health)
 		if Global.player_health <= 0:
-			die()
+			dying = true
 		
 func die():
 	die_sound.play()
 	await get_tree().create_timer(0.5).timeout
-	get_tree().change_scene_to_file("res://Scenes/GameOver/GameOverScene.tscn")
+	if is_inside_tree():
+		get_tree().change_scene_to_file("res://Scenes/GameOver/GameOverScene.tscn")
