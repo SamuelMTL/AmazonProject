@@ -8,6 +8,8 @@ var collectibles: Dictionary = {
 var weapons: Array = []
 var armors: Array = []
 
+var powerups: Array = []
+
 signal collectible_added(item_name, amount)
 signal collectible_removed(item_name)
 signal coins_changed(new_value)
