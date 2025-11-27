@@ -5,16 +5,23 @@ var dungeon_layout = []
 var max_rooms = 5
 
 #sala de 4 portas
-var room_scene = preload("res://scenes/Dungeons/MataDaTerraFirme/dungeon_room_MTF.tscn")
+var room_scene = preload("res://Scenes/Dungeons/MataDaTerraFirme/DungeonRoomMTF.tscn")
 var inimigo = preload("res://inimigoteste.tscn")
+
+var enemies_room = {} 
+var room_num = 0
+var rooms = {}  # salva cada sala instanciada
 
 func _ready():
 	generate_dungeon()
 	build_dungeon()
 	
+	
 func _process(delta: float) -> void:
 	if Global.enemy_counter == 0:
 		boss_room()
+		
+	
 	
 func generate_dungeon():
 	var size = 3
@@ -76,6 +83,7 @@ func build_room(x, y, is_first_room=false):
 	var has_left = x > 0 and dungeon_layout[y][x - 1] > 0
 	var has_right = x < dungeon_size.x - 1 and dungeon_layout[y][x + 1] > 0
 	
+	
 	# Conta quantas conexões essa sala possui
 	var num_connections = int(has_top) + int(has_bottom) + int(has_left) + int(has_right)
 	
@@ -91,66 +99,49 @@ func build_room(x, y, is_first_room=false):
 	# Define a posição da sala no mundo do jogo
 	room.position = Vector2(x * 640, y * 360)
 	
+	room.has_top = has_top
+	room.has_bottom = has_bottom
+	room.has_left = has_left
+	room.has_right = has_right
+	
+	
+	var bottom_animations = room.get_node("BottomDoor")
+	var left_animations = room.get_node("LeftDoor")
+	var right_animations = room.get_node("RightDoor")
+	
+	room_num += 1
+	enemies_room[room_num] = 1  # sala começa com 1 inimigo
+	room.room_id = room_num 
+	
 	spawn_enemy(room)
-	# Configuração das colisões das portas e paredes
-	# Se há uma sala no topo, desativa a parede e ativa a porta, senão, mantém fechada
-	room.get_node("Top/CollisionShape2D").disabled = has_top
 	
-	# Configuração para a parede e porta da esquerda
-	room.get_node("Left/CollisionShape2D").disabled = has_left
+	room.dungeon_controller = self
+	rooms[room_num] = room
 	
-	# Configuração para a parede e porta da direita
-	room.get_node("Right/CollisionShape2D").disabled = has_right
+	room.get_node("Top/CollisionShape2D").disabled = true
+	
+	room.get_node("Left/CollisionShape2D").disabled = true
+	
+	room.get_node("Right/CollisionShape2D").disabled = true
 
 	# Tratamento especial para a primeira sala
 	if is_first_room:
-		# A primeira sala sempre tem a saída aberta na parte de baixo
-		room.get_node("Bottom/CollisionShape2D").disabled = true
+		room.get_node("Area2D/CollisionShape2D").disabled = true
+		room.get_node("Top/CollisionShape2D").disabled = false
+		room.get_node("Left/CollisionShape2D").disabled = false
+		room.get_node("Right/CollisionShape2D").disabled = false
+		room.get_node("Bottom/CollisionShape2D").disabled = false
+		bottom_animations.play("bottomDoor")
+		left_animations.play("leftDoor")
+		right_animations.play("rightDoor")
+		
 
 	else:
 		# Para as demais salas, ativamos ou desativamos portas e paredes conforme a necessidade
 		room.get_node("Bottom/CollisionShape2D").disabled = has_bottom
 		
 		
-func top_door_closed(tilemap: TileMapLayer):
-	tilemap.set_cell(Vector2i(11,1),0,Vector2i(6,0))
-	tilemap.set_cell(Vector2i(10,1),0,Vector2i(6,0))
-	tilemap.set_cell(Vector2i(9,1),0,Vector2i(6,0))
-	tilemap.set_cell(Vector2i(8,1),0,Vector2i(6,0))
-	
-	tilemap.set_cell(Vector2i(11,2),0,Vector2i(4,0))
-	tilemap.set_cell(Vector2i(10,2),0,Vector2i(4,0))
-	tilemap.set_cell(Vector2i(9,2),0,Vector2i(4,0))
-	tilemap.set_cell(Vector2i(8,2),0,Vector2i(4,0))
-	
-func right_door_closed(tilemap: TileMapLayer):
-	tilemap.set_cell(Vector2i(18,4),0,Vector2i(2,0))
-	tilemap.set_cell(Vector2i(18,5),0,Vector2i(2,0))
-	tilemap.set_cell(Vector2i(18,6),0,Vector2i(2,0))
-	
-	tilemap.set_cell(Vector2i(17,4),0,Vector2i(3,0))
-	tilemap.set_cell(Vector2i(17,5),0,Vector2i(3,0))
-	tilemap.set_cell(Vector2i(17,6),0,Vector2i(3,0))
-	
-func left_door_closed(tilemap: TileMapLayer):
-	tilemap.set_cell(Vector2i(1,4),0,Vector2i(8,0))
-	tilemap.set_cell(Vector2i(1,5),0,Vector2i(8,0))
-	tilemap.set_cell(Vector2i(1,6),0,Vector2i(8,0))
-	
-	tilemap.set_cell(Vector2i(2,4),0,Vector2i(7,3))
-	tilemap.set_cell(Vector2i(2,5),0,Vector2i(7,3))
-	tilemap.set_cell(Vector2i(2,6),0,Vector2i(7,3))
 
-func bottom_door_closed(tilemap: TileMapLayer):
-	tilemap.set_cell(Vector2i(11,8),0,Vector2i(4,5))
-	tilemap.set_cell(Vector2i(10,8),0,Vector2i(4,5))
-	tilemap.set_cell(Vector2i(9,8),0,Vector2i(4,5))
-	tilemap.set_cell(Vector2i(8,8),0,Vector2i(4,5))
-	
-	tilemap.set_cell(Vector2i(11,9),0,Vector2i(0,5))
-	tilemap.set_cell(Vector2i(10,9),0,Vector2i(0,5))
-	tilemap.set_cell(Vector2i(9,9),0,Vector2i(0,5))
-	tilemap.set_cell(Vector2i(8,9),0,Vector2i(0,5))
 
 # Função que escolhe a cena da sala com base nas conexões que ela tem
 func get_room_by_connections(num_connections, has_top, has_bottom, has_left, has_right, tilemap: TileMapLayer):
@@ -164,61 +155,47 @@ func get_room_by_connections(num_connections, has_top, has_bottom, has_left, has
 	# Comparamos esse padrão com diferentes possibilidades para escolher a sala correta
 	match connection_pattern:
 		"TFFF": 
-			bottom_door_closed(tilemap)
-			left_door_closed(tilemap)
-			right_door_closed(tilemap)
+			
 			return room_scene # 1 porta top
 		"FBFF": #1 porta bottom
-			left_door_closed(tilemap)
-			right_door_closed(tilemap)
-			top_door_closed(tilemap)
+			
 			return room_scene
 		"FFLF": 
-			bottom_door_closed(tilemap)
-			right_door_closed(tilemap)
-			top_door_closed(tilemap)
+			
 			return room_scene
 		 # 1 porta left
 		"FFFR": 
-			bottom_door_closed(tilemap)
-			left_door_closed(tilemap)
-			top_door_closed(tilemap)
+			
 			return room_scene # 1 porta right
 		"FFLR": 
-			bottom_door_closed(tilemap)
-			top_door_closed(tilemap)
+			
 			return room_scene # 2 portas left right
 		"TBFF":
-			left_door_closed(tilemap)
-			right_door_closed(tilemap) 
+			
 			return room_scene  #2 portas top bot
 		"TFFR": 
-			bottom_door_closed(tilemap)
-			left_door_closed(tilemap)
+			
 			return room_scene  #2 portas top right
 		"TFLF":
-			bottom_door_closed(tilemap)
-			right_door_closed(tilemap) 
+			 
 			return room_scene  #2 portas top left
 		"FBFR": 
-			left_door_closed(tilemap)
-			top_door_closed(tilemap)
+			
 			return room_scene  #2 portas bot right
 		"FBLF": 
-			right_door_closed(tilemap)
-			top_door_closed(tilemap)
+			
 			return room_scene  #2 portas bot left
 		"TBFR":
-			left_door_closed(tilemap) 
+			
 			return room_scene  #3 portas top bot right
 		"TBLF":
-			right_door_closed(tilemap) 
+			
 			return room_scene  #3 portas top bot left
 		"TFLR":
-			bottom_door_closed(tilemap) 
+			 
 			return room_scene  #3 portas top left right
 		"FBLR":
-			top_door_closed(tilemap)
+			
 			return room_scene  #3 portas bot left right
 		_:
 			# Se nenhuma correspondência exata for encontrada, escolhemos aleatoriamente entre três salas padrão
@@ -228,8 +205,64 @@ func spawn_enemy(room):
 	var enemy = inimigo.instantiate()
 	add_child(enemy)
 	enemy.position = room.position + Vector2(320, 180) # centro aproximado da sala
+	enemy.room_id = room.room_id  
 	Global.enemy_counter += 1
+	enemy.connect("died", Callable(self, "enemy_died"))
 	print("Inimigo spawnado em: ", enemy.position, " | total inimigos: ", Global.enemy_counter)
 
 func boss_room():
 	get_tree().change_scene_to_file("res://Scenes/Dungeons/MataDaTerraFirme/BossRoom.tscn")
+
+func enemy_died(room_id):
+	print("Enemy died in room:", room_id)
+	print("enemies_room keys:", enemies_room.keys())
+
+	enemies_room[room_id] -= 1
+
+	if enemies_room[room_id] <= 0:
+		open_doors_of_room(room_id)
+		
+func open_doors_of_room(room_id):
+	var room = rooms[room_id]
+
+	# só abre portas que realmente existem!
+	if room.has_top:
+		room.get_node("Top/CollisionShape2D").disabled = true
+		room.get_node("TopDoor").play("open")
+
+	if room.has_bottom:
+		room.get_node("Bottom/CollisionShape2D").disabled = true
+		room.get_node("BottomDoor").play("open")
+
+	if room.has_left:
+		room.get_node("Left/CollisionShape2D").disabled = true
+		room.get_node("LeftDoor").play("open")
+
+	if room.has_right:
+		room.get_node("Right/CollisionShape2D").disabled = true
+		room.get_node("RightDoor").play("open")
+	
+func close_doors_of_room(room_id):
+	var room = rooms[room_id]
+	
+	# Fechar colisões
+	room.get_node("Top/CollisionShape2D").disabled = false
+	room.get_node("Bottom/CollisionShape2D").disabled = false
+	room.get_node("Left/CollisionShape2D").disabled = false
+	room.get_node("Right/CollisionShape2D").disabled = false
+
+	
+	room.get_node("TopDoor").play("close")
+	room.get_node("BottomDoor").play("close")
+	room.get_node("LeftDoor").play("close")
+	room.get_node("RightDoor").play("close")
+	
+func player_entered_room(room_id):
+	var room = rooms[room_id]
+
+	if room.already_entered:
+		return  # evita repetir animações / lógica
+		
+	room.already_entered = true  # marca como visitada
+	
+	close_doors_of_room(room_id)
