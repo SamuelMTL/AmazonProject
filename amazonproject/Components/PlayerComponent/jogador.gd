@@ -3,8 +3,12 @@ extends CharacterBody2D
 
 @onready var animations = $AnimatedSprite2D
 @onready var attack_timer : Timer = $AttackCooldown
+
 @onready var walking_sound = $WalkingSound # Som dos passos
 @onready var attack_sound = $AttackSound # Som de ataque (como só tem o "tacape", por enquanto, então não especifiquei "de qual arma")
+@onready var fire_trail_sound = $"FireTrailSound" # Som da 1ª habilidade, "rastro de fogo"
+@onready var taking_damage_sound = $"TakingDamageSound"
+@onready var die_sound = $"DieSound"
 
 
 @export var attack_cooldown_time: float = 1.0
@@ -76,7 +80,7 @@ func handle_input():
 		player_dash(move_direction)
 	else:
 		move_entity(move_direction)
-		
+
 	if Input.is_action_just_pressed("attack"):
 		attack()
 			
@@ -207,6 +211,9 @@ func activate_curupira_power():
 	fire_trail_active = true
 	can_use_fire_trail = false
 	
+	# Som do RASTRO DE FOGO!
+	fire_trail_sound.play_loop(fire_trail_sound.loop_start_time)
+	
 	await get_tree().create_timer(fire_trail_duration).timeout
 	fire_trail_active = false
 	
@@ -234,7 +241,7 @@ func activate_iara_power():
 	
 	await get_tree().create_timer(water_wave_cooldown).timeout
 	can_use_water_wave = true
-	
+
 func activate_boitata_power():
 	if not can_use_fire_beam:
 		return
@@ -359,6 +366,7 @@ func _on_melee_attack_hurtbox_body_entered(body: Node2D) -> void:
 
 func take_damage(amount: int):
 	if not dashing:
+		taking_damage_sound.play()
 		taking_damage = true
 		Global.player_health -= amount
 		print(Global.player_health)
@@ -366,5 +374,7 @@ func take_damage(amount: int):
 			dying = true
 		
 func die():
+	die_sound.play()
+	await get_tree().create_timer(0.5).timeout
 	if is_inside_tree():
 		get_tree().change_scene_to_file("res://Scenes/GameOver/GameOverScene.tscn")
