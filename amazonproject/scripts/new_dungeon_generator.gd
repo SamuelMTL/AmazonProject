@@ -228,7 +228,7 @@ func open_doors_of_room(room_id):
 	# só abre portas que realmente existem!
 	if room.has_top:
 		room.get_node("Top/CollisionShape2D").disabled = true
-		#room.get_node("TopDoor").play("open")
+		room.get_node("TopDoor").play("open")
 
 	if room.has_bottom:
 		room.get_node("Bottom/CollisionShape2D").disabled = true
@@ -251,8 +251,8 @@ func close_doors_of_room(room_id):
 	room.get_node("Left/CollisionShape2D").disabled = false
 	room.get_node("Right/CollisionShape2D").disabled = false
 
-	# Animar fechamento (se tiver animação)
-	#room.get_node("TopDoor").play("close")
+	
+	room.get_node("TopDoor").play("close")
 	room.get_node("BottomDoor").play("close")
 	room.get_node("LeftDoor").play("close")
 	room.get_node("RightDoor").play("close")
