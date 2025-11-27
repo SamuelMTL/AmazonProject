@@ -5,7 +5,7 @@ var dungeon_layout = []
 var max_rooms = 5
 
 #sala de 4 portas
-var room_scene = preload("res://scenes/Dungeons/MataDaTerraFirme/dungeon_room_MTF.tscn")
+var room_scene = preload("res://Scenes/Dungeons/MataDaTerraFirme/DungeonRoomMTF.tscn")
 var inimigo = preload("res://inimigoteste.tscn")
 
 func _ready():
@@ -94,63 +94,25 @@ func build_room(x, y, is_first_room=false):
 	spawn_enemy(room)
 	# Configuração das colisões das portas e paredes
 	# Se há uma sala no topo, desativa a parede e ativa a porta, senão, mantém fechada
-	room.get_node("Top/CollisionShape2D").disabled = has_top
+	#room.get_node("Top/CollisionShape2D").disabled = has_top
 	
 	# Configuração para a parede e porta da esquerda
-	room.get_node("Left/CollisionShape2D").disabled = has_left
+	#room.get_node("Left/CollisionShape2D").disabled = has_left
 	
 	# Configuração para a parede e porta da direita
-	room.get_node("Right/CollisionShape2D").disabled = has_right
+	#room.get_node("Right/CollisionShape2D").disabled = has_right
 
 	# Tratamento especial para a primeira sala
-	if is_first_room:
+	#if is_first_room:
 		# A primeira sala sempre tem a saída aberta na parte de baixo
-		room.get_node("Bottom/CollisionShape2D").disabled = true
+		#room.get_node("Bottom/CollisionShape2D").disabled = true
 
-	else:
+	#else:
 		# Para as demais salas, ativamos ou desativamos portas e paredes conforme a necessidade
-		room.get_node("Bottom/CollisionShape2D").disabled = has_bottom
+		#room.get_node("Bottom/CollisionShape2D").disabled = has_bottom
 		
 		
-func top_door_closed(tilemap: TileMapLayer):
-	tilemap.set_cell(Vector2i(11,1),0,Vector2i(6,0))
-	tilemap.set_cell(Vector2i(10,1),0,Vector2i(6,0))
-	tilemap.set_cell(Vector2i(9,1),0,Vector2i(6,0))
-	tilemap.set_cell(Vector2i(8,1),0,Vector2i(6,0))
-	
-	tilemap.set_cell(Vector2i(11,2),0,Vector2i(4,0))
-	tilemap.set_cell(Vector2i(10,2),0,Vector2i(4,0))
-	tilemap.set_cell(Vector2i(9,2),0,Vector2i(4,0))
-	tilemap.set_cell(Vector2i(8,2),0,Vector2i(4,0))
-	
-func right_door_closed(tilemap: TileMapLayer):
-	tilemap.set_cell(Vector2i(18,4),0,Vector2i(2,0))
-	tilemap.set_cell(Vector2i(18,5),0,Vector2i(2,0))
-	tilemap.set_cell(Vector2i(18,6),0,Vector2i(2,0))
-	
-	tilemap.set_cell(Vector2i(17,4),0,Vector2i(3,0))
-	tilemap.set_cell(Vector2i(17,5),0,Vector2i(3,0))
-	tilemap.set_cell(Vector2i(17,6),0,Vector2i(3,0))
-	
-func left_door_closed(tilemap: TileMapLayer):
-	tilemap.set_cell(Vector2i(1,4),0,Vector2i(8,0))
-	tilemap.set_cell(Vector2i(1,5),0,Vector2i(8,0))
-	tilemap.set_cell(Vector2i(1,6),0,Vector2i(8,0))
-	
-	tilemap.set_cell(Vector2i(2,4),0,Vector2i(7,3))
-	tilemap.set_cell(Vector2i(2,5),0,Vector2i(7,3))
-	tilemap.set_cell(Vector2i(2,6),0,Vector2i(7,3))
 
-func bottom_door_closed(tilemap: TileMapLayer):
-	tilemap.set_cell(Vector2i(11,8),0,Vector2i(4,5))
-	tilemap.set_cell(Vector2i(10,8),0,Vector2i(4,5))
-	tilemap.set_cell(Vector2i(9,8),0,Vector2i(4,5))
-	tilemap.set_cell(Vector2i(8,8),0,Vector2i(4,5))
-	
-	tilemap.set_cell(Vector2i(11,9),0,Vector2i(0,5))
-	tilemap.set_cell(Vector2i(10,9),0,Vector2i(0,5))
-	tilemap.set_cell(Vector2i(9,9),0,Vector2i(0,5))
-	tilemap.set_cell(Vector2i(8,9),0,Vector2i(0,5))
 
 # Função que escolhe a cena da sala com base nas conexões que ela tem
 func get_room_by_connections(num_connections, has_top, has_bottom, has_left, has_right, tilemap: TileMapLayer):
@@ -164,61 +126,47 @@ func get_room_by_connections(num_connections, has_top, has_bottom, has_left, has
 	# Comparamos esse padrão com diferentes possibilidades para escolher a sala correta
 	match connection_pattern:
 		"TFFF": 
-			bottom_door_closed(tilemap)
-			left_door_closed(tilemap)
-			right_door_closed(tilemap)
+			
 			return room_scene # 1 porta top
 		"FBFF": #1 porta bottom
-			left_door_closed(tilemap)
-			right_door_closed(tilemap)
-			top_door_closed(tilemap)
+			
 			return room_scene
 		"FFLF": 
-			bottom_door_closed(tilemap)
-			right_door_closed(tilemap)
-			top_door_closed(tilemap)
+			
 			return room_scene
 		 # 1 porta left
 		"FFFR": 
-			bottom_door_closed(tilemap)
-			left_door_closed(tilemap)
-			top_door_closed(tilemap)
+			
 			return room_scene # 1 porta right
 		"FFLR": 
-			bottom_door_closed(tilemap)
-			top_door_closed(tilemap)
+			
 			return room_scene # 2 portas left right
 		"TBFF":
-			left_door_closed(tilemap)
-			right_door_closed(tilemap) 
+			
 			return room_scene  #2 portas top bot
 		"TFFR": 
-			bottom_door_closed(tilemap)
-			left_door_closed(tilemap)
+			
 			return room_scene  #2 portas top right
 		"TFLF":
-			bottom_door_closed(tilemap)
-			right_door_closed(tilemap) 
+			 
 			return room_scene  #2 portas top left
 		"FBFR": 
-			left_door_closed(tilemap)
-			top_door_closed(tilemap)
+			
 			return room_scene  #2 portas bot right
 		"FBLF": 
-			right_door_closed(tilemap)
-			top_door_closed(tilemap)
+			
 			return room_scene  #2 portas bot left
 		"TBFR":
-			left_door_closed(tilemap) 
+			
 			return room_scene  #3 portas top bot right
 		"TBLF":
-			right_door_closed(tilemap) 
+			
 			return room_scene  #3 portas top bot left
 		"TFLR":
-			bottom_door_closed(tilemap) 
+			 
 			return room_scene  #3 portas top left right
 		"FBLR":
-			top_door_closed(tilemap)
+			
 			return room_scene  #3 portas bot left right
 		_:
 			# Se nenhuma correspondência exata for encontrada, escolhemos aleatoriamente entre três salas padrão
