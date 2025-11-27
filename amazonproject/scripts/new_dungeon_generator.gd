@@ -94,22 +94,22 @@ func build_room(x, y, is_first_room=false):
 	spawn_enemy(room)
 	# Configuração das colisões das portas e paredes
 	# Se há uma sala no topo, desativa a parede e ativa a porta, senão, mantém fechada
-	#room.get_node("Top/CollisionShape2D").disabled = has_top
+	room.get_node("Top/CollisionShape2D").disabled = has_top
 	
 	# Configuração para a parede e porta da esquerda
-	#room.get_node("Left/CollisionShape2D").disabled = has_left
+	room.get_node("Left/CollisionShape2D").disabled = has_left
 	
 	# Configuração para a parede e porta da direita
-	#room.get_node("Right/CollisionShape2D").disabled = has_right
+	room.get_node("Right/CollisionShape2D").disabled = has_right
 
 	# Tratamento especial para a primeira sala
-	#if is_first_room:
+	if is_first_room:
 		# A primeira sala sempre tem a saída aberta na parte de baixo
-		#room.get_node("Bottom/CollisionShape2D").disabled = true
+		room.get_node("Bottom/CollisionShape2D").disabled = true
 
-	#else:
+	else:
 		# Para as demais salas, ativamos ou desativamos portas e paredes conforme a necessidade
-		#room.get_node("Bottom/CollisionShape2D").disabled = has_bottom
+		room.get_node("Bottom/CollisionShape2D").disabled = has_bottom
 		
 		
 
