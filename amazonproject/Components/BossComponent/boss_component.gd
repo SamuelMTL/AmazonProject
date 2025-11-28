@@ -3,15 +3,15 @@ extends CharacterBody2D
 var player: Node2D
 var fire_attack_component = preload("res://Components/BossAttacks/FireAttack/BossFireAttack.tscn")
 var sound_attack_component = preload("res://Components/BossAttacks/SoundAttack/SoundAttack.tscn")
-var boss_body_lanca_attack = preload("res://Components/BossAttacks/LancaAttack/BossBodyLancaAttack.tscn")
 var boss_lanca_component = preload("res://Components/BossAttacks/LancaAttack/BossLanca.tscn")
+
+@onready var animations = $AnimatedSprite2D
 
 var attack_interval := 6.0  # tempo entre ataques
 var attack_index := 0
 var attacks = []  # lista de funções
 
 var lanca_attack_timer := 2
-var boss_body = boss_body_lanca_attack.instantiate()
 
 var boss_health = 100
 
@@ -27,8 +27,10 @@ func _ready():
 	start_attack_cycle()
 	
 func _process(delta: float) -> void:
-	if boss_body:
-		boss_body.look_at(player.global_position)
+	pass
+	#if boss_body:
+		#boss_body.look_at(player.global_position)
+	
 	
 func attack_cycle() -> void:
 	while true:
@@ -52,9 +54,14 @@ func take_damage(amount: int):
 	print("boss hit")
 	if boss_health <= 0:
 		die()
+	else:
+		animations.play("damage")
+		await animations.animation_finished
+		animations.play("idle")
 		
 func die():
-	#colocar a animacao do boss morrendo
+	animations.play("dying")
+	await animations.animation_finished
 	PlayerInventory.powerups.append("Curupira")
 	get_tree().change_scene_to_file("res://Scenes/CutsceneScene/CutsceneScene2.tscn")
 
@@ -62,6 +69,7 @@ func use_fire_attack():
 	var amount = 5
 	var radius = 120
 	
+	animations.play("fireattack")
 	for i in amount: 
 		var fire = fire_attack_component.instantiate()
 		var offset = Vector2(
@@ -74,31 +82,35 @@ func use_fire_attack():
 			
 		fire.position = player.position + offset
 		get_tree().current_scene.add_child(fire)
-	
+	await animations.animation_finished
+	animations.play("idle")
 	
 func use_sound_attack():
+	animations.play("soundattack")
+	await get_tree().create_timer(1.5).timeout
 	var attack = sound_attack_component.instantiate()
 	get_tree().current_scene.add_child(attack)
 	attack.position = position
-	
 	# treme a câmera
 	var camera = get_tree().get_first_node_in_group("Cameras") 
 	if camera:
-		camera.shake(8.0, 0.4) # força, duração
-	
+		camera.shake(8.0, 0.5) # força, duração
+	await animations.animation_finished
+	animations.play("idle")
 	
 func use_lanca_attack():
-	get_tree().current_scene.add_child(boss_body)
-	boss_body.position = position
-	
-	await get_tree().create_timer(lanca_attack_timer).timeout
+
+	animations.play("lancaattack")
+	await animations.animation_finished
+	animations.play("idle")
 	shoot_lanca()
 	
 func shoot_lanca():
 	var lanca = boss_lanca_component.instantiate()
 	get_tree().current_scene.add_child(lanca)
-	lanca.global_position = boss_body.global_position
-	lanca.direction = (player.global_position - boss_body.global_position).normalized()
+	lanca.global_position = global_position
+	lanca.direction = (player.global_position - global_position).normalized()
+
 	
 	
 	
