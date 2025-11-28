@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cgl27bwou6cx2"]
+[gd_scene load_steps=17 format=3 uid="uid://cgl27bwou6cx2"]
 
 [ext_resource type="Texture2D" uid="uid://ceww6448urox3" path="res://assets/Aldeia/GramadoAldeia.png" id="1_kg8is"]
 [ext_resource type="PackedScene" uid="uid://cfeddkm37oqp1" path="res://Components/next_scene.tscn" id="2_id0fx"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://muf73awrfgm0" path="res://Components/MatintaShopComponent/MatintaShopInGame.tscn" id="8_jtawj"]
 [ext_resource type="AudioStream" uid="uid://cj6cowyhn4kfd" path="res://assets/sound/music/aldeia.mp3" id="10_0b8ec"]
 [ext_resource type="Script" path="res://Scenes/aldeia_music.gd" id="11_cndyc"]
+[ext_resource type="Texture2D" uid="uid://bu3kb2sn1vosl" path="res://assets/dungeon/DungeonTopo.png" id="12_g46vl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1xqag"]
 size = Vector2(1274, 24)
@@ -37,7 +38,7 @@ color = Color(0, 0, 0, 1)
 texture = ExtResource("1_kg8is")
 
 [node name="NextScene" parent="." instance=ExtResource("2_id0fx")]
-position = Vector2(0, -256)
+position = Vector2(0, -287)
 
 [node name="MatintaShopInGame" parent="." instance=ExtResource("8_jtawj")]
 position = Vector2(-319, 3)
@@ -92,5 +93,10 @@ position = Vector2(651, 0)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
 position = Vector2(-1, -1)
 shape = SubResource("RectangleShape2D_m7x2n")
+
+[node name="topo" type="Sprite2D" parent="."]
+position = Vector2(1.49997, 3.99999)
+scale = Vector2(2.05156, 2.075)
+texture = ExtResource("12_g46vl")
 
 [connection signal="finished" from="Aldeia Music" to="Aldeia Music" method="_on_finished"]
