@@ -6,6 +6,8 @@ var sound_attack_component = preload("res://Components/BossAttacks/SoundAttack/S
 var boss_body_lanca_attack = preload("res://Components/BossAttacks/LancaAttack/BossBodyLancaAttack.tscn")
 var boss_lanca_component = preload("res://Components/BossAttacks/LancaAttack/BossLanca.tscn")
 
+@onready var animations = $AnimatedSprite2D
+
 var attack_interval := 6.0  # tempo entre ataques
 var attack_index := 0
 var attacks = []  # lista de funções
@@ -52,6 +54,8 @@ func take_damage(amount: int):
 	print("boss hit")
 	if boss_health <= 0:
 		die()
+	else:
+		animations.play("damage")
 		
 func die():
 	#colocar a animacao do boss morrendo
