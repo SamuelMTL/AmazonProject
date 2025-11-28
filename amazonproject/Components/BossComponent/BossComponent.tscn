@@ -1,9 +1,10 @@
-[gd_scene load_steps=27 format=3 uid="uid://uainjgnhg6ty"]
+[gd_scene load_steps=31 format=3 uid="uid://uainjgnhg6ty"]
 
 [ext_resource type="Script" path="res://Components/BossComponent/boss_component.gd" id="1_iwkic"]
 [ext_resource type="Texture2D" uid="uid://c17dlab5sogop" path="res://assets/dungeon/curupiraboss-Sheet-dano.png" id="2_fyy2k"]
 [ext_resource type="Texture2D" uid="uid://6am6b6q8l50v" path="res://assets/dungeon/curupiraboss-Sheet-idle.png" id="2_vdhxb"]
 [ext_resource type="Texture2D" uid="uid://42tvyypjnalf" path="res://assets/dungeon/curupiraboss-Sheet-dying.png" id="3_00sx1"]
+[ext_resource type="Texture2D" uid="uid://c8gyji130xvtd" path="res://assets/dungeon/curupiraboss-Sheet-lancaattack.png" id="5_20cwi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dbuw1"]
 size = Vector2(105, 117)
@@ -88,6 +89,18 @@ region = Rect2(520, 0, 130, 130)
 atlas = ExtResource("2_vdhxb")
 region = Rect2(650, 0, 130, 130)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_osu35"]
+atlas = ExtResource("5_20cwi")
+region = Rect2(0, 0, 130, 130)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_085ko"]
+atlas = ExtResource("5_20cwi")
+region = Rect2(130, 0, 130, 130)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5n14d"]
+atlas = ExtResource("5_20cwi")
+region = Rect2(260, 0, 130, 130)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_xvmb6"]
 animations = [{
 "frames": [{
@@ -164,6 +177,20 @@ animations = [{
 "loop": true,
 "name": &"idle",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_osu35")
+}, {
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_085ko")
+}, {
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_5n14d")
+}],
+"loop": false,
+"name": &"lancaattack",
+"speed": 5.0
 }]
 
 [node name="BossComponent" type="CharacterBody2D" groups=["Boss"]]
@@ -175,9 +202,9 @@ shape = SubResource("RectangleShape2D_dbuw1")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_xvmb6")
-animation = &"dying"
+animation = &"lancaattack"
 autoplay = "idle"
-frame = 6
+frame = 2
 frame_progress = 1.0
 
 [node name="FireAttack" type="Timer" parent="."]

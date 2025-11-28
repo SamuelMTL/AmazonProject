@@ -3,7 +3,6 @@ extends CharacterBody2D
 var player: Node2D
 var fire_attack_component = preload("res://Components/BossAttacks/FireAttack/BossFireAttack.tscn")
 var sound_attack_component = preload("res://Components/BossAttacks/SoundAttack/SoundAttack.tscn")
-var boss_body_lanca_attack = preload("res://Components/BossAttacks/LancaAttack/BossBodyLancaAttack.tscn")
 var boss_lanca_component = preload("res://Components/BossAttacks/LancaAttack/BossLanca.tscn")
 
 @onready var animations = $AnimatedSprite2D
@@ -13,7 +12,6 @@ var attack_index := 0
 var attacks = []  # lista de funções
 
 var lanca_attack_timer := 2
-var boss_body = boss_body_lanca_attack.instantiate()
 
 var boss_health = 100
 
@@ -29,8 +27,10 @@ func _ready():
 	start_attack_cycle()
 	
 func _process(delta: float) -> void:
-	if boss_body:
-		boss_body.look_at(player.global_position)
+	pass
+	#if boss_body:
+		#boss_body.look_at(player.global_position)
+	
 	
 func attack_cycle() -> void:
 	while true:
@@ -56,6 +56,8 @@ func take_damage(amount: int):
 		die()
 	else:
 		animations.play("damage")
+		await animations.animation_finished
+		animations.play("idle")
 		
 func die():
 	animations.play("dying")
@@ -93,17 +95,18 @@ func use_sound_attack():
 	
 	
 func use_lanca_attack():
-	get_tree().current_scene.add_child(boss_body)
-	boss_body.position = position
-	
-	await get_tree().create_timer(lanca_attack_timer).timeout
+
+	animations.play("lancaattack")
+	await animations.animation_finished
+	animations.play("idle")
 	shoot_lanca()
 	
 func shoot_lanca():
 	var lanca = boss_lanca_component.instantiate()
 	get_tree().current_scene.add_child(lanca)
-	lanca.global_position = boss_body.global_position
-	lanca.direction = (player.global_position - boss_body.global_position).normalized()
+	lanca.global_position = global_position
+	lanca.direction = (player.global_position - global_position).normalized()
+
 	
 	
 	
