@@ -1,10 +1,60 @@
-[gd_scene load_steps=4 format=3 uid="uid://uainjgnhg6ty"]
+[gd_scene load_steps=11 format=3 uid="uid://uainjgnhg6ty"]
 
 [ext_resource type="Script" path="res://Components/BossComponent/boss_component.gd" id="1_iwkic"]
-[ext_resource type="Texture2D" uid="uid://b8wc6evxyupol" path="res://assets/dungeon/curupiraboss.png" id="2_f0u6e"]
+[ext_resource type="Texture2D" uid="uid://6am6b6q8l50v" path="res://assets/dungeon/curupiraboss-Sheet-idle.png" id="2_vdhxb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dbuw1"]
 size = Vector2(105, 117)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vcbu3"]
+atlas = ExtResource("2_vdhxb")
+region = Rect2(0, 0, 130, 130)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bdd4n"]
+atlas = ExtResource("2_vdhxb")
+region = Rect2(130, 0, 130, 130)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_86a6g"]
+atlas = ExtResource("2_vdhxb")
+region = Rect2(260, 0, 130, 130)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n4c07"]
+atlas = ExtResource("2_vdhxb")
+region = Rect2(390, 0, 130, 130)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_viam6"]
+atlas = ExtResource("2_vdhxb")
+region = Rect2(520, 0, 130, 130)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3b7em"]
+atlas = ExtResource("2_vdhxb")
+region = Rect2(650, 0, 130, 130)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xvmb6"]
+animations = [{
+"frames": [{
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_vcbu3")
+}, {
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_bdd4n")
+}, {
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_86a6g")
+}, {
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_n4c07")
+}, {
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_viam6")
+}, {
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_3b7em")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
 
 [node name="BossComponent" type="CharacterBody2D" groups=["Boss"]]
 script = ExtResource("1_iwkic")
@@ -13,8 +63,11 @@ script = ExtResource("1_iwkic")
 position = Vector2(0.5, -0.5)
 shape = SubResource("RectangleShape2D_dbuw1")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_f0u6e")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_xvmb6")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.520232
 
 [node name="FireAttack" type="Timer" parent="."]
 wait_time = 10.0
