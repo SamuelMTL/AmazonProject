@@ -69,6 +69,7 @@ func use_fire_attack():
 	var amount = 5
 	var radius = 120
 	
+	animations.play("fireattack")
 	for i in amount: 
 		var fire = fire_attack_component.instantiate()
 		var offset = Vector2(
@@ -81,7 +82,8 @@ func use_fire_attack():
 			
 		fire.position = player.position + offset
 		get_tree().current_scene.add_child(fire)
-	
+	await animations.animation_finished
+	animations.play("idle")
 	
 func use_sound_attack():
 	var attack = sound_attack_component.instantiate()
