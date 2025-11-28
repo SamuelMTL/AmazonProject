@@ -1,8 +1,9 @@
-[gd_scene load_steps=19 format=3 uid="uid://uainjgnhg6ty"]
+[gd_scene load_steps=27 format=3 uid="uid://uainjgnhg6ty"]
 
 [ext_resource type="Script" path="res://Components/BossComponent/boss_component.gd" id="1_iwkic"]
 [ext_resource type="Texture2D" uid="uid://c17dlab5sogop" path="res://assets/dungeon/curupiraboss-Sheet-dano.png" id="2_fyy2k"]
 [ext_resource type="Texture2D" uid="uid://6am6b6q8l50v" path="res://assets/dungeon/curupiraboss-Sheet-idle.png" id="2_vdhxb"]
+[ext_resource type="Texture2D" uid="uid://42tvyypjnalf" path="res://assets/dungeon/curupiraboss-Sheet-dying.png" id="3_00sx1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dbuw1"]
 size = Vector2(105, 117)
@@ -33,6 +34,34 @@ region = Rect2(650, 0, 130, 130)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gkfll"]
 atlas = ExtResource("2_fyy2k")
+region = Rect2(780, 0, 130, 130)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_glht5"]
+atlas = ExtResource("3_00sx1")
+region = Rect2(0, 0, 130, 130)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1q0qg"]
+atlas = ExtResource("3_00sx1")
+region = Rect2(130, 0, 130, 130)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rpudp"]
+atlas = ExtResource("3_00sx1")
+region = Rect2(260, 0, 130, 130)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xi55y"]
+atlas = ExtResource("3_00sx1")
+region = Rect2(390, 0, 130, 130)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rbsma"]
+atlas = ExtResource("3_00sx1")
+region = Rect2(520, 0, 130, 130)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jrvvu"]
+atlas = ExtResource("3_00sx1")
+region = Rect2(650, 0, 130, 130)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mvfkk"]
+atlas = ExtResource("3_00sx1")
 region = Rect2(780, 0, 130, 130)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vcbu3"]
@@ -88,6 +117,32 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_glht5")
+}, {
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_1q0qg")
+}, {
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_rpudp")
+}, {
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_xi55y")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_rbsma")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_jrvvu")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_mvfkk")
+}],
+"loop": false,
+"name": &"dying",
+"speed": 5.0
+}, {
+"frames": [{
 "duration": 0.6,
 "texture": SubResource("AtlasTexture_vcbu3")
 }, {
@@ -120,7 +175,7 @@ shape = SubResource("RectangleShape2D_dbuw1")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_xvmb6")
-animation = &"damage"
+animation = &"dying"
 autoplay = "idle"
 frame = 6
 frame_progress = 1.0

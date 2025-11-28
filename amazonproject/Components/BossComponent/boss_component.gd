@@ -58,7 +58,8 @@ func take_damage(amount: int):
 		animations.play("damage")
 		
 func die():
-	#colocar a animacao do boss morrendo
+	animations.play("dying")
+	await animations.animation_finished
 	PlayerInventory.powerups.append("Curupira")
 	get_tree().change_scene_to_file("res://Scenes/CutsceneScene/CutsceneScene2.tscn")
 
