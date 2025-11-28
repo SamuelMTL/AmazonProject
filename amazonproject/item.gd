@@ -6,6 +6,8 @@ extends Node2D
 # Lista de itens coletáveis
 @onready var item_names = PlayerInventory.collectibles.keys()
 
+@onready var collect_sound = $"CollectSound"
+
 func _ready() -> void:
 	# Selecionar aleatoriamente um item coletável
 	item_name = item_names.pick_random()
@@ -27,4 +29,8 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"): # opcional, se quiser garantir que só o player coleta
 		PlayerInventory.add_collectible(item_name, 1, preco_item)
 		print(PlayerInventory.collectibles)
+		collect_sound.play()
+		get_node("Area2D/FlorLua").visible = false
+		get_node("Area2D/ResinaAncestral").visible = false
+		await get_tree().create_timer(0.6).timeout
 		queue_free()

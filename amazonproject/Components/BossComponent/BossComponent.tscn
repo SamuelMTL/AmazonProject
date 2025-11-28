@@ -1,6 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://uainjgnhg6ty"]
+[gd_scene load_steps=5 format=3 uid="uid://uainjgnhg6ty"]
 
 [ext_resource type="Script" path="res://Components/BossComponent/boss_component.gd" id="1_iwkic"]
+[ext_resource type="AudioStream" uid="uid://dgosvbt5ql5y0" path="res://assets/sound/sfx/die.wav" id="2_mg6me"]
+[ext_resource type="AudioStream" uid="uid://dpvhddvnhqv16" path="res://assets/sound/sfx/taking_damage.wav" id="3_3avn4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dbuw1"]
 size = Vector2(130, 128)
@@ -20,5 +22,13 @@ offset_bottom = 64.0
 [node name="FireAttack" type="Timer" parent="."]
 wait_time = 10.0
 autostart = true
+
+[node name="DieSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_mg6me")
+bus = &"SFX"
+
+[node name="TakingDamageSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_3avn4")
+bus = &"SFX"
 
 [connection signal="timeout" from="FireAttack" to="." method="_on_fire_attack_timeout"]
