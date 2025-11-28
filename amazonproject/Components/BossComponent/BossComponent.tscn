@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://uainjgnhg6ty"]
+[gd_scene load_steps=46 format=3 uid="uid://uainjgnhg6ty"]
 
 [ext_resource type="Script" path="res://Components/BossComponent/boss_component.gd" id="1_iwkic"]
 [ext_resource type="Texture2D" uid="uid://c17dlab5sogop" path="res://assets/dungeon/curupiraboss-Sheet-dano.png" id="2_fyy2k"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://42tvyypjnalf" path="res://assets/dungeon/curupiraboss-Sheet-dying.png" id="3_00sx1"]
 [ext_resource type="Texture2D" uid="uid://bcja8y5qwoe8v" path="res://assets/dungeon/curupiraboss-Sheet-Sheet.png" id="4_o750x"]
 [ext_resource type="Texture2D" uid="uid://c8gyji130xvtd" path="res://assets/dungeon/curupiraboss-Sheet-lancaattack.png" id="5_20cwi"]
+[ext_resource type="Texture2D" uid="uid://ita7ki1c1dqu" path="res://assets/dungeon/curupiraboss-Sheet-soudattack.png" id="7_v47wd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dbuw1"]
 size = Vector2(105, 117)
@@ -130,6 +131,30 @@ region = Rect2(130, 0, 130, 130)
 atlas = ExtResource("5_20cwi")
 region = Rect2(260, 0, 130, 130)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_r4b07"]
+atlas = ExtResource("7_v47wd")
+region = Rect2(0, 0, 130, 130)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y3i1t"]
+atlas = ExtResource("7_v47wd")
+region = Rect2(130, 0, 130, 130)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ptruj"]
+atlas = ExtResource("7_v47wd")
+region = Rect2(260, 0, 130, 130)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uf4fq"]
+atlas = ExtResource("7_v47wd")
+region = Rect2(390, 0, 130, 130)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cjqiw"]
+atlas = ExtResource("7_v47wd")
+region = Rect2(520, 0, 130, 130)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jqpjk"]
+atlas = ExtResource("7_v47wd")
+region = Rect2(650, 0, 130, 130)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_xvmb6"]
 animations = [{
 "frames": [{
@@ -246,6 +271,29 @@ animations = [{
 "loop": false,
 "name": &"lancaattack",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_r4b07")
+}, {
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_y3i1t")
+}, {
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_ptruj")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_uf4fq")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_cjqiw")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_jqpjk")
+}],
+"loop": false,
+"name": &"soundattack",
+"speed": 5.0
 }]
 
 [node name="BossComponent" type="CharacterBody2D" groups=["Boss"]]
@@ -257,7 +305,7 @@ shape = SubResource("RectangleShape2D_dbuw1")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_xvmb6")
-animation = &"fireattack"
+animation = &"soundattack"
 autoplay = "idle"
 
 [node name="FireAttack" type="Timer" parent="."]

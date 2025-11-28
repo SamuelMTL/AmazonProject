@@ -86,15 +86,17 @@ func use_fire_attack():
 	animations.play("idle")
 	
 func use_sound_attack():
+	animations.play("soundattack")
+	await get_tree().create_timer(1.5).timeout
 	var attack = sound_attack_component.instantiate()
 	get_tree().current_scene.add_child(attack)
 	attack.position = position
-	
 	# treme a câmera
 	var camera = get_tree().get_first_node_in_group("Cameras") 
 	if camera:
-		camera.shake(8.0, 0.4) # força, duração
-	
+		camera.shake(8.0, 0.5) # força, duração
+	await animations.animation_finished
+	animations.play("idle")
 	
 func use_lanca_attack():
 
