@@ -27,6 +27,7 @@ texture = ExtResource("4_vn0ry")
 position = Vector2(321, 65)
 
 [node name="Teto" type="Sprite2D" parent="."]
+z_index = 10
 position = Vector2(321, 180)
 scale = Vector2(1, 1.125)
 texture = ExtResource("6_37f5c")

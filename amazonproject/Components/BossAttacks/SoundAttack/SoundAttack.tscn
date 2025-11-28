@@ -1,6 +1,29 @@
-[gd_scene load_steps=3 format=3 uid="uid://1vkvwcg8jf03"]
+[gd_scene load_steps=7 format=3 uid="uid://1vkvwcg8jf03"]
 
 [ext_resource type="Script" path="res://Components/BossAttacks/SoundAttack/sound_attack.gd" id="1_gio7h"]
+[ext_resource type="Texture2D" uid="uid://cqnr7urj4j0db" path="res://assets/dungeon/soudattack-Sheet.png" id="2_pyhjb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7uykr"]
+atlas = ExtResource("2_pyhjb")
+region = Rect2(0, 0, 640, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aac7l"]
+atlas = ExtResource("2_pyhjb")
+region = Rect2(640, 0, 640, 15)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5ktee"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7uykr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aac7l")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6ulfu"]
 size = Vector2(639, 17.5)
@@ -8,24 +31,16 @@ size = Vector2(639, 17.5)
 [node name="SoundAttack" type="Node2D"]
 script = ExtResource("1_gio7h")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -319.5
-offset_top = -8.5
-offset_right = 319.5
-offset_bottom = 8.5
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 1)
+[node name="ColorRect" type="AnimatedSprite2D" parent="."]
+z_index = 5
+sprite_frames = SubResource("SpriteFrames_5ktee")
+autoplay = "default"
+frame_progress = 0.657685
 
 [node name="Area2D" type="Area2D" parent="ColorRect"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ColorRect/Area2D"]
-position = Vector2(321, 8.25)
+position = Vector2(1, 0)
 shape = SubResource("RectangleShape2D_6ulfu")
 
 [connection signal="body_entered" from="ColorRect/Area2D" to="." method="_on_area_2d_body_entered"]
