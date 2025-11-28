@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://dukjcbgwjytko"]
+[gd_scene load_steps=5 format=3 uid="uid://dukjcbgwjytko"]
 
 [ext_resource type="PackedScene" uid="uid://c6yd2kl7pfr2f" path="res://Components/MainMenuButtonComponent/MainMenuButton.tscn" id="1_qpwrc"]
+[ext_resource type="Texture2D" uid="uid://br5v774ktbwjw" path="res://Scenes/MainMenuScene/assets/Frame 4.png" id="1_rg5oa"]
+[ext_resource type="Script" path="res://Scenes/AjustesScene/ajustes_scene.gd" id="1_tq74j"]
+[ext_resource type="FontFile" uid="uid://bm1yrc41rrxlf" path="res://assets/fonts/VCR_OSD_MONO_1.001.ttf" id="2_u8j0c"]
 
 [node name="AjustesScene" type="Control"]
 layout_mode = 3
@@ -9,23 +12,61 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_tq74j")
 
-[node name="Label" type="Label" parent="."]
+[node name="Background" type="TextureRect" parent="."]
+modulate = Color(0.333333, 0.333333, 0.333333, 1)
+layout_mode = 0
+offset_right = 640.0
+offset_bottom = 360.0
+texture = ExtResource("1_rg5oa")
+
+[node name="MainMenuButton" parent="." instance=ExtResource("1_qpwrc")]
+layout_mode = 0
+label_text = "Voltar"
+next_scene = "res://scenes/MainMenuScene/MainMenu.tscn"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+z_index = 1
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -11.5
-offset_right = 20.0
-offset_bottom = 11.5
+offset_left = -58.0
+offset_top = -20.0
+offset_right = 58.0
+offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Tela de Ajustes"
+theme_override_constants/separation = 0
+alignment = 1
 
-[node name="MainMenuButton" parent="." instance=ExtResource("1_qpwrc")]
-layout_mode = 0
-label_text = "Voltar"
-next_scene = "res://scenes/MainMenuScene/MainMenu.tscn"
+[node name="Ajustes" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_u8j0c")
+theme_override_font_sizes/font_size = 21
+text = "Ajustes"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="_spacing" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="Music" type="CheckButton" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_u8j0c")
+button_pressed = true
+text = "Música "
+icon_alignment = 2
+
+[node name="SFX" type="CheckButton" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_u8j0c")
+button_pressed = true
+text = "Efeitos Sonoros "
+
+[connection signal="toggled" from="VBoxContainer/Music" to="." method="_on_music_toggled"]
+[connection signal="toggled" from="VBoxContainer/SFX" to="." method="_on_sfx_toggled"]

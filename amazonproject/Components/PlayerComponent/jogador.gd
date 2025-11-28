@@ -4,7 +4,13 @@ extends CharacterBody2D
 
 @onready var attack_timer : Timer = $AttackCooldown
 
-@export var speed: float = 150
+@onready var walking_sound = $WalkingSound # Som dos passos
+@onready var attack_sound = $AttackSound # Som de ataque (como só tem o "tacape", por enquanto, então não especifiquei "de qual arma")
+@onready var fire_trail_sound = $"FireTrailSound" # Som da 1ª habilidade, "rastro de fogo"
+@onready var taking_damage_sound = $"TakingDamageSound"
+@onready var die_sound = $"DieSound"
+
+
 @export var attack_cooldown_time: float = 1.0
 
 @export var attack_damage: float = 5.0
@@ -12,6 +18,8 @@ extends CharacterBody2D
 const DASH_SPEED = 900
 var dashing = false
 var can_dash = true
+var taking_damage = false
+var dying = false
 
 var is_attacking = false
 var is_alive = true
@@ -47,16 +55,22 @@ func _physics_process(delta):
 	
 	if fire_trail_active and velocity != Vector2.ZERO:
 		spawn_fire_trail()
+		
 	
 func move_entity(direction: Vector2):
-	velocity = direction.normalized() * speed
+	velocity = direction.normalized() * Global.player_speed
 	move_and_slide()
+	# Som dos passos se estiver andando (velocity):
+	if velocity:
+		walking_sound.is_walking = true
+	else:
+		walking_sound.is_walking = false
 
 func handle_input():
 	var move_direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	
 	if Input.is_action_just_pressed("dash") and can_dash:
-		dashing = true
+		player_dash(move_direction)
 		can_dash = false
 		$DashTimer.start()
 		$DashCooldown.start() 
@@ -65,7 +79,7 @@ func handle_input():
 		player_dash(move_direction)
 	else:
 		move_entity(move_direction)
-		
+
 	if Input.is_action_just_pressed("attack"):
 		attack()
 			
@@ -73,32 +87,134 @@ func handle_input():
 		weapon_equiped = "tacape"
 		print("tacape equipado")
 	elif Input.is_action_just_pressed("equip_lanca"):
-		weapon_equiped = "lanca"
-		print("lanca_equipada")
+		if PlayerInventory.weapons.has("Lança de Madeira Petrificada"):
+			weapon_equiped = "lanca"
+			print("lanca_equipada")
+		else:
+			print("O player nao tem a lanca")
 	elif Input.is_action_just_pressed("equip_boleadeira"):
-		weapon_equiped = "boleadeira"
-		print("boleadeira equipada")
+		if PlayerInventory.weapons.has("Boleadeira de Cipó"):
+			weapon_equiped = "boleadeira"
+			print("boleadeira equipada")
+		else:
+			print("O player nao tem a boleadeira")
 	elif Input.is_action_just_pressed("equip_zarabatana"):
-		weapon_equiped = "zarabatana"
-		print("zarabatana equipada")
+		if PlayerInventory.weapons.has("Zarabatana Espiritual"):
+			weapon_equiped = "zarabatana"
+			print("zarabatana equipada")
+		else:
+			print("O player nao tem a zarabatana")
 		
 	if Input.is_action_just_pressed("CurupiraPower"):
-		activate_curupira_power()
+		if PlayerInventory.powerups.has("Curupira"):
+			activate_curupira_power()
+		else: 
+			print("O player nao tem esse poder ainda")
 	elif Input.is_action_just_pressed("IaraPower"):
-		activate_iara_power()
+		if PlayerInventory.powerups.has("Iara"):
+			activate_iara_power()
+		else:
+			print("O player nao tem esse poder ainda")
 	elif Input.is_action_just_pressed("BoitataPower"):
-		activate_boitata_power()
-		
-		
+		if PlayerInventory.powerups.has("Boitata"):
+			activate_boitata_power()
+		else:
+			print("O player nao tem esse poder ainda")
 func player_dash(direction: Vector2):
+	dashing = true
+	can_dash = false
 	velocity = direction.normalized() * DASH_SPEED
 
+<<<<<<< HEAD
+=======
+func update_animation():
+	if is_attacking:
+		match last_direction:
+			"right":
+				if animations.animation != "RightAttacking":
+					animations.play("RightAttacking")
+			"left":
+				if animations.animation != "LeftAttacking":
+					animations.play("LeftAttacking")
+			"down":
+				if animations.animation != "DownAttacking":
+					animations.play("DownAttacking")
+			"up":
+				if animations.animation != "UpAttacking":
+					animations.play("UpAttacking")
+	elif dying:
+		match last_direction:
+			"right":
+				animations.play("LeftDying")
+				await animations.animation_finished
+				die()
+			"left":
+				animations.play("LeftDying")
+				await animations.animation_finished
+				die()
+			"down":
+				animations.play("LeftDying")
+				await animations.animation_finished
+				die()
+			"up":
+				animations.play("LeftDying")
+				await animations.animation_finished
+				die()
+			
+	elif taking_damage:
+		match last_direction:
+			"right":
+				animations.play("RightDamage")
+				await animations.animation_finished
+				taking_damage = false
+			"left":
+				animations.play("LeftDamage")
+				await animations.animation_finished
+				taking_damage = false
+			"down":
+				animations.play("DownDamage")
+				await animations.animation_finished
+				taking_damage = false
+			"up":
+				animations.play("UpDamage")
+				await animations.animation_finished
+				taking_damage = false
+				
+	elif velocity == Vector2.ZERO:
+		
+		match last_direction:
+			"right":
+				animations.play("RightIdle")
+			"left":
+				animations.play("LeftIdle")
+			"down":
+				animations.play("DownIdle")
+			"up":
+				animations.play("UpIdle")
+	else:
+		if velocity.x > 0:
+			animations.play("LeftWalking")
+			last_direction = "right"
+		elif velocity.x < 0:
+			animations.play("RightWalking")
+			last_direction = "left"
+		elif velocity.y > 0:
+			animations.play("DownWalking")
+			last_direction = "down"
+		else:
+			animations.play("UpWalking")
+			last_direction = "up"
+
+>>>>>>> 122ba2e549a967e518a0e4b6f0a9cc64e6f7ecbb
 func activate_curupira_power():
 	if not can_use_fire_trail:
 		return
 		
 	fire_trail_active = true
 	can_use_fire_trail = false
+	
+	# Som do RASTRO DE FOGO!
+	fire_trail_sound.play_loop(fire_trail_sound.loop_start_time)
 	
 	await get_tree().create_timer(fire_trail_duration).timeout
 	fire_trail_active = false
@@ -127,7 +243,7 @@ func activate_iara_power():
 	
 	await get_tree().create_timer(water_wave_cooldown).timeout
 	can_use_water_wave = true
-	
+
 func activate_boitata_power():
 	if not can_use_fire_beam:
 		return
@@ -164,12 +280,15 @@ func attack():
 			print("No weapon equipped")
 			
 func tacape_attack():
+	attack_sound.play(0.1) # Tocar som de ATAQUE
 	for enemy in get_overlapping_bodies():
 		if enemy.is_in_group("enemies"):
 			enemy.take_damage(10)
 			var direction = enemy.global_position - global_position
 			var force = 200.0 # ajuste conforme necessário
 			enemy.apply_knockback(direction, force)
+		elif enemy.is_in_group("Boss"):
+			enemy.take_damage(10)
 
 func lanca_attack():
 	for enemy in get_overlapping_bodies():
@@ -228,21 +347,36 @@ func get_overlapping_bodies():
 
 
 func _on_melee_attack_area_body_exited(body: Node2D) -> void:
-	if body.is_in_group("enemies"):
+	if body.is_in_group("enemies") or body.is_in_group("Boss"):
 		enemies_in_melee_range.erase(body)
 
 
 func _on_lanca_attack_area_body_entered(body: Node2D) -> void:
-	if body.is_in_group("enemies"):
+	if body.is_in_group("enemies") or body.is_in_group("Boss"):
 		enemies_in_lanca_range.append(body)
 
 
 func _on_lanca_attack_area_body_exited(body: Node2D) -> void:
-	if body.is_in_group("enemies"):
+	if body.is_in_group("enemies") or body.is_in_group("Boss"):
 		enemies_in_lanca_range.erase(body)
 
 
 func _on_melee_attack_hurtbox_body_entered(body: Node2D) -> void:
-	if body.is_in_group("enemies"):
+	if body.is_in_group("enemies") or body.is_in_group("Boss"):
 		enemies_in_melee_range.append(body)
 		print(enemies_in_melee_range)
+
+func take_damage(amount: int):
+	if not dashing:
+		taking_damage_sound.play()
+		taking_damage = true
+		Global.player_health -= amount
+		print(Global.player_health)
+		if Global.player_health <= 0:
+			dying = true
+		
+func die():
+	die_sound.play()
+	await get_tree().create_timer(0.5).timeout
+	if is_inside_tree():
+		get_tree().change_scene_to_file("res://Scenes/GameOver/GameOverScene.tscn")

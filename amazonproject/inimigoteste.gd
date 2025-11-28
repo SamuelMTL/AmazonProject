@@ -1,7 +1,7 @@
 class_name Enemy2
 extends CharacterBody2D
 
-@export var max_health: int = 100
+@export var max_health: int = 10
 var current_health: int = max_health
 
 @export var move_speed: float = 50.0
@@ -11,6 +11,9 @@ var current_health: int = max_health
 
 var knockback_velocity: Vector2 = Vector2.ZERO
 var knockback_time: float = 0.0
+var room_id = 0
+
+signal died(room_id)
 
 @onready var sprites = $Sprite2D
 @onready var player = get_tree().get_first_node_in_group("Player")
@@ -89,6 +92,7 @@ func drop_item(enemy: String):
 	
 func die():
 	drop_item("espantalho")
+	emit_signal("died", room_id)
 	queue_free()
 	Global.enemy_counter -= 1
 	
