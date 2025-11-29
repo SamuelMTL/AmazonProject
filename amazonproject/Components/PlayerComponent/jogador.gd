@@ -366,15 +366,16 @@ func _on_melee_attack_hurtbox_body_entered(body: Node2D) -> void:
 
 func take_damage(amount: int):
 	if not dashing:
-		taking_damage_sound.play()
 		taking_damage = true
 		Global.player_health -= amount
 		print(Global.player_health)
-		if Global.player_health <= 0:
+		if Global.player_health > 0:
+			taking_damage_sound.play()
+		else:
+			die_sound.play()
 			dying = true
 		
 func die():
-	die_sound.play()
 	await get_tree().create_timer(0.5).timeout
 	if is_inside_tree():
 		get_tree().change_scene_to_file("res://Scenes/GameOver/GameOverScene.tscn")

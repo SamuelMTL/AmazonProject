@@ -22,6 +22,8 @@ signal died(room_id)
 # This guy doesn't actually attack, he just tries to get close to the player
 @export var follow_radius: float = 70.0 # stop distance from player
 
+@onready var die_sound = $"DieSound"
+
 var inimigos = { 
 		"espantalho": {
 			"dano": 10, 
@@ -91,8 +93,11 @@ func drop_item(enemy: String):
 	get_parent().add_child(item_instance)
 	
 func die():
-	drop_item("espantalho")
 	emit_signal("died", room_id)
+	die_sound.play()
+	get_node("Sprite2D").visible = false
+	await get_tree().create_timer(0.4).timeout
+	drop_item("espantalho")
 	queue_free()
 	Global.enemy_counter -= 1
 	

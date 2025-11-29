@@ -3,6 +3,7 @@ extends Control
 @onready var carteira = $Dinheiro
 @onready var descricao = $Descricao
 @onready var botao_comprar = $Comprar
+@onready var buy_sound = $BuySound
 # Dicionário de poderes e seus preços
 var poderes = {
 	"chama_densa": {"button_path": "HBoxContainer/CurupiraVBox/ChamaDensaButton", "preco": 5, "descricao": "Aumenta o tempo de duração do fogo"},
@@ -122,6 +123,7 @@ func _on_comprar_pressed() -> void:
 		return
 
 	# Faz a compra
+	buy_sound.play()
 	PlayerInventory.remove_coins(preco)
 	atualizar_carteira()
 

@@ -1,10 +1,11 @@
-[gd_scene load_steps=68 format=3 uid="uid://co41wetd6rgg3"]
+[gd_scene load_steps=69 format=3 uid="uid://co41wetd6rgg3"]
 
 [ext_resource type="Script" path="res://inimigoteste.gd" id="1_wogi4"]
 [ext_resource type="Texture2D" uid="uid://dgebw03f0qna" path="res://assets/Inimigos/Spritesheet do Espantalho da Mata andando.png" id="2_ctxvk"]
 [ext_resource type="Texture2D" uid="uid://uxxxjww83ic6" path="res://assets/Inimigos/Spritesheet do Espantalho da Mata andandoesquerda.png" id="3_yussg"]
 [ext_resource type="Texture2D" uid="uid://osl3h653lrk5" path="res://assets/Inimigos/Spritesheet do Espantalho da Mata em repouso.png" id="4_m8thh"]
 [ext_resource type="Texture2D" uid="uid://djn68ptuagy04" path="res://assets/Inimigos/Spritesheet do Espantalho da Mata morrendo.png" id="5_xl7x2"]
+[ext_resource type="AudioStream" uid="uid://dgosvbt5ql5y0" path="res://assets/sound/sfx/die.wav" id="6_reecg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6by0k"]
 atlas = ExtResource("2_ctxvk")
@@ -488,3 +489,7 @@ animation = &"EspantalhoAndandoDireita"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 11)
 shape = SubResource("CapsuleShape2D_ij6vw")
+
+[node name="DieSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_reecg")
+bus = &"SFX"

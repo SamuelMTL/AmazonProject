@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://h4w0awd207em"]
+[gd_scene load_steps=13 format=3 uid="uid://h4w0awd207em"]
 
 [ext_resource type="Script" path="res://item.gd" id="1_d1y5t"]
 [ext_resource type="Texture2D" uid="uid://bjmxgpmtps4ao" path="res://assets/collectibles/FlorLua.png" id="2_t7fh8"]
 [ext_resource type="Texture2D" uid="uid://bw7nujm2oordb" path="res://assets/collectibles/sheet-ResinaAncestral.png" id="3_0m5e5"]
+[ext_resource type="AudioStream" uid="uid://sfmli56htmwn" path="res://assets/sound/sfx/item_collect.wav" id="4_qd2oh"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lel68"]
 atlas = ExtResource("3_0m5e5")
@@ -74,5 +75,9 @@ autoplay = "default"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_4h782")
+
+[node name="CollectSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_qd2oh")
+bus = &"SFX"
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

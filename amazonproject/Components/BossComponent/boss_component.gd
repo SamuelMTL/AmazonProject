@@ -15,6 +15,9 @@ var lanca_attack_timer := 2
 
 var boss_health = 100
 
+@onready var taking_damage_sound = $"TakingDamageSound"
+@onready var die_sound = $"DieSound"
+
 func _ready():
 	player = get_tree().get_first_node_in_group("Player")
 	
@@ -51,13 +54,16 @@ func start_attack_cycle() -> void:
 	
 func take_damage(amount: int):
 	boss_health -= amount
-	print("boss hit")
-	if boss_health <= 0:
-		die()
-	else:
+	print("boss hit (", boss_health, " hp)")
+	if boss_health > 0:
+		taking_damage_sound.play()
 		animations.play("damage")
 		await animations.animation_finished
 		animations.play("idle")
+	else:
+		die_sound.play()
+		die()
+		
 		
 func die():
 	animations.play("dying")

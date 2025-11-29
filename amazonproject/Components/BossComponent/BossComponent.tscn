@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://bcja8y5qwoe8v" path="res://assets/dungeon/curupiraboss-Sheet-Sheet.png" id="4_o750x"]
 [ext_resource type="Texture2D" uid="uid://c8gyji130xvtd" path="res://assets/dungeon/curupiraboss-Sheet-lancaattack.png" id="5_20cwi"]
 [ext_resource type="Texture2D" uid="uid://ita7ki1c1dqu" path="res://assets/dungeon/curupiraboss-Sheet-soudattack.png" id="7_v47wd"]
+[ext_resource type="AudioStream" uid="uid://dgosvbt5ql5y0" path="res://assets/sound/sfx/die.wav" id="2_mg6me"]
+[ext_resource type="AudioStream" uid="uid://dpvhddvnhqv16" path="res://assets/sound/sfx/taking_damage.wav" id="3_3avn4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dbuw1"]
 size = Vector2(105, 117)
@@ -311,5 +313,13 @@ autoplay = "idle"
 [node name="FireAttack" type="Timer" parent="."]
 wait_time = 10.0
 autostart = true
+
+[node name="DieSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_mg6me")
+bus = &"SFX"
+
+[node name="TakingDamageSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_3avn4")
+bus = &"SFX"
 
 [connection signal="timeout" from="FireAttack" to="." method="_on_fire_attack_timeout"]
