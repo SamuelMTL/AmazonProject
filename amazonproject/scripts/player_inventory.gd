@@ -1,6 +1,6 @@
 extends Node
 
-var coins: int = 100
+var coins: int = 0
 var collectibles: Dictionary = {
 	"Resina Ancestral": {"quantidade": 2, "preco": 5},
 	"Flores da Lua": {"quantidade": 1, "preco": 7}
