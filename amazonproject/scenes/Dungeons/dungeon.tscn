@@ -22,12 +22,14 @@ position = Vector2(963, 1030)
 
 [node name="Inventory" parent="." instance=ExtResource("4_d3203")]
 visible = false
+z_index = 20
 offset_left = 963.0
 offset_top = 1030.0
 offset_right = 963.0
 offset_bottom = 1030.0
 
 [node name="PauseComponent" parent="." instance=ExtResource("4_cufjj")]
+z_index = 20
 
 [node name="Dungeon Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_6k52l")

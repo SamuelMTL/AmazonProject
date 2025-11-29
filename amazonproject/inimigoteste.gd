@@ -1,7 +1,7 @@
 class_name Enemy2
 extends CharacterBody2D
 
-@export var max_health: int = 10
+@export var max_health: int = 20
 var current_health: int = max_health
 
 @export var move_speed: float = 50.0
@@ -13,14 +13,19 @@ var knockback_velocity: Vector2 = Vector2.ZERO
 var knockback_time: float = 0.0
 var room_id = 0
 
+var can_attack = true
+
+var player_in_range: Node2D = null
+var attack_delay := 0.2
+
 signal died(room_id)
 
+@onready var attack_timer = $Timer
 @onready var sprites = $Sprite2D
 @onready var player = get_tree().get_first_node_in_group("Player")
 
 @export var chase_radius: float = 250.0
-# This guy doesn't actually attack, he just tries to get close to the player
-@export var follow_radius: float = 70.0 # stop distance from player
+@export var follow_radius: float = 25.0 
 
 var inimigos = { 
 		"espantalho": {
@@ -63,9 +68,9 @@ func _physics_process(delta: float) -> void:
 	var direction: Vector2 = player.global_position - global_position
 	
 	var distance = direction.length()
-	#if distance > chase_radius:
-		#transitioned.emit(self, "wander")
-		#return
+	if distance > chase_radius:
+		velocity = Vector2.ZERO
+		return
 	velocity = direction.normalized()* move_speed
 	
 	if distance <= follow_radius:
@@ -83,7 +88,13 @@ func take_damage(amount: int):
 	if current_health <= 0:
 		die()
 		
-		
+func attack(body: Node2D): 
+	await get_tree().create_timer(0.2).timeout
+	if body.is_in_group("Player") and can_attack == true:
+		body.take_damage(10)
+		can_attack = false
+		attack_timer.start()
+			
 func drop_item(enemy: String):
 	var item = preload("res://Components/InventarioComponent/item.tscn")
 	var item_instance = item.instantiate()
@@ -100,4 +111,22 @@ func choose_sprite(enemy: String):
 	sprites.play(inimigos[enemy]["animacoes"]["walk"]["right"])
 	
 		
-	
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body.is_in_group("Player"):
+		player_in_range = body
+		start_attack_delay()
+
+
+func _on_timer_timeout() -> void:
+	can_attack = true
+
+
+func _on_area_2d_body_exited(body: Node2D) -> void:
+	if body == player_in_range:
+		player_in_range = null
+		
+func start_attack_delay():
+	await get_tree().create_timer(attack_delay).timeout
+
+	if player_in_range and can_attack:
+		attack(player_in_range)

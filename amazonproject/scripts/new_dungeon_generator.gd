@@ -113,7 +113,7 @@ func build_room(x, y, is_first_room=false):
 	enemies_room[room_num] = 1  # sala começa com 1 inimigo
 	room.room_id = room_num 
 	
-	spawn_enemy(room)
+	spawn_enemy(room, 3)
 	
 	room.dungeon_controller = self
 	rooms[room_num] = room
@@ -201,14 +201,19 @@ func get_room_by_connections(num_connections, has_top, has_bottom, has_left, has
 			# Se nenhuma correspondência exata for encontrada, escolhemos aleatoriamente entre três salas padrão
 			return room_scene
 		
-func spawn_enemy(room):
-	var enemy = inimigo.instantiate()
-	add_child(enemy)
-	enemy.position = room.position + Vector2(320, 180) # centro aproximado da sala
-	enemy.room_id = room.room_id  
-	Global.enemy_counter += 1
-	enemy.connect("died", Callable(self, "enemy_died"))
-	print("Inimigo spawnado em: ", enemy.position, " | total inimigos: ", Global.enemy_counter)
+func spawn_enemy(room, quantidade := 1):
+	for i in range(quantidade):
+		var enemy = inimigo.instantiate()
+		add_child(enemy)
+
+		var offset = Vector2(randf_range(-100, 100), randf_range(-100, 100))
+		enemy.position = room.position + Vector2(320, 180) + offset
+		enemy.room_id = room.room_id    
+
+		Global.enemy_counter += 1
+		enemy.connect("died", Callable(self, "enemy_died"))
+
+		print("Inimigo spawnado em: ", enemy.position, " | total inimigos: ", Global.enemy_counter)
 
 func boss_room():
 	get_tree().change_scene_to_file("res://Scenes/Dungeons/MataDaTerraFirme/BossRoom.tscn")
