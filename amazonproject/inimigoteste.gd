@@ -56,7 +56,6 @@ var inimigos = {
 
 func _ready() -> void:
 	z_index = 10
-	choose_sprite("espantalho")
 	print("Enemy ready: ", self)
 
 func _physics_process(delta: float) -> void:
@@ -76,6 +75,7 @@ func _physics_process(delta: float) -> void:
 	if distance <= follow_radius:
 		velocity = Vector2.ZERO
 	
+	choose_sprite("espantalho", velocity)
 	move_and_slide()
 
 func apply_knockback(direction: Vector2, force: float):
@@ -107,8 +107,14 @@ func die():
 	queue_free()
 	Global.enemy_counter -= 1
 	
-func choose_sprite(enemy: String):
-	sprites.play(inimigos[enemy]["animacoes"]["walk"]["right"])
+func choose_sprite(enemy: String, velocity: Vector2):
+	if velocity.x > 0:
+		sprites.play(inimigos[enemy]["animacoes"]["walk"]["right"])
+	elif velocity.x < 0:
+		sprites.play(inimigos[enemy]["animacoes"]["walk"]["left"])
+	else:
+		# Mantém idle baseado na última direção
+		sprites.play(inimigos[enemy]["animacoes"]["idle"]["right"])
 	
 		
 func _on_area_2d_body_entered(body: Node2D) -> void:
