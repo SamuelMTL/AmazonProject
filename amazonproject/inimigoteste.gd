@@ -5,7 +5,7 @@ extends CharacterBody2D
 var current_health: int = max_health
 
 @export var move_speed: float = 50.0
-@export var detection_radius: float = 200.0
+@export var detection_radius: float = 100.0
 
 @export var stop_distance: float = 20.0
 
