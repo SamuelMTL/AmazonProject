@@ -33,6 +33,8 @@ signal died(room_id)
 @export var chase_radius: float = 250.0
 @export var follow_radius: float = 25.0 
 
+@onready var die_sound = $"DieSound"
+
 var inimigos = { 
 		"espantalho": {
 			"dano": 10, 
@@ -163,6 +165,7 @@ func drop_item(enemy: String):
 	get_parent().add_child(item_instance)
 	
 func die():
+
 	if is_dying:
 		return
 
@@ -180,6 +183,11 @@ func die():
 	drop_item("espantalho")
 
 	emit_signal("died", room_id)
+
+
+	die_sound.play()
+
+
 	Global.enemy_counter -= 1
 
 	queue_free()

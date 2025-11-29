@@ -18,6 +18,9 @@ extends Control
 
 @onready var carteira = $Carteira
 
+@onready var buy_sound = $"BuySound"
+@onready var sell_sound = $"SellSound"
+
 var collectibles_prices = {
 	"Resina Ancestral": 2,
 	"Fragmentos de Cipó-Sagrado": 3,
@@ -101,6 +104,8 @@ func sell_collectible(item_name: String, amount: int):
 
 	PlayerInventory.remove_collectible(item_name, amount)
 	PlayerInventory.add_coins(preco_unitario)
+	
+	sell_sound.play()
 
 	# Atualiza visualmente os itens de venda
 	gerar_itens_venda()
@@ -114,6 +119,7 @@ func buy_weapon(weapon_name: String):
 		return false
 	
 	if PlayerInventory.remove_coins(price):
+		buy_sound.play()
 		PlayerInventory.add_weapon(weapon_name)
 		atualizar_carteira()
 		return true
@@ -125,6 +131,7 @@ func buy_armor(armor_name: String):
 		return false
 	
 	if PlayerInventory.remove_coins(price):
+		buy_sound.play()
 		PlayerInventory.add_armor(armor_name)
 		atualizar_carteira()
 		return true

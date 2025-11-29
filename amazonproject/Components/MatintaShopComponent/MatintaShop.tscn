@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://tnrt1ewx2brk"]
+[gd_scene load_steps=7 format=3 uid="uid://tnrt1ewx2brk"]
 
 [ext_resource type="Script" path="res://Components/MatintaShopComponent/matinta_shop.gd" id="1_fdocv"]
 [ext_resource type="Texture2D" uid="uid://cviupvstmji03" path="res://assets/MatintaShop/Group 4.png" id="2_vmuq4"]
 [ext_resource type="Texture2D" uid="uid://b1hgblookf5j6" path="res://assets/MatintaShop/MatintaShopbutton1.png" id="3_bn3um"]
 [ext_resource type="Texture2D" uid="uid://ch4yn16ukvbce" path="res://assets/MatintaShop/MatintaShopbutton2.png" id="4_b6s0f"]
+[ext_resource type="AudioStream" uid="uid://dglfulsg2p7pl" path="res://assets/sound/sfx/item_buy.wav" id="5_11mur"]
+[ext_resource type="AudioStream" uid="uid://cj23nylhaw0ke" path="res://assets/sound/sfx/item_sell.wav" id="6_6fhdr"]
 
 [node name="MatintaShop" type="Control"]
 layout_mode = 3
@@ -193,6 +195,12 @@ offset_top = 75.0
 offset_right = 130.0
 offset_bottom = 98.0
 text = "000"
+
+[node name="BuySound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_11mur")
+
+[node name="SellSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_6fhdr")
 
 [connection signal="pressed" from="TextureRect/VBoxContainer/HBoxContainer/VBoxContainer/VenderButton" to="." method="_on_vender_button_pressed"]
 [connection signal="pressed" from="TextureRect/VBoxContainer/HBoxContainer/VBoxContainer2/ComprarButton" to="." method="_on_comprar_button_pressed"]
