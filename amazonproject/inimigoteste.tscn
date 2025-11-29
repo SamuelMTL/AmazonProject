@@ -1,4 +1,4 @@
-[gd_scene load_steps=128 format=3 uid="uid://co41wetd6rgg3"]
+[gd_scene load_steps=129 format=3 uid="uid://co41wetd6rgg3"]
 
 [ext_resource type="Script" path="res://inimigoteste.gd" id="1_wogi4"]
 [ext_resource type="Texture2D" uid="uid://dgebw03f0qna" path="res://assets/Inimigos/Spritesheet do Espantalho da Mata andando.png" id="2_ctxvk"]
@@ -8,9 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cwm8jdc6utarf" path="res://assets/dungeon/Espantalho/Espantalho Ataque 2.png" id="5_2qc1p"]
 [ext_resource type="Texture2D" uid="uid://djn68ptuagy04" path="res://assets/Inimigos/Spritesheet do Espantalho da Mata morrendo.png" id="5_xl7x2"]
 [ext_resource type="Texture2D" uid="uid://c0mvcbj3fwifa" path="res://assets/dungeon/Espantalho/Espantalho Sofrendo.png" id="6_i137b"]
-
 [ext_resource type="AudioStream" uid="uid://dgosvbt5ql5y0" path="res://assets/sound/sfx/die.wav" id="6_reecg"]
-
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6by0k"]
 atlas = ExtResource("2_ctxvk")
@@ -931,9 +929,10 @@ shape = SubResource("CircleShape2D_jc47o")
 [node name="Timer" type="Timer" parent="."]
 wait_time = 3.0
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [node name="DieSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_reecg")
 bus = &"SFX"
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
