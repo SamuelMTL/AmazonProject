@@ -1,7 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://bja3ald42xx0m"]
+[gd_scene load_steps=18 format=3 uid="uid://bja3ald42xx0m"]
 
 [ext_resource type="Texture2D" uid="uid://dmi0ddjp56pqc" path="res://assets/CurupiraAbility/firespritesheet.png" id="1_24y28"]
 [ext_resource type="Script" path="res://Components/BossAttacks/FireAttack/boss_fire_attack.gd" id="1_wnmll"]
+[ext_resource type="AudioStream" uid="uid://bgxuxxrvexhhb" path="res://assets/sound/sfx/fire_trail.wav" id="3_4q73f"]
+[ext_resource type="Script" path="res://Components/BossAttacks/FireAttack/fire_attack_sound.gd" id="4_t4x2h"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gp15a"]
 atlas = ExtResource("1_24y28")
@@ -215,5 +217,10 @@ libraries = {
 "": SubResource("AnimationLibrary_kr8dg")
 }
 autoplay = "new_animation"
+
+[node name="FireAttackSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_4q73f")
+bus = &"SFX"
+script = ExtResource("4_t4x2h")
 
 [connection signal="body_entered" from="AnimatedSprite2D/RigidBody2D" to="." method="_on_rigid_body_2d_body_entered"]

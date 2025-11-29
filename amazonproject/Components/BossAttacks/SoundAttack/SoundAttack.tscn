@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://1vkvwcg8jf03"]
+[gd_scene load_steps=8 format=3 uid="uid://1vkvwcg8jf03"]
 
 [ext_resource type="Script" path="res://Components/BossAttacks/SoundAttack/sound_attack.gd" id="1_gio7h"]
 [ext_resource type="Texture2D" uid="uid://cqnr7urj4j0db" path="res://assets/dungeon/soudattack-Sheet.png" id="2_pyhjb"]
+[ext_resource type="AudioStream" uid="uid://drlvd0sxtofuj" path="res://assets/sound/sfx/boss-sound.wav" id="3_m6lon"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7uykr"]
 atlas = ExtResource("2_pyhjb")
@@ -42,5 +43,10 @@ frame_progress = 0.657685
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ColorRect/Area2D"]
 position = Vector2(1, 0)
 shape = SubResource("RectangleShape2D_6ulfu")
+
+[node name="SoundSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_m6lon")
+volume_db = -5.0
+autoplay = true
 
 [connection signal="body_entered" from="ColorRect/Area2D" to="." method="_on_area_2d_body_entered"]

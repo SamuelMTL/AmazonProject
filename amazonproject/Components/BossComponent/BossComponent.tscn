@@ -1,14 +1,14 @@
-[gd_scene load_steps=46 format=3 uid="uid://uainjgnhg6ty"]
+[gd_scene load_steps=48 format=3 uid="uid://uainjgnhg6ty"]
 
 [ext_resource type="Script" path="res://Components/BossComponent/boss_component.gd" id="1_iwkic"]
 [ext_resource type="Texture2D" uid="uid://c17dlab5sogop" path="res://assets/dungeon/curupiraboss-Sheet-dano.png" id="2_fyy2k"]
+[ext_resource type="AudioStream" uid="uid://dgosvbt5ql5y0" path="res://assets/sound/sfx/die.wav" id="2_mg6me"]
 [ext_resource type="Texture2D" uid="uid://6am6b6q8l50v" path="res://assets/dungeon/curupiraboss-Sheet-idle.png" id="2_vdhxb"]
 [ext_resource type="Texture2D" uid="uid://42tvyypjnalf" path="res://assets/dungeon/curupiraboss-Sheet-dying.png" id="3_00sx1"]
+[ext_resource type="AudioStream" uid="uid://dpvhddvnhqv16" path="res://assets/sound/sfx/taking_damage.wav" id="3_3avn4"]
 [ext_resource type="Texture2D" uid="uid://bcja8y5qwoe8v" path="res://assets/dungeon/curupiraboss-Sheet-Sheet.png" id="4_o750x"]
 [ext_resource type="Texture2D" uid="uid://c8gyji130xvtd" path="res://assets/dungeon/curupiraboss-Sheet-lancaattack.png" id="5_20cwi"]
 [ext_resource type="Texture2D" uid="uid://ita7ki1c1dqu" path="res://assets/dungeon/curupiraboss-Sheet-soudattack.png" id="7_v47wd"]
-[ext_resource type="AudioStream" uid="uid://dgosvbt5ql5y0" path="res://assets/sound/sfx/die.wav" id="2_mg6me"]
-[ext_resource type="AudioStream" uid="uid://dpvhddvnhqv16" path="res://assets/sound/sfx/taking_damage.wav" id="3_3avn4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dbuw1"]
 size = Vector2(105, 117)
