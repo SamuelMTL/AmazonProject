@@ -57,13 +57,13 @@ func take_damage(amount: int):
 	print("boss hit (", boss_health, " hp)")
 	if boss_health > 0:
 		taking_damage_sound.play()
-	else:
-		die_sound.play()
-		die()
-	else:
 		animations.play("damage")
 		await animations.animation_finished
 		animations.play("idle")
+	else:
+		die_sound.play()
+		die()
+		
 		
 func die():
 	animations.play("dying")
