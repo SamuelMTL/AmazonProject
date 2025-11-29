@@ -90,7 +90,7 @@ func use_fire_attack():
 		get_tree().current_scene.add_child(fire)
 	await animations.animation_finished
 	animations.play("idle")
-	
+
 func use_sound_attack():
 	animations.play("soundattack")
 	await get_tree().create_timer(1.5).timeout

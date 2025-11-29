@@ -1,14 +1,13 @@
 [gd_scene load_steps=7 format=3 uid="uid://dmrg8ca1oxk27"]
 
-[ext_resource type="Script" path="res://Scenes/Dungeons/MataDaTerraFirme/boss_room.gd" id="1_5phhs"]
 [ext_resource type="Script" path="res://Scenes/Dungeons/MataDaTerraFirme/camera_2d.gd" id="2_mofn3"]
 [ext_resource type="PackedScene" uid="uid://dcnpjpoqff5ms" path="res://Components/PlayerComponent/Jogador.tscn" id="2_vafl1"]
 [ext_resource type="PackedScene" uid="uid://uainjgnhg6ty" path="res://Components/BossComponent/BossComponent.tscn" id="3_yb44t"]
 [ext_resource type="Texture2D" uid="uid://c02thxopc3ysg" path="res://assets/dungeon/Dungeon.png" id="4_vn0ry"]
 [ext_resource type="Texture2D" uid="uid://bu3kb2sn1vosl" path="res://assets/dungeon/DungeonTopo.png" id="6_37f5c"]
+[ext_resource type="AudioStream" uid="uid://djlr7ll882ve4" path="res://assets/sound/music/boss_1.mp3" id="7_k3h8r"]
 
 [node name="BossRoom" type="Node2D"]
-script = ExtResource("1_5phhs")
 
 [node name="Camera2D" type="Camera2D" parent="." groups=["Cameras"]]
 position = Vector2(320, 180)
@@ -31,3 +30,9 @@ z_index = 10
 position = Vector2(321, 180)
 scale = Vector2(1, 1.125)
 texture = ExtResource("6_37f5c")
+
+[node name="BossSoundtrack" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_k3h8r")
+autoplay = true
+bus = &"Music"
+parameters/looping = true

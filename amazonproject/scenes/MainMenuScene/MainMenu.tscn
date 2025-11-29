@@ -37,7 +37,7 @@ alignment = 1
 [node name="Jogar" parent="VBoxContainer" instance=ExtResource("1_a8k1n")]
 layout_mode = 2
 focus_neighbor_bottom = NodePath("../Opcoes")
-label_text = "Play"
+label_text = "Jogar"
 next_scene = "res://scenes/CutsceneScene/CutsceneScene.tscn"
 
 [node name="Opcoes" parent="VBoxContainer" instance=ExtResource("1_a8k1n")]
