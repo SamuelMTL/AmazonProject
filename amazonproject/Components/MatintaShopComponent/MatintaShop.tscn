@@ -1,11 +1,16 @@
-[gd_scene load_steps=7 format=3 uid="uid://tnrt1ewx2brk"]
+[gd_scene load_steps=12 format=3 uid="uid://tnrt1ewx2brk"]
 
 [ext_resource type="Script" path="res://Components/MatintaShopComponent/matinta_shop.gd" id="1_fdocv"]
 [ext_resource type="Texture2D" uid="uid://cviupvstmji03" path="res://assets/MatintaShop/Group 4.png" id="2_vmuq4"]
 [ext_resource type="Texture2D" uid="uid://b1hgblookf5j6" path="res://assets/MatintaShop/MatintaShopbutton1.png" id="3_bn3um"]
 [ext_resource type="Texture2D" uid="uid://ch4yn16ukvbce" path="res://assets/MatintaShop/MatintaShopbutton2.png" id="4_b6s0f"]
 [ext_resource type="AudioStream" uid="uid://dglfulsg2p7pl" path="res://assets/sound/sfx/item_buy.wav" id="5_11mur"]
+[ext_resource type="Script" path="res://Components/MatintaShopComponent/vender_button.gd" id="5_b222m"]
 [ext_resource type="AudioStream" uid="uid://cj23nylhaw0ke" path="res://assets/sound/sfx/item_sell.wav" id="6_6fhdr"]
+[ext_resource type="Script" path="res://Components/MatintaShopComponent/comprar_button.gd" id="6_741yh"]
+[ext_resource type="Script" path="res://Components/MatintaShopComponent/armaduras_button.gd" id="7_y04hn"]
+[ext_resource type="Script" path="res://Components/MatintaShopComponent/armas_button.gd" id="8_onmak"]
+[ext_resource type="Script" path="res://Components/MatintaShopComponent/voltar.gd" id="9_l67oc"]
 
 [node name="MatintaShop" type="Control"]
 layout_mode = 3
@@ -49,6 +54,7 @@ layout_mode = 2
 toggle_mode = true
 texture_normal = ExtResource("3_bn3um")
 texture_pressed = ExtResource("4_b6s0f")
+script = ExtResource("5_b222m")
 
 [node name="VenderLabel" type="Label" parent="TextureRect/VBoxContainer/HBoxContainer/VBoxContainer/VenderButton"]
 layout_mode = 1
@@ -75,6 +81,7 @@ toggle_mode = true
 button_pressed = true
 texture_normal = ExtResource("3_bn3um")
 texture_pressed = ExtResource("4_b6s0f")
+script = ExtResource("6_741yh")
 
 [node name="ComprarLabel" type="Label" parent="TextureRect/VBoxContainer/HBoxContainer/VBoxContainer2/ComprarButton"]
 layout_mode = 1
@@ -119,6 +126,7 @@ toggle_mode = true
 button_pressed = true
 texture_normal = ExtResource("3_bn3um")
 texture_pressed = ExtResource("4_b6s0f")
+script = ExtResource("7_y04hn")
 
 [node name="ArmadurasLabel" type="Label" parent="TextureRect/VBoxContainer/ComprarContainer/HBoxContainer/ArmadurasButton"]
 layout_mode = 1
@@ -141,6 +149,7 @@ layout_mode = 2
 toggle_mode = true
 texture_normal = ExtResource("3_bn3um")
 texture_pressed = ExtResource("4_b6s0f")
+script = ExtResource("8_onmak")
 
 [node name="ArmasLabel" type="Label" parent="TextureRect/VBoxContainer/ComprarContainer/HBoxContainer/ArmasButton"]
 layout_mode = 1
@@ -187,6 +196,7 @@ offset_top = 51.0
 offset_right = 24.24
 offset_bottom = 25.96
 flat = true
+script = ExtResource("9_l67oc")
 
 [node name="Carteira" type="Label" parent="."]
 layout_mode = 0

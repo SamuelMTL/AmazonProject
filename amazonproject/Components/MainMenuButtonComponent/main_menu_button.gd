@@ -10,6 +10,7 @@ signal click_finished
 
 func _ready() -> void:
 	text = label_text
+	grab_focus()
 	click_sound.volume_db = -5
 	hover_sound.volume_db = -15
 

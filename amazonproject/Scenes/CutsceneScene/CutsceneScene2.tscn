@@ -1,6 +1,53 @@
-[gd_scene load_steps=2 format=3 uid="uid://c3dm2l5a5y2cn"]
+[gd_scene load_steps=15 format=3 uid="uid://c3dm2l5a5y2cn"]
 
+[ext_resource type="Script" path="res://Scenes/CutsceneScene/cutscene_scene_2.gd" id="1_54spm"]
 [ext_resource type="PackedScene" uid="uid://c6yd2kl7pfr2f" path="res://Components/MainMenuButtonComponent/MainMenuButton.tscn" id="1_t6u43"]
+[ext_resource type="Texture2D" uid="uid://14yyg5lmchy8" path="res://assets/cutscene2/cutscene2.png" id="2_fvarl"]
+[ext_resource type="Texture2D" uid="uid://cv3xa7yjvrg1i" path="res://assets/cutscene2/cutscene2 2.png" id="3_ls1dx"]
+[ext_resource type="Texture2D" uid="uid://beg53e8hvb7a" path="res://assets/cutscene2/cutscene2 3.png" id="4_un17s"]
+[ext_resource type="Texture2D" uid="uid://dex1gfamgngk1" path="res://assets/cutscene2/cutscene2 4.png" id="5_2fyl8"]
+[ext_resource type="Texture2D" uid="uid://cuiafesxl3eaj" path="res://assets/cutscene2/cutscene2 5.png" id="6_ab81l"]
+[ext_resource type="Texture2D" uid="uid://dr3qa1to16pou" path="res://assets/cutscene2/cutscene2 6.png" id="7_xcehp"]
+[ext_resource type="Texture2D" uid="uid://ctj6fi5tkrk7y" path="res://assets/cutscene2/cutscene2 7.png" id="8_e6d4c"]
+[ext_resource type="Texture2D" uid="uid://dr7mp60nyvq52" path="res://assets/cutscene2/cutscene2 8.png" id="9_on28y"]
+[ext_resource type="Texture2D" uid="uid://vmyt2hbitdm2" path="res://assets/cutscene2/cutscene2 9.png" id="10_2i00s"]
+
+[sub_resource type="Animation" id="Animation_105ws"]
+resource_name = "cutscene2"
+length = 13.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 5, 6, 7, 8, 9, 11),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("2_fvarl"), ExtResource("3_ls1dx"), ExtResource("4_un17s"), ExtResource("5_2fyl8"), ExtResource("6_ab81l"), ExtResource("7_xcehp"), ExtResource("8_e6d4c"), ExtResource("9_on28y"), ExtResource("10_2i00s")]
+}
+
+[sub_resource type="Animation" id="Animation_illec"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_fvarl")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xco5o"]
+_data = {
+"RESET": SubResource("Animation_illec"),
+"cutscene2": SubResource("Animation_105ws")
+}
 
 [node name="CutsceneScene2" type="Control"]
 layout_mode = 3
@@ -9,8 +56,20 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_54spm")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_xco5o")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(320, 180)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_fvarl")
 
 [node name="MainMenuButton" parent="." instance=ExtResource("1_t6u43")]
+layout_mode = 0
 offset_right = 55.0
 offset_bottom = 23.0
 label_text = "Pular cutscene"
