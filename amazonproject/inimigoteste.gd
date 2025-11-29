@@ -154,8 +154,12 @@ func attack(body: Node2D):
 		print("ANIMAÇÃO TOCANDO AGORA:", sprites.animation)
 
 		await sprites.animation_finished
-		print("chegou")
-		body.take_damage(10)
+		if player_in_range == body:
+			print("chegou — PLAYER AINDA NO RANGE")
+			body.take_damage(10)
+		else:
+			print("chegou — MAS PLAYER SAIU DO RANGE, ATAQUE CANCELADO")
+		is_attacking = false
 		attack_timer.start()
 			
 func drop_item(enemy: String):
@@ -220,7 +224,7 @@ func _on_timer_timeout() -> void:
 	can_attack = true
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
-	if body == player_in_range:
+	if body.is_in_group("Player"):
 		player_in_range = null
 		
 func start_attack_delay():
