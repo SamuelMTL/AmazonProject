@@ -1,10 +1,11 @@
-[gd_scene load_steps=69 format=3 uid="uid://co41wetd6rgg3"]
+[gd_scene load_steps=84 format=3 uid="uid://co41wetd6rgg3"]
 
 [ext_resource type="Script" path="res://inimigoteste.gd" id="1_wogi4"]
 [ext_resource type="Texture2D" uid="uid://dgebw03f0qna" path="res://assets/Inimigos/Spritesheet do Espantalho da Mata andando.png" id="2_ctxvk"]
 [ext_resource type="Texture2D" uid="uid://uxxxjww83ic6" path="res://assets/Inimigos/Spritesheet do Espantalho da Mata andandoesquerda.png" id="3_yussg"]
 [ext_resource type="Texture2D" uid="uid://osl3h653lrk5" path="res://assets/Inimigos/Spritesheet do Espantalho da Mata em repouso.png" id="4_m8thh"]
 [ext_resource type="Texture2D" uid="uid://djn68ptuagy04" path="res://assets/Inimigos/Spritesheet do Espantalho da Mata morrendo.png" id="5_xl7x2"]
+[ext_resource type="Texture2D" uid="uid://c0mvcbj3fwifa" path="res://assets/dungeon/Espantalho/Espantalho Sofrendo.png" id="6_i137b"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6by0k"]
 atlas = ExtResource("2_ctxvk")
@@ -246,6 +247,62 @@ region = Rect2(494, 40, 38, 40)
 atlas = ExtResource("5_xl7x2")
 region = Rect2(532, 40, 38, 40)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_lqiry"]
+atlas = ExtResource("6_i137b")
+region = Rect2(0, 0, 32, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n4bls"]
+atlas = ExtResource("6_i137b")
+region = Rect2(32, 0, 32, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4baw0"]
+atlas = ExtResource("6_i137b")
+region = Rect2(64, 0, 32, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vnjob"]
+atlas = ExtResource("6_i137b")
+region = Rect2(96, 0, 32, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_378li"]
+atlas = ExtResource("6_i137b")
+region = Rect2(128, 0, 32, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xjvew"]
+atlas = ExtResource("6_i137b")
+region = Rect2(160, 0, 32, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aeeu7"]
+atlas = ExtResource("6_i137b")
+region = Rect2(192, 0, 32, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ltmp"]
+atlas = ExtResource("6_i137b")
+region = Rect2(224, 0, 32, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mix3v"]
+atlas = ExtResource("6_i137b")
+region = Rect2(256, 0, 32, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qc20r"]
+atlas = ExtResource("6_i137b")
+region = Rect2(288, 0, 32, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gjv2a"]
+atlas = ExtResource("6_i137b")
+region = Rect2(320, 0, 32, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qsoyk"]
+atlas = ExtResource("6_i137b")
+region = Rect2(352, 0, 32, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2wfvw"]
+atlas = ExtResource("6_i137b")
+region = Rect2(384, 0, 32, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rgfm2"]
+atlas = ExtResource("6_i137b")
+region = Rect2(416, 0, 32, 36)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_f1ifu"]
 animations = [{
 "frames": [{
@@ -419,7 +476,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_7hdu2")
 }],
-"loop": true,
+"loop": false,
 "name": &"EspantalhoMorrendoDireita",
 "speed": 5.0
 }, {
@@ -469,8 +526,60 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ax2fs")
 }],
-"loop": true,
+"loop": false,
 "name": &"EspantalhoMorrendoEsquerda",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_lqiry")
+}, {
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_n4bls")
+}, {
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_4baw0")
+}, {
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_vnjob")
+}, {
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_378li")
+}, {
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_xjvew")
+}, {
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_aeeu7")
+}],
+"loop": false,
+"name": &"EspantalhoSofrendoDireita",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_0ltmp")
+}, {
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_mix3v")
+}, {
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_qc20r")
+}, {
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_gjv2a")
+}, {
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_qsoyk")
+}, {
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_2wfvw")
+}, {
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_rgfm2")
+}],
+"loop": false,
+"name": &"EspantalhoSofrendoEsquerda",
 "speed": 5.0
 }]
 
@@ -486,7 +595,7 @@ script = ExtResource("1_wogi4")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_f1ifu")
-animation = &"EspantalhoAndandoDireita"
+animation = &"EspantalhoMorrendoEsquerda"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, 7)
