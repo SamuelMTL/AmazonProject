@@ -27,42 +27,52 @@ func generate_dungeon():
 	var size = 3
 	dungeon_layout = []  # Reinicializa a matriz
 	
-	# Cria uma matriz 3x3 preenchida com zeros (0), representando espaços vazios
-	for i in range(size):
+	# Cria uma matriz 3x3 preenchida com zeros (0)
+	for y in range(size):
 		dungeon_layout.append([])
-		for j in range(size):
-			dungeon_layout[i].append(0)
+		for x in range(size):
+			dungeon_layout[y].append(0)
 			
-	# Lista de direções possíveis (cima, baixo, direita, esquerda)	
-	var directions = [Vector2(0,1), Vector2(0,-1), Vector2(1,0), Vector2(-1,0)]
-	# Lista para armazenar as salas já criadas e garantir que estejam conectadas
+	# Direções: (x, y)
+	var directions = [
+		Vector2(0, -1), # cima
+		Vector2(0, 1),  # baixo
+		Vector2(-1, 0), # esquerda
+		Vector2(1, 0)   # direita
+	]
+	
 	var visited = []
 	
-	# Define o ponto inicial fixo (1, 2)
+	# Ponto inicial fixo (x, y)
 	var start_x = 2
 	var start_y = 1
-	dungeon_layout[start_x][start_y] = 2 # Marca essa sala inicial com o valor 2
-	visited.append(Vector2(start_x, start_y)) # Adiciona a sala inicial à lista de visitados
 	
-	# Expande o mapa aleatoriamente até atingir o número máximo de salas (max_rooms)
-	while len(visited) <= max_rooms:
-		# Escolhe aleatoriamente uma das salas já visitadas para expandir
-		var current_pos = visited[randi() % len(visited)]
-		directions.shuffle()  # Embaralha direções para caminhos variados
+	# CORREÇÃO: dungeon_layout[y][x]
+	dungeon_layout[start_x][start_y] = 2
+	visited.append(Vector2(start_x, start_y))
+	
+	while visited.size() <= max_rooms:
+		var current = visited[randi() % visited.size()]
+		directions.shuffle()
 		
 		for dir in directions:
-			var new_x = current_pos.x + dir.x
-			var new_y = current_pos.y + dir.y
+			var new_x = current.x + dir.x
+			var new_y = current.y + dir.y
 			
-			# Verifica se a nova posição está dentro dos limites da matriz e se ainda não foi ocupada
-			if new_x >= 0 and new_x < size and new_y >= 0 and new_y < size and dungeon_layout[new_x][new_y] == 0:
-				dungeon_layout[new_x][new_y] = 1
-				visited.append(Vector2(new_x, new_y))
-				break  # Garante que estamos expandindo um caminho válido
+			# Dentro do grid?
+			if new_x >= 0 and new_x < size and new_y >= 0 and new_y < size:
 				
+				# CORREÇÃO: dungeon_layout[y][x]
+				if dungeon_layout[new_x][new_y] == 0:
+					dungeon_layout[new_x][new_y] = 1
+					visited.append(Vector2(new_x, new_y))
+					break
+	
+	# Log para debug
 	for row in dungeon_layout:
 		print(row)
-				
+		
+
 func build_dungeon():
 	# Percorre cada linha da matriz da dungeon
 	for row in range(dungeon_size.y):
@@ -75,6 +85,7 @@ func build_dungeon():
 				# Chama a função para construir a sala na posição correspondente
 				build_room(col, row, is_first_room)
 				
+				
 # Função que constrói visualmente cada sala baseada no layout gerado
 func build_room(x, y, is_first_room=false):
 	# Verifica se há conexões com salas vizinhas
@@ -83,7 +94,7 @@ func build_room(x, y, is_first_room=false):
 	var has_left = x > 0 and dungeon_layout[y][x - 1] > 0
 	var has_right = x < dungeon_size.x - 1 and dungeon_layout[y][x + 1] > 0
 	
-	
+
 	# Conta quantas conexões essa sala possui
 	var num_connections = int(has_top) + int(has_bottom) + int(has_left) + int(has_right)
 	
@@ -93,8 +104,6 @@ func build_room(x, y, is_first_room=false):
 	var room = room_scene.instantiate()
 	add_child(room)
 	
-	var tilemaplayer = room.get_node("MataDeTerraFirmeTilemap")
-	get_room_by_connections(num_connections, has_top, has_bottom, has_left, has_right, tilemaplayer)
 	
 	# Define a posição da sala no mundo do jogo
 	room.position = Vector2(x * 640, y * 360)
@@ -118,11 +127,11 @@ func build_room(x, y, is_first_room=false):
 	room.dungeon_controller = self
 	rooms[room_num] = room
 	
-	room.get_node("Top/CollisionShape2D").disabled = true
-	
-	room.get_node("Left/CollisionShape2D").disabled = true
-	
-	room.get_node("Right/CollisionShape2D").disabled = true
+	room.get_node("Top/CollisionShape2D").disabled =  has_top
+	room.get_node("Bottom/CollisionShape2D").disabled =  has_bottom
+	room.get_node("Left/CollisionShape2D").disabled =  has_left
+	room.get_node("Right/CollisionShape2D").disabled =  has_right
+
 
 	# Tratamento especial para a primeira sala
 	if is_first_room:
