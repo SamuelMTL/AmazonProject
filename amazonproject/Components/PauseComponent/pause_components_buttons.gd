@@ -8,6 +8,7 @@ func _ready() -> void:
 	text = label_text
 	click_sound.volume_db = -5
 	hover_sound.volume_db = -15
+	grab_focus()
 
 func _on_pressed() -> void:
 	click_sound.play()

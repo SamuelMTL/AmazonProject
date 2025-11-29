@@ -379,3 +379,7 @@ func die():
 	await get_tree().create_timer(0.5).timeout
 	if is_inside_tree():
 		get_tree().change_scene_to_file("res://Scenes/GameOver/GameOverScene.tscn")
+	PlayerInventory.armors = []
+	PlayerInventory.weapons = []
+	PlayerInventory.coins = 0
+	PlayerInventory.collectibles = {}

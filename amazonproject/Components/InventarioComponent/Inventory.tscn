@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://d2ynrtn7egk4q"]
+[gd_scene load_steps=3 format=3 uid="uid://d2ynrtn7egk4q"]
 
 [ext_resource type="Script" path="res://Components/InventarioComponent/inventory.gd" id="1_fck8m"]
+[ext_resource type="Script" path="res://Components/InventarioComponent/voltar.gd" id="2_qtwh2"]
 
 [node name="Inventory" type="Control"]
 process_mode = 3
@@ -32,6 +33,7 @@ layout_mode = 2
 [node name="Voltar" type="Button" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
 text = "voltar"
+script = ExtResource("2_qtwh2")
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
