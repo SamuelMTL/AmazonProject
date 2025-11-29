@@ -143,7 +143,7 @@ func take_damage(amount: int):
 	sprites.play(idle_anim)
 	
 func attack(body: Node2D): 
-	if body.is_in_group("Player") and can_attack == true and not is_taking_damage :
+	if body.is_in_group("Player") and can_attack and not is_taking_damage and not is_dying:
 		is_attacking = true
 		can_attack = false
 	
