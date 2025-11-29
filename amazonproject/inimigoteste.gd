@@ -22,6 +22,7 @@ var is_taking_damage: bool = false
 var last_direction := "right"  # usado para idle e damage
 
 var is_dying: bool = false
+var is_attacking := false
 
 signal died(room_id)
 
@@ -58,7 +59,21 @@ var inimigos = {
 							"up": "EspantalhoSofrendoDireita",
 							"left": "EspantalhoSofrendoEsquerda",
 							"right": "EspantalhoSofrendoDireita"
-						}
+						},
+						"atacando1": {
+							"right": "EspantalhoAtacando1Direita",
+							"left": "EspantalhoAtacando1Esquerda",
+							"up": "EspantalhoAtacando1Esquerda",
+							"down": "EspantalhoAtacando1Direita"
+						},
+						"atacando2": {
+							"right": "EspantalhoAtacando2Direita",
+							"left": "EspantalhoAtacando2Esquerda",
+							"up": "EspantalhoAtacando2Esquerda",
+							"down": "EspantalhoAtacando2Direita"
+							
+						},
+						
 						
 					},
 				"drop": ""
@@ -126,10 +141,19 @@ func take_damage(amount: int):
 	sprites.play(idle_anim)
 	
 func attack(body: Node2D): 
-	await get_tree().create_timer(0.2).timeout
 	if body.is_in_group("Player") and can_attack == true and not is_taking_damage :
-		body.take_damage(10)
+		is_attacking = true
 		can_attack = false
+	
+		var attack_anim = get_random_attack_anim("espantalho")
+		print("ANIMAÇÃO SELECIONADA:", attack_anim)
+
+		sprites.play(attack_anim)
+		print("ANIMAÇÃO TOCANDO AGORA:", sprites.animation)
+
+		await sprites.animation_finished
+		print("chegou")
+		body.take_damage(10)
 		attack_timer.start()
 			
 func drop_item(enemy: String):
@@ -161,7 +185,7 @@ func die():
 	queue_free()
 	
 func choose_sprite(enemy: String, velocity: Vector2):
-	if is_taking_damage:
+	if is_taking_damage or is_attacking or is_dying:
 		return  # não troca animação durante hit
 
 	# movimento horizontal
@@ -184,10 +208,8 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		player_in_range = body
 		start_attack_delay()
 
-
 func _on_timer_timeout() -> void:
 	can_attack = true
-
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	if body == player_in_range:
@@ -198,3 +220,8 @@ func start_attack_delay():
 
 	if player_in_range and can_attack:
 		attack(player_in_range)
+
+func get_random_attack_anim(enemy: String) -> String:
+	var attacks = ["atacando1", "atacando2"]
+	var random_attack = attacks[randi() % attacks.size()]
+	return inimigos[enemy]["animacoes"][random_attack][last_direction]
