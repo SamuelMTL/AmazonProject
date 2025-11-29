@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://ck8ariskkrufx"]
+[gd_scene load_steps=7 format=3 uid="uid://ck8ariskkrufx"]
 
 [ext_resource type="Script" path="res://Components/CucaShopComponents/cuca_shop.gd" id="1_wu8yr"]
 [ext_resource type="Texture2D" uid="uid://dis84o1anhc3j" path="res://assets/CucaShop/Group 3.png" id="2_sfulu"]
 [ext_resource type="FontFile" uid="uid://bm1yrc41rrxlf" path="res://assets/fonts/VCR_OSD_MONO_1.001.ttf" id="3_ghpmu"]
+[ext_resource type="Script" path="res://Components/CucaShopComponents/sair.gd" id="4_77wtq"]
 [ext_resource type="AudioStream" uid="uid://dglfulsg2p7pl" path="res://assets/sound/sfx/item_buy.wav" id="4_p36ku"]
+[ext_resource type="Script" path="res://Components/CucaShopComponents/comprar.gd" id="5_a36nr"]
 
 [node name="CucaShop" type="Control"]
 layout_mode = 3
@@ -52,6 +54,7 @@ offset_top = 33.0
 offset_right = 23.68
 offset_bottom = 21.0
 flat = true
+script = ExtResource("4_77wtq")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
@@ -133,6 +136,7 @@ offset_top = 266.0
 offset_right = 167.0
 offset_bottom = 297.0
 text = "Comprar"
+script = ExtResource("5_a36nr")
 
 [node name="BuySound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_p36ku")
