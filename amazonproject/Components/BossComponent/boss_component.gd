@@ -66,10 +66,11 @@ func take_damage(amount: int):
 		
 		
 func die():
+	get_tree().change_scene_to_file("res://Scenes/CutsceneScene/CutsceneScene2.tscn")
 	animations.play("dying")
 	await animations.animation_finished
 	PlayerInventory.powerups.append("Curupira")
-	get_tree().change_scene_to_file("res://Scenes/CutsceneScene/CutsceneScene2.tscn")
+
 
 func use_fire_attack():
 	var amount = 5
